@@ -1,0 +1,1166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avance de Proyectos 2026 — Subdirección TI · Grupo ITISA</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap');
+
+  :root {
+    --bg: #07111F;
+    --bg2: #0D1B2E;
+    --bg3: #132540;
+    --line: rgba(255,255,255,0.10);
+    --line2: rgba(255,255,255,0.18);
+    --text: #f0ede8;
+    --muted: rgba(240,237,232,0.45);
+    --dim: rgba(240,237,232,0.22);
+    --accent: #5BADEC;
+    --accent2: #2E7FC1;
+    --ok: #2ecc71;
+    --warn: #f39c12;
+    --risk: #e74c3c;
+    --blue: #3a8fd4;
+  }
+
+  :root.light {
+    --bg: #F5F7FA;
+    --bg2: #FFFFFF;
+    --bg3: #EAF0F8;
+    --line: rgba(0,0,0,0.08);
+    --line2: rgba(0,0,0,0.13);
+    --text: #0B2545;
+    --muted: rgba(11,37,69,0.55);
+    --dim: rgba(11,37,69,0.35);
+    --accent: #1E6FB5;
+    --accent2: #2E7FC1;
+    --ok: #16a34a;
+    --warn: #d97706;
+    --risk: #dc2626;
+    --blue: #1E6FB5;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    background-image: radial-gradient(ellipse 80% 40% at 50% 0%, rgba(91,173,236,0.04) 0%, transparent 60%);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(7,17,31,0.94);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--line2);
+  }
+  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 15px; letter-spacing: .04em; color: var(--text); text-decoration: none; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { font-size: 12px; color: var(--muted); text-decoration: none; letter-spacing: .06em; text-transform: uppercase; transition: color .2s; }
+  .nav-links a:hover { color: var(--text); }
+  .nav-date { font-size: 11px; color: var(--dim); letter-spacing: .08em; text-transform: uppercase; }
+
+  /* SECTIONS */
+  section { padding: 96px 48px; border-bottom: 0.5px solid var(--line); }
+  .eyebrow { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+  .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 5vw, 52px); font-weight: 400; line-height: 1.08; letter-spacing: -.02em; margin-bottom: 16px; }
+  .section-sub { font-size: 15px; color: var(--muted); max-width: 520px; line-height: 1.7; margin-bottom: 56px; }
+
+  /* HERO */
+  .hero {
+    min-height: 92vh; display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 96px 48px; border-bottom: 0.5px solid var(--line);
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 80% 40%, rgba(91,173,236,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 40px;
+  }
+  .hero-tag span { width: 24px; height: 1px; background: var(--accent); display: inline-block; }
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(52px, 9vw, 100px);
+    font-weight: 400; line-height: .96; letter-spacing: -.04em;
+    max-width: 820px; margin-bottom: 40px;
+  }
+  .hero-title em { font-style: italic; color: var(--muted); }
+  .hero-meta { display: flex; gap: 48px; flex-wrap: wrap; border-top: 0.5px solid var(--line2); padding-top: 32px; margin-top: 8px; }
+  .hero-meta-item { display: flex; flex-direction: column; gap: 4px; }
+  .hero-meta-label { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); }
+  .hero-meta-value { font-size: 15px; color: var(--text); font-weight: 300; }
+
+  /* RESUMEN METRICAS */
+  .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; background: var(--line2); border: 0.5px solid var(--line2); }
+  .metric-cell { background: var(--bg); padding: 40px 32px; }
+  .metric-num { font-family: 'DM Serif Display', serif; font-size: clamp(40px, 6vw, 60px); font-weight: 400; line-height: 1; letter-spacing: -.04em; color: var(--text); }
+  .metric-label { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-top: 10px; }
+
+  /* PROJECT CARDS */
+  .projects-grid { display: flex; flex-direction: column; gap: 2px; }
+  .project-card {
+    background: var(--bg2); border: 0.5px solid var(--line);
+    padding: 40px 40px 36px; display: grid;
+    grid-template-columns: 1fr 240px; gap: 40px; align-items: start;
+    transition: background .2s;
+  }
+  .project-card:hover { background: var(--bg3); }
+  .project-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+  .project-name { font-family: 'DM Serif Display', serif; font-size: 26px; font-weight: 400; letter-spacing: -.02em; line-height: 1.2; flex: 1; }
+  .project-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+  .badge {
+    font-size: 10px; letter-spacing: .1em; text-transform: uppercase; font-weight: 500;
+    padding: 4px 10px; border-radius: 2px;
+  }
+  .badge-admin { background: rgba(58,143,212,0.15); color: var(--blue); }
+  .badge-op { background: rgba(91,173,236,0.18); color: var(--accent); }
+  .badge-ia { background: rgba(91,173,236,0.22); color: #f5a742; }
+  .badge-neg { background: rgba(255,255,255,0.06); color: var(--muted); }
+  .project-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; margin-bottom: 24px; }
+  .project-meta-item .label { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--dim); margin-bottom: 2px; }
+  .project-meta-item .val { font-size: 14px; color: var(--text); font-weight: 300; }
+
+  /* PROGRESS BAR */
+  .progress-wrap { margin-bottom: 28px; }
+  .progress-label { display: flex; justify-content: space-between; margin-bottom: 8px; }
+  .progress-label span:first-child { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .progress-label span:last-child { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--text); }
+  .progress-track { height: 3px; background: var(--line2); border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 2px; background: var(--accent); transition: width 1.2s cubic-bezier(.4,0,.2,1); }
+
+  /* STATUS DOT */
+  .status-dot { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+  .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .dot-ok { background: var(--ok); box-shadow: 0 0 6px var(--ok); }
+  .dot-warn { background: var(--warn); box-shadow: 0 0 6px var(--warn); }
+  .dot-pending { background: var(--muted); }
+
+  /* EVENT LISTS */
+  .events-panel { display: flex; flex-direction: column; gap: 28px; }
+  .events-group-title { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .event-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .event-list li { font-size: 13px; color: var(--muted); padding-left: 14px; position: relative; line-height: 1.5; }
+  .event-list li::before { content: '—'; position: absolute; left: 0; color: var(--dim); }
+
+  /* RISKS */
+  .risk-row { border-top: 0.5px solid var(--line); padding: 14px 0; display: grid; grid-template-columns: 1fr 1fr auto; gap: 20px; }
+  .risk-title-cell { font-size: 13px; color: var(--text); }
+  .risk-mit { font-size: 12px; color: var(--muted); }
+  .risk-resp { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--dim); }
+
+  /* TABLE */
+  .data-table { width: 100%; border-collapse: collapse; }
+  .data-table th { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); text-align: left; padding: 14px 0; border-bottom: 0.5px solid var(--line2); font-weight: 500; }
+  .data-table td { font-size: 14px; color: var(--muted); padding: 16px 0; border-bottom: 0.5px solid var(--line); vertical-align: top; }
+  .data-table td:first-child { color: var(--text); font-weight: 400; }
+  .data-table tr:hover td { color: var(--text); }
+
+  /* IA SECTION */
+  .ia-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2px; background: var(--line); }
+  .ia-cell { background: var(--bg); padding: 36px 28px; }
+  .ia-cell-title { font-family: 'DM Serif Display', serif; font-size: 18px; margin-bottom: 12px; }
+  .ia-cell-body { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .ia-cell-tools { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .tool-pill { font-size: 10px; letter-spacing: .06em; text-transform: uppercase; padding: 3px 9px; border: 0.5px solid var(--line2); border-radius: 2px; color: var(--dim); }
+
+  /* ARCH DIAGRAM */
+  .arch-flow { display: grid; grid-template-columns: 1fr 40px 1fr 40px 1fr; align-items: start; gap: 8px; margin: 40px 0; }
+  .arch-node { background: var(--bg2); border: 0.5px solid var(--line2); padding: 28px 24px; }
+  .arch-arrow { display: flex; align-items: center; justify-content: center; padding-top: 40px; color: var(--accent); font-size: 20px; }
+  .arch-node-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 10px; letter-spacing: .02em; }
+  .arch-node-body { font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .arch-node-items { list-style: none; margin-top: 8px; }
+  .arch-node-items li { font-size: 11px; color: var(--dim); padding: 3px 0; border-bottom: 0.5px solid var(--line); }
+  .arch-profiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--line); margin-top: 8px; }
+  .arch-profile { background: var(--bg2); padding: 20px 20px; }
+  .arch-profile-role { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .arch-profile-q { font-size: 13px; color: var(--muted); font-style: italic; line-height: 1.5; }
+
+  /* CURSOS */
+  .cursos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2px; background: var(--line); }
+  .curso-card { background: var(--bg); padding: 32px 28px; }
+  .curso-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 6px; letter-spacing: .03em; }
+  .curso-tag { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; display: block; }
+  .curso-items { list-style: none; }
+  .curso-items li { font-size: 13px; color: var(--muted); padding: 6px 0; border-bottom: 0.5px solid var(--line); }
+  .curso-items li:last-child { border-bottom: none; }
+
+  /* CARTERA */
+  .cartera-section { background: var(--bg); }
+
+  /* CLOSING */
+  .closing {
+    min-height: 70vh; display: flex; flex-direction: column; justify-content: center;
+    align-items: center; text-align: center; gap: 24px; border-bottom: none;
+    position: relative; overflow: hidden;
+  }
+  .closing::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse 50% 60% at 50% 80%, rgba(91,173,236,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .closing-title { font-family: 'DM Serif Display', serif; font-size: clamp(48px, 8vw, 88px); font-weight: 400; letter-spacing: -.04em; line-height: .95; }
+  .closing-sub { font-size: 14px; color: var(--muted); letter-spacing: .06em; }
+  .closing-name { font-family: 'DM Serif Display', serif; font-size: 22px; margin-top: 16px; }
+  .closing-role { font-size: 12px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
+
+  /* FOOTER */
+  footer { padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; border-top: 0.5px solid var(--line); }
+  footer p { font-size: 11px; color: var(--dim); letter-spacing: .06em; }
+
+  /* DIVIDER */
+  .section-divider { width: 40px; height: 1px; background: var(--accent); margin-bottom: 48px; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-tag, .hero-title, .hero-meta { animation: fadeUp .8s cubic-bezier(.4,0,.2,1) both; }
+  .hero-title { animation-delay: .1s; }
+  .hero-meta { animation-delay: .2s; }
+
+  @media (max-width: 720px) {
+    nav { padding: 16px 24px; }
+    nav .nav-links { display: none; }
+    section { padding: 64px 24px; }
+    .hero { padding: 64px 24px; }
+    .project-card { grid-template-columns: 1fr; }
+    .arch-flow { grid-template-columns: 1fr; }
+    .arch-arrow { padding-top: 0; transform: rotate(90deg); }
+  }
+
+  .theme-toggle {
+    display: flex; align-items: center; gap: 8px;
+    background: transparent; border: 0.5px solid var(--line2);
+    border-radius: 20px; padding: 6px 14px; cursor: pointer;
+    font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+    color: var(--muted); font-family: 'DM Sans', sans-serif;
+    transition: border-color .2s, color .2s;
+  }
+  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+  .theme-toggle .toggle-icon { font-size: 14px; line-height: 1; }
+
+  :root.light .nav-logo { color: var(--text); }
+  :root.light .nav-links a { color: var(--muted); }
+  :root.light .nav-links a:hover { color: var(--text); }
+  :root.light .nav-date { color: var(--dim); }
+  :root.light nav { background: rgba(245,247,250,0.94); border-bottom-color: var(--line2); }
+
+  :root.light .hero::before { background: radial-gradient(ellipse 60% 50% at 80% 40%, rgba(30,111,181,0.06) 0%, transparent 70%); }
+  :root.light .closing::before { background: radial-gradient(ellipse 50% 60% at 50% 80%, rgba(30,111,181,0.06) 0%, transparent 70%); }
+  :root.light body { background-image: radial-gradient(ellipse 80% 40% at 50% 0%, rgba(30,111,181,0.04) 0%, transparent 60%); }
+
+  :root.light .badge-admin { background: rgba(30,111,181,0.12); color: #1E6FB5; }
+  :root.light .badge-op { background: rgba(30,111,181,0.08); color: #1E6FB5; }
+  :root.light .badge-ia { background: rgba(30,111,181,0.15); color: #155ea0; }
+  :root.light .badge-neg { background: rgba(11,37,69,0.07); color: var(--muted); }
+
+  :root.light .progress-fill { background: #1E6FB5; }
+  :root.light .dot-ok { background: var(--ok); box-shadow: 0 0 6px rgba(22,163,74,0.4); }
+  :root.light .tool-pill { border-color: var(--line2); color: var(--muted); }
+
+  :root.light .data-table th { color: #1E6FB5; }
+  :root.light .data-table td { color: var(--muted); border-bottom-color: var(--line); }
+  :root.light .data-table td:first-child { color: var(--text); }
+
+  :root.light .metric-num { color: var(--text); }
+  :root.light .metric-num.accent-num { color: #1E6FB5; }
+
+  :root.light .arch-node { background: var(--bg2); border-color: var(--line2); }
+  :root.light .arch-node-body { color: var(--muted); }
+  :root.light .arch-node-items li { color: var(--dim); border-bottom-color: var(--line); }
+  :root.light .arch-profile { background: var(--bg2); }
+  :root.light .arch-profile-q { color: var(--muted); }
+
+  :root.light .ia-cell { background: var(--bg2); }
+  :root.light .ia-cell-body { color: var(--muted); }
+  :root.light .curso-card { background: var(--bg2); }
+  :root.light .curso-items li { color: var(--muted); border-bottom-color: var(--line); }
+  :root.light .section-divider { background: #1E6FB5; }
+  :root.light .events-group-title { color: #1E6FB5; }
+  :root.light .event-list li { color: var(--muted); }
+  :root.light .event-list li::before { color: var(--dim); }
+  :root.light .risk-resp { color: var(--dim); }
+  :root.light .risk-mit { color: var(--muted); }
+  :root.light footer { border-top-color: var(--line2); }
+  :root.light footer p { color: var(--dim); }
+  :root.light .hero-tag { color: #1E6FB5; }
+  :root.light .hero-tag span { background: #1E6FB5; }
+  :root.light .eyebrow { color: #1E6FB5; }
+  :root.light .closing-sub { color: var(--muted); }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Grupo ITISA · TI</a>
+  <ul class="nav-links">
+    <li><a href="#proyectos">Proyectos</a></li>
+    <li><a href="#cartera">Cartera</a></li>
+    <li><a href="#ia">Inteligencia artificial</a></li>
+    <li><a href="#fichas">Fichas detalle</a></li>
+    <li><a href="#cierre">Contacto</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:12px">
+    <span class="nav-date">Actualización: 15 abril 2026</span>
+    <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" aria-label="Cambiar tema">
+      <span class="toggle-icon" id="theme-icon">☀</span>
+      <span id="theme-label">Claro</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-tag"><span></span>Subdirección TI · Avance 2026</div>
+  <h1 class="hero-title">Avance de<br>proyectos <em>2026</em></h1>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Corte</span>
+      <span class="hero-meta-value">15 de abril 2026</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Proyectos activos</span>
+      <span class="hero-meta-value">6 en curso</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">En cartera</span>
+      <span class="hero-meta-value">8 iniciativas</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Área</span>
+      <span class="hero-meta-value">Subdirección TI</span>
+    </div>
+  </div>
+</section>
+
+<!-- MÉTRICAS RÁPIDAS -->
+<section style="padding: 0; border-bottom: 0.5px solid var(--line);">
+  <div class="metrics-grid">
+    <div class="metric-cell">
+      <div class="metric-num">6</div>
+      <div class="metric-label">Proyectos en curso</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-num">8</div>
+      <div class="metric-label">En cartera</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-num">4</div>
+      <div class="metric-label">Negocios impactados</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-num" style="color:var(--accent)">3</div>
+      <div class="metric-label">Con componente de IA</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROYECTOS EN CURSO -->
+<section id="proyectos">
+  <p class="eyebrow">01 — Proyectos en curso</p>
+  <h2 class="section-title">En desarrollo</h2>
+  <p class="section-sub">Iniciativas activas con seguimiento al 15 de abril de 2026. Cada proyecto incluye avance real, eventos recientes, próximas actividades y riesgos identificados.</p>
+
+  <div class="projects-grid">
+
+    <!-- Portal de Contratistas -->
+    <div class="project-card">
+      <div>
+        <div class="project-badges">
+          <span class="badge badge-admin">Administrativo</span>
+          <span class="badge badge-neg">Prefabricados</span>
+        </div>
+        <h3 class="project-name">Portal de contratistas</h3>
+        <div class="project-meta-grid">
+          <div class="project-meta-item"><div class="label">Líder usuario</div><div class="val">Nuria</div></div>
+          <div class="project-meta-item"><div class="label">Etapa</div><div class="val">Desarrollo</div></div>
+          <div class="project-meta-item"><div class="label">Inicio — Fin</div><div class="val">8 mar → 3 jul</div></div>
+          <div class="project-meta-item"><div class="label">Estado</div><div class="val"><span class="status-dot"><span class="dot dot-ok"></span>En curso</span></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-label">
+            <span>Avance actual</span>
+            <span>23%</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" style="width:23%"></div></div>
+        </div>
+        <div class="events-panel">
+          <div>
+            <p class="events-group-title">Concluido</p>
+            <ul class="event-list">
+              <li>Firma electrónica en uso por prefabricados</li>
+              <li>Integración con la API de la firma electrónica</li>
+            </ul>
+          </div>
+          <div>
+            <p class="events-group-title">Actividad siguiente</p>
+            <ul class="event-list">
+              <li>Ajustar proceso SAP para controlar segunda etapa de las piezas</li>
+              <li>Contratar Portal REPSE al proveedor</li>
+            </ul>
+          </div>
+          <div>
+            <p class="events-group-title">Solicitud</p>
+            <ul class="event-list">
+              <li>Promover la firma electrónica en todas las áreas de prefabricados</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="events-group-title" style="margin-bottom:12px">Riesgos identificados</p>
+        <div class="risk-row">
+          <div class="risk-title-cell">El portal REPSE no esté a tiempo</div>
+          <div class="risk-mit">Planear el desarrollo para su integración posterior</div>
+          <div class="risk-resp">TI</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Portal REPSE -->
+    <div class="project-card">
+      <div>
+        <div class="project-badges">
+          <span class="badge badge-admin">Administrativo</span>
+          <span class="badge badge-neg">Prefabricados</span>
+        </div>
+        <h3 class="project-name">Portal REPSE</h3>
+        <div class="project-meta-grid">
+          <div class="project-meta-item"><div class="label">Líder usuario</div><div class="val">Iris Vázquez</div></div>
+          <div class="project-meta-item"><div class="label">Etapa</div><div class="val">Contratación</div></div>
+          <div class="project-meta-item"><div class="label">Inicio — Fin</div><div class="val">Por confirmar</div></div>
+          <div class="project-meta-item"><div class="label">Estado</div><div class="val"><span class="status-dot"><span class="dot dot-warn"></span>En gestión</span></div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-label">
+            <span>Avance actual</span>
+            <span>—</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" style="width:5%"></div></div>
+        </div>
+        <div class="events-panel">
+          <div>
+            <p class="events-group-title">Actividad siguiente</p>
+            <ul class="event-list">
+              <li>Cambio de proveedor por falta de documentación</li>
+              <li>Contratar nueva opción en dos semanas</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="events-group-title" style="margin-bottom:12px">Sin riesgos registrados</p>
+        <p style="font-size:12px;color:var(--dim)">Pendiente de confirmar proveedor</p>
+      </div>
+    </div>
+
+    <!-- KHOR -->
+    <div class="project-card">
+      <div>
+        <div class="project-badges">
+          <span class="badge badge-admin">Administrativo</span>
+          <span class="badge badge-neg">Capital Humano</span>
+        </div>
+        <h3 class="project-name">KHOR</h3>
+        <div class="project-meta-grid">
+          <div class="project-meta-item"><div class="label">Líder usuario</div><div class="val">Gabriela Sordo</div></div>
+          <div class="project-meta-item"><div class="label">Etapa</div><div class="val">Pruebas</div></div>
+          <div class="project-meta-item"><div class="label">Plan original</div><div class="val">Ago-Nov 2025</div></div>
+          <div class="project-meta-item"><div class="label">Fin estimado</div><div class="val">15/may/2026</div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-label">
+            <span>Avance actual</span>
+            <span>75%</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" style="width:75%"></div></div>
+        </div>
+        <div class="events-panel">
+          <div>
+            <p class="events-group-title">Concluido</p>
+            <ul class="event-list">
+              <li>Sesión en sitio para acelerar el trabajo</li>
+            </ul>
+          </div>
+          <div>
+            <p class="events-group-title">Actividad siguiente</p>
+            <ul class="event-list">
+              <li>Integración con SICOSS en curso</li>
+              <li>Pruebas completas de todos los módulos</li>
+              <li>Preparar archivos de carga</li>
+              <li>Preparar arranque productivo</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="events-group-title" style="margin-bottom:12px">Riesgos identificados</p>
+        <div class="risk-row">
+          <div class="risk-title-cell">Integración SICOSS demore entrada a productivo</div>
+          <div class="risk-mit">Confirmar recursos asignados por el proveedor</div>
+          <div class="risk-resp">Yadira</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- App Inspecciones Prefabricados -->
+    <div class="project-card">
+      <div>
+        <div class="project-badges">
+          <span class="badge badge-op">Operativo</span>
+          <span class="badge badge-neg">Prefabricados</span>
+        </div>
+        <h3 class="project-name">App inspecciones de calidad de piezas</h3>
+        <div class="project-meta-grid">
+          <div class="project-meta-item"><div class="label">Líder usuario</div><div class="val">Fernando Valle</div></div>
+          <div class="project-meta-item"><div class="label">Etapa</div><div class="val">Pendiente</div></div>
+          <div class="project-meta-item"><div class="label">Inicio — Fin</div><div class="val">6 abr → 26 jun</div></div>
+          <div class="project-meta-item"><div class="label">Avance</div><div class="val">16%</div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-label">
+            <span>Avance actual</span>
+            <span>16%</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" style="width:16%"></div></div>
+        </div>
+        <div class="events-panel">
+          <div>
+            <p class="events-group-title">Concluido</p>
+            <ul class="event-list">
+              <li>Diseño concluido, inician trabajos de desarrollo</li>
+            </ul>
+          </div>
+          <div>
+            <p class="events-group-title">Actividad siguiente</p>
+            <ul class="event-list">
+              <li>Desarrollo de la app e integración con SAP</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="events-group-title" style="margin-bottom:12px">Sin riesgos registrados</p>
+        <p style="font-size:12px;color:var(--dim)">Tecnología: Power App + SAP</p>
+      </div>
+    </div>
+
+    <!-- Oportunidades de venta IA -->
+    <div class="project-card">
+      <div>
+        <div class="project-badges">
+          <span class="badge badge-op">Operativo</span>
+          <span class="badge badge-ia">IA</span>
+          <span class="badge badge-neg">Prefabricados · BoConcept</span>
+        </div>
+        <h3 class="project-name">Oportunidades de venta</h3>
+        <div class="project-meta-grid">
+          <div class="project-meta-item"><div class="label">Duración estimada</div><div class="val">11 semanas</div></div>
+          <div class="project-meta-item"><div class="label">Etapa</div><div class="val">Pendiente</div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-label">
+            <span>Avance actual</span>
+            <span>—</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" style="width:3%"></div></div>
+        </div>
+        <div class="events-panel">
+          <div>
+            <p class="events-group-title">Concluido</p>
+            <ul class="event-list">
+              <li>Propuesta del proveedor recibida</li>
+            </ul>
+          </div>
+          <div>
+            <p class="events-group-title">Actividad siguiente</p>
+            <ul class="event-list">
+              <li>Confirmar ROI por parte de cada negocio</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="events-group-title" style="margin-bottom:12px">Riesgos identificados</p>
+        <div class="risk-row">
+          <div class="risk-title-cell">El resultado no sea el correcto</div>
+          <div class="risk-mit">Definir método para confirmar el resultado obtenido</div>
+          <div class="risk-resp">Direcciones</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inspecciones Durmientes -->
+    <div class="project-card">
+      <div>
+        <div class="project-badges">
+          <span class="badge badge-op">Operativo</span>
+          <span class="badge badge-neg">Durmientes</span>
+        </div>
+        <h3 class="project-name">Inspecciones de calidad — Durmientes &amp; cilindros de concreto</h3>
+        <div class="project-meta-grid">
+          <div class="project-meta-item"><div class="label">Líder usuario</div><div class="val">José Isabel</div></div>
+          <div class="project-meta-item"><div class="label">Etapa</div><div class="val">Desarrollo</div></div>
+          <div class="project-meta-item"><div class="label">Inicio — Fin</div><div class="val">23 mar → 30 abr</div></div>
+          <div class="project-meta-item"><div class="label">Avance</div><div class="val">40%</div></div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-label">
+            <span>Avance actual</span>
+            <span>40%</span>
+          </div>
+          <div class="progress-track"><div class="progress-fill" style="width:40%"></div></div>
+        </div>
+        <div class="events-panel">
+          <div>
+            <p class="events-group-title">Concluido</p>
+            <ul class="event-list">
+              <li>Análisis concluido</li>
+              <li>Configuración SAP concluida</li>
+            </ul>
+          </div>
+          <div>
+            <p class="events-group-title">Actividad siguiente</p>
+            <ul class="event-list">
+              <li>Desarrollo de pantalla de captura en curso</li>
+              <li>Desarrollo de formato</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p class="events-group-title" style="margin-bottom:12px">Riesgos identificados</p>
+        <div class="risk-row">
+          <div class="risk-title-cell">Resistencia al cambio</div>
+          <div class="risk-mit">Involucrar a gerencia y dirección del negocio</div>
+          <div class="risk-resp">Javier</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CARTERA -->
+<section id="cartera" style="background: var(--bg);">
+  <p class="eyebrow">02 — Proyectos en cartera</p>
+  <h2 class="section-title">Próximas iniciativas</h2>
+  <p class="section-sub">Proyectos definidos y priorizados, pendientes de arranque formal.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Proyecto</th>
+        <th>Negocio</th>
+        <th>Tipo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>App de obra</td>
+        <td>Prefabricados</td>
+        <td>Optimiza procesos</td>
+      </tr>
+      <tr>
+        <td>Dossier de calidad</td>
+        <td>Prefabricados · Tumex · Durmientes</td>
+        <td>Optimiza procesos</td>
+      </tr>
+      <tr>
+        <td>Cotizador de ventas</td>
+        <td>Tumex</td>
+        <td>Optimiza procesos</td>
+      </tr>
+      <tr>
+        <td>Mejoras proceso inventario y facturación</td>
+        <td>BC Muebles</td>
+        <td>Control administrativo</td>
+      </tr>
+      <tr>
+        <td>EDGE + REVIT + centro habilitado</td>
+        <td>Prefabricados</td>
+        <td>Optimiza procesos · <span style="color:var(--accent);font-size:11px;letter-spacing:.06em;text-transform:uppercase">IA</span></td>
+      </tr>
+      <tr>
+        <td>Optimizador de la producción</td>
+        <td>Prefabricados</td>
+        <td>Optimiza procesos · <span style="color:var(--accent);font-size:11px;letter-spacing:.06em;text-transform:uppercase">IA</span></td>
+      </tr>
+      <tr>
+        <td>Registro automatizado de facturas de proveedor</td>
+        <td>Administración</td>
+        <td>Automatiza procesos · <span style="color:var(--accent);font-size:11px;letter-spacing:.06em;text-transform:uppercase">IA</span></td>
+      </tr>
+      <tr>
+        <td>Gestión de moldes</td>
+        <td>Prefabricados</td>
+        <td>Optimiza procesos</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- INTELIGENCIA ARTIFICIAL -->
+<section id="ia">
+  <p class="eyebrow">03 — Inteligencia artificial</p>
+  <h2 class="section-title">Hoja de ruta IA</h2>
+  <p class="section-sub">Mapa de capacidades y proyectos de IA organizados por impacto y nivel de complejidad tecnológica.</p>
+
+  <div class="ia-grid">
+    <div class="ia-cell">
+      <div class="ia-cell-title">IA personal</div>
+      <div class="ia-cell-body">Resuelve temas personales, ayuda en búsquedas en internet, lee y prepara documentos, correos, presentaciones. Corrige archivos Excel y genera imágenes.</div>
+      <div class="ia-cell-tools">
+        <span class="tool-pill">chatGPT · Copilot</span>
+        <span class="tool-pill">Claude</span>
+        <span class="tool-pill">Gemini</span>
+      </div>
+    </div>
+    <div class="ia-cell">
+      <div class="ia-cell-title">Automatización de procesos</div>
+      <div class="ia-cell-body">Ejecuta tareas repetitivas. Proyectos: registro de facturas de proveedor, lector de documentos para REPSE y análisis posterior.</div>
+      <div class="ia-cell-tools">
+        <span class="tool-pill">Gestor agentes</span>
+      </div>
+    </div>
+    <div class="ia-cell">
+      <div class="ia-cell-title">Análisis de datos</div>
+      <div class="ia-cell-body">Emplea información del ERP o el BI. Encuentra patrones, tendencias o anomalías. Chat inmerso en BI o ERP para consultas y análisis.</div>
+      <div class="ia-cell-tools">
+        <span class="tool-pill">Data lakes</span>
+      </div>
+    </div>
+    <div class="ia-cell">
+      <div class="ia-cell-title">Atención al cliente</div>
+      <div class="ia-cell-body">Interactúa con los sistemas de la empresa. Búsqueda de oportunidades de ventas.</div>
+      <div class="ia-cell-tools">
+        <span class="tool-pill">Chat bot</span>
+      </div>
+    </div>
+    <div class="ia-cell">
+      <div class="ia-cell-title">Procesos operativos</div>
+      <div class="ia-cell-body">Tiempo, costo, calidad, disponibilidad y decisión. Optimizador de la producción y predicción de mantenimiento requerido.</div>
+      <div class="ia-cell-tools">
+        <span class="tool-pill">Machine learning</span>
+        <span class="tool-pill">Optimizador</span>
+        <span class="tool-pill">APS</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Piloto Análisis de datos -->
+  <div style="margin-top: 64px;">
+    <div class="section-divider"></div>
+    <p class="eyebrow">Proyecto piloto activo</p>
+    <h3 style="font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;margin-bottom:8px;letter-spacing:-.02em">Análisis de datos — Seguimiento de avance<br><em style="color:var(--muted);font-style:italic">Proyecto Piloto V1.0</em></h3>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:40px;max-width:560px">Motor de razonamiento Python + Anthropic sobre Data Mart SQL Server, con Claude Sonnet como capa de lenguaje natural.</p>
+
+    <div class="arch-flow">
+      <div class="arch-node">
+        <div class="arch-node-title">SAP ECC — Origen</div>
+        <div class="arch-node-body">Sistema de origen principal</div>
+        <ul class="arch-node-items">
+          <li>Órdenes de producción (AFKO/AFRU)</li>
+          <li>Mov. de materiales (MSEG/MKPF)</li>
+          <li>Números de serie (SER03/OBJK)</li>
+          <li>Proyectos WBS (PROJ)</li>
+        </ul>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node">
+        <div class="arch-node-title">Staging + ETL</div>
+        <div class="arch-node-body">Limpieza y transformación</div>
+        <ul class="arch-node-items">
+          <li>Homologación de claves de material</li>
+          <li>Equivalencias y correcciones</li>
+          <li>Cálculo de volúmenes (m³)</li>
+          <li>Carga incremental / total</li>
+        </ul>
+      </div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-node" style="border-color:rgba(91,173,236,0.28);">
+        <div class="arch-node-title" style="color:var(--accent)">Claude — Anthropic Sonnet</div>
+        <div class="arch-node-body">Motor de razonamiento. Recibe pregunta → aplica system prompt con glosario → consulta Data Mart → genera respuesta en lenguaje natural con insights adicionales.</div>
+        <ul class="arch-node-items">
+          <li>Data Mart SQL Server</li>
+          <li>Aplicación Python orquestadora</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin:32px 0 16px">Perfiles de usuario</p>
+    <div class="arch-profiles">
+      <div class="arch-profile">
+        <div class="arch-profile-role">Dirección general</div>
+        <div class="arch-profile-q">"¿Qué proyectos están en riesgo de incumplimiento?"</div>
+      </div>
+      <div class="arch-profile">
+        <div class="arch-profile-role">Director de proyecto</div>
+        <div class="arch-profile-q">"¿Cuántas piezas retrasadas vs plan contractual?"</div>
+      </div>
+      <div class="arch-profile">
+        <div class="arch-profile-role">Jefe de planta</div>
+        <div class="arch-profile-q">"¿Cuántos m³ fabricados esta semana por material?"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cursos IA -->
+  <div style="margin-top:64px;">
+    <div class="section-divider"></div>
+    <p class="eyebrow">Capacitación</p>
+    <h3 style="font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;margin-bottom:40px;letter-spacing:-.02em">IA personal — Cursos</h3>
+    <div class="cursos-grid">
+      <div class="curso-card">
+        <span class="curso-tag">En curso</span>
+        <div class="curso-title">Copilot en Office 365</div>
+        <ul class="curso-items">
+          <li>Introducción a la IA</li>
+          <li>Leer, redactar y resumir documentos</li>
+          <li>Gestión de contratos *</li>
+        </ul>
+      </div>
+      <div class="curso-card">
+        <span class="curso-tag">En curso</span>
+        <div class="curso-title">Copilot PRO</div>
+        <ul class="curso-items">
+          <li>Copilot en Outlook</li>
+          <li>Copilot en Word</li>
+          <li>Copilot en Excel</li>
+          <li>Copilot en PowerPoint</li>
+        </ul>
+      </div>
+      <div class="curso-card">
+        <span class="curso-tag">En curso</span>
+        <div class="curso-title">Investigación y toma de decisiones</div>
+        <ul class="curso-items">
+          <li>Prompts efectivos</li>
+          <li>Interpretar resultados</li>
+        </ul>
+      </div>
+      <div class="curso-card">
+        <span class="curso-tag" style="color:var(--muted)">En planeación</span>
+        <div class="curso-title">Próximos temas</div>
+        <ul class="curso-items">
+          <li>IA en generación de presentaciones</li>
+          <li>IA en tableros de BI</li>
+          <li>Power Automate</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- ENTREGADO EN EL PERIODO -->
+  <section id="entregado" style="background: var(--bg2);">
+    <p class="eyebrow">04 — Entregado en el periodo</p>
+    <h2 class="section-title">App maniobras</h2>
+    <p class="section-sub">Proyecto concluido y entregado en el periodo de reporte. Aplicación para registro y gestión de maniobras operativas.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;background:var(--line2);">
+      <div style="background:var(--bg);padding:32px 28px;">
+        <p style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px">Estado</p>
+        <p style="font-size:22px;font-weight:300;color:var(--ok);">● Entregado</p>
+      </div>
+      <div style="background:var(--bg);padding:32px 28px;">
+        <p style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px">Producto</p>
+        <p style="font-size:18px;font-weight:300;color:var(--text);">App maniobras</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FICHAS DE DETALLE POR PROYECTO -->
+  <section id="fichas">
+    <p class="eyebrow">05 — Fichas de detalle</p>
+    <h2 class="section-title">Alcance, beneficios y tecnología</h2>
+    <p class="section-sub">Información completa de cada proyecto: alcance definido, beneficios esperados, tecnología a emplear y consideraciones relevantes.</p>
+
+    <div class="projects-grid">
+
+      <!-- Ficha Portal de contratistas -->
+      <div class="project-card">
+        <div>
+          <div class="project-badges"><span class="badge badge-admin">Administrativo</span><span class="badge badge-neg">Prefabricados</span></div>
+          <h3 class="project-name">Portal de contratistas</h3>
+          <div class="events-panel">
+            <div>
+              <p class="events-group-title">Alcance del proyecto</p>
+              <ul class="event-list">
+                <li>Recepción de estimaciones</li>
+                <li>Incluir validaciones: REPSE y piezas repetidas</li>
+                <li>Firma electrónica integrada</li>
+                <li>Documentación soporte digital</li>
+              </ul>
+            </div>
+            <div>
+              <p class="events-group-title">Beneficios</p>
+              <ul class="event-list">
+                <li>Se evita el riesgo de pagos duplicados para la misma pieza</li>
+                <li>Ahorro de horas administrativas</li>
+                <li>Información de avance de obra disponible</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="events-group-title" style="margin-bottom:12px">Tecnología a emplear</p>
+          <ul class="event-list" style="margin-bottom:24px">
+            <li>Portal Microsoft</li>
+            <li>SAP Proyectos y cuentas por pagar</li>
+          </ul>
+          <p class="events-group-title" style="margin-bottom:12px">Consideraciones relevantes</p>
+          <p style="font-size:13px;color:var(--muted);line-height:1.6">La gestión previa de contratación debe ejecutarse en tiempo para que el portal entregue los beneficios esperados.</p>
+        </div>
+      </div>
+
+      <!-- Ficha Portal REPSE -->
+      <div class="project-card">
+        <div>
+          <div class="project-badges"><span class="badge badge-admin">Administrativo</span><span class="badge badge-neg">Prefabricados</span></div>
+          <h3 class="project-name">Portal REPSE</h3>
+          <div class="events-panel">
+            <div>
+              <p class="events-group-title">Alcance del proyecto</p>
+              <ul class="event-list">
+                <li>Portal para recepción de documentos del proveedor</li>
+                <li>Validaciones de REPSE del documento</li>
+                <li>Alertas en caso de incumplimiento o documentos vencidos</li>
+              </ul>
+            </div>
+            <div>
+              <p class="events-group-title">Beneficios</p>
+              <ul class="event-list">
+                <li>Evitar incumplimientos REPSE frente a la autoridad</li>
+                <li>Ahorro de horas de proceso al equipo administrativo</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="events-group-title" style="margin-bottom:12px">Tecnología a emplear</p>
+          <ul class="event-list" style="margin-bottom:24px"><li>Portal del proveedor</li></ul>
+          <p class="events-group-title" style="margin-bottom:12px">Consideraciones relevantes</p>
+          <p style="font-size:13px;color:var(--muted);line-height:1.6">Establecer el control interno y con los proveedores para recibir documentos solamente por este portal.</p>
+          <p style="font-size:13px;color:var(--accent);margin-top:12px;line-height:1.6"><i style="font-style:normal">★</i> Concluyendo este proyecto se puede integrar la IA para ejecutar las validaciones de razonabilidad de las cifras del proveedor.</p>
+        </div>
+      </div>
+
+      <!-- Ficha KHOR -->
+      <div class="project-card">
+        <div>
+          <div class="project-badges"><span class="badge badge-admin">Administrativo</span><span class="badge badge-neg">Capital Humano</span></div>
+          <h3 class="project-name">KHOR</h3>
+          <div class="events-panel">
+            <div>
+              <p class="events-group-title">Alcance del proyecto</p>
+              <ul class="event-list">
+                <li>Sistema de gestión de personal para todas las empresas del grupo</li>
+              </ul>
+            </div>
+            <div>
+              <p class="events-group-title">Beneficios</p>
+              <ul class="event-list">
+                <li>Registro único del empleado en un solo lugar</li>
+                <li>Eliminar exceles</li>
+                <li>Información disponible al momento</li>
+                <li>Integración de procesos en equipos móviles</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="events-group-title" style="margin-bottom:12px">Tecnología a emplear</p>
+          <ul class="event-list" style="margin-bottom:24px"><li>Portal del proveedor</li></ul>
+          <p class="events-group-title" style="margin-bottom:12px">Consideraciones relevantes</p>
+          <p style="font-size:13px;color:var(--muted);line-height:1.6">Se requieren pruebas exhaustivas en la integración con SICOSS.</p>
+        </div>
+      </div>
+
+      <!-- Ficha App Inspecciones piezas -->
+      <div class="project-card">
+        <div>
+          <div class="project-badges"><span class="badge badge-op">Operativo</span><span class="badge badge-neg">Prefabricados</span></div>
+          <h3 class="project-name">App inspecciones de calidad de piezas</h3>
+          <div class="events-panel">
+            <div>
+              <p class="events-group-title">Alcance del proyecto</p>
+              <ul class="event-list">
+                <li>Generar una app que registre las inspecciones de calidad</li>
+                <li>Integrada con SAP</li>
+              </ul>
+            </div>
+            <div>
+              <p class="events-group-title">Beneficios</p>
+              <ul class="event-list">
+                <li>Inspecciones registradas al momento del evento</li>
+                <li>Información disponible al inspector respecto a piezas listas y pendientes</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="events-group-title" style="margin-bottom:12px">Tecnología a emplear</p>
+          <ul class="event-list" style="margin-bottom:24px"><li>Power App + SAP</li></ul>
+          <p class="events-group-title" style="margin-bottom:12px">Consideraciones relevantes</p>
+          <ul class="event-list">
+            <li>Se hará el desarrollo considerando la falta de cobertura celular</li>
+            <li>El proyecto iniciará cuando se concluya el mantenimiento a Cartas asignación</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Ficha Oportunidades de venta -->
+      <div class="project-card">
+        <div>
+          <div class="project-badges"><span class="badge badge-op">Operativo</span><span class="badge badge-ia">IA</span><span class="badge badge-neg">Prefabricados · BoConcept</span></div>
+          <h3 class="project-name">Oportunidades de venta</h3>
+          <div class="events-panel">
+            <div>
+              <p class="events-group-title">Alcance del proyecto</p>
+              <ul class="event-list">
+                <li>Generar un proceso que busque en portales de noticias, redes sociales y portales de licitaciones oportunidades de venta de prefabricados</li>
+              </ul>
+            </div>
+            <div>
+              <p class="events-group-title">Beneficios</p>
+              <ul class="event-list">
+                <li>Incrementar el volumen de venta</li>
+                <li>Disminuir el tiempo de búsqueda de oportunidades</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="events-group-title" style="margin-bottom:12px">Tecnología a emplear</p>
+          <ul class="event-list" style="margin-bottom:24px">
+            <li>IA + gestor de agentes + web scraping</li>
+            <li>Integración al CRM</li>
+          </ul>
+          <p class="events-group-title" style="margin-bottom:12px">Consideraciones relevantes</p>
+          <p style="font-size:13px;color:var(--muted);line-height:1.6">Se requiere un análisis del volumen esperado a incrementar en ventas para justificar el proyecto por parte de cada negocio.</p>
+        </div>
+      </div>
+
+      <!-- Ficha Inspecciones Durmientes -->
+      <div class="project-card">
+        <div>
+          <div class="project-badges"><span class="badge badge-op">Operativo</span><span class="badge badge-neg">Durmientes</span></div>
+          <h3 class="project-name">Inspecciones de calidad Durmientes</h3>
+          <div class="events-panel">
+            <div>
+              <p class="events-group-title">Alcance del proyecto</p>
+              <ul class="event-list">
+                <li>Registrar las inspecciones de calidad en SAP</li>
+              </ul>
+            </div>
+            <div>
+              <p class="events-group-title">Beneficios</p>
+              <ul class="event-list">
+                <li>Simplificar la captura de información</li>
+                <li>Ahorrar horas en trascripciones y manejo de archivos Excel</li>
+                <li>Generar formatos desde el sistema</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="events-group-title" style="margin-bottom:12px">Tecnología a emplear</p>
+          <ul class="event-list" style="margin-bottom:24px"><li>SAP-QM</li></ul>
+          <p class="events-group-title" style="margin-bottom:12px">Consideraciones relevantes</p>
+          <p style="font-size:13px;color:var(--muted);line-height:1.6">Se iniciará con la inspección de cilindros de concreto.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CIERRE -->
+<section class="closing" id="cierre">
+  <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)">Grupo ITISA · Subdirección TI</p>
+  <h2 class="closing-title">Gracias</h2>
+  <div class="section-divider" style="margin:0 auto"></div>
+  <p class="closing-name">Javier Cárdenas</p>
+  <p class="closing-role">Subdirector TI — Grupo ITISA</p>
+  <p style="font-size:12px;color:var(--dim);margin-top:8px">Actualización al 15 de abril de 2026</p>
+</section>
+
+<footer>
+  <p>© 2026 Grupo ITISA · Subdirección TI · Avance de proyectos</p>
+  <p>Información confidencial — uso interno</p>
+</footer>
+
+<script>
+  const fills = document.querySelectorAll('.progress-fill');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.width = e.target.dataset.w;
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  fills.forEach(f => {
+    const w = f.style.width;
+    f.dataset.w = w;
+    f.style.width = '0%';
+    io.observe(f);
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.project-card, .metric-cell, .ia-cell, .curso-card, .arch-node, .arch-profile').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity .6s ease, transform .6s ease';
+    observer.observe(el);
+  });
+</script>
+
+<script>
+  function toggleTheme() {
+    const root = document.documentElement;
+    const isLight = root.classList.toggle('light');
+    document.getElementById('theme-icon').textContent = isLight ? '☾' : '☀';
+    document.getElementById('theme-label').textContent = isLight ? 'Oscuro' : 'Claro';
+    localStorage.setItem('itisa-theme', isLight ? 'light' : 'dark');
+  }
+  (function() {
+    const saved = localStorage.getItem('itisa-theme');
+    if (saved === 'light') {
+      document.documentElement.classList.add('light');
+      document.addEventListener('DOMContentLoaded', function() {
+        const icon = document.getElementById('theme-icon');
+        const label = document.getElementById('theme-label');
+        if (icon) icon.textContent = '☾';
+        if (label) label.textContent = 'Oscuro';
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>
