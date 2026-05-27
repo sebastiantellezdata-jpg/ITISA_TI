@@ -3,778 +3,1794 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Avance de Proyectos 2026 — Subdirección TI · Grupo ITISA</title>
+<title>Avance de Proyectos 2026 — Subdirección TI · Grupo ITISA · Mayo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
 
-  :root {
-    --bg: #07111F;
-    --bg2: #0D1B2E;
-    --bg3: #132540;
-    --line: rgba(255,255,255,0.10);
-    --line2: rgba(255,255,255,0.18);
-    --text: #f0ede8;
-    --muted: rgba(240,237,232,0.45);
-    --dim: rgba(240,237,232,0.22);
-    --accent: #5BADEC;
-    --accent2: #2E7FC1;
-    --ok: #2ecc71;
-    --warn: #f39c12;
-    --risk: #e74c3c;
-    --blue: #3a8fd4;
+:root{
+  --bg:#050d18;--bg2:#0a1628;--bg3:#0f1f38;--bg4:#162847;
+  --glass:rgba(255,255,255,0.03);--glass2:rgba(255,255,255,0.06);
+  --line:rgba(255,255,255,0.07);--line2:rgba(255,255,255,0.12);
+  --text:#e8edf5;--muted:rgba(232,237,245,0.50);--dim:rgba(232,237,245,0.28);
+  --accent:#4A9EE0;--accent2:#72B8F0;--accentbg:rgba(74,158,224,0.10);
+  --ok:#34d399;--okbg:rgba(52,211,153,0.10);
+  --warn:#fbbf24;--warnbg:rgba(251,191,36,0.10);
+  --risk:#f87171;--riskbg:rgba(248,113,113,0.10);
+  --r:16px;--r2:12px;--r3:8px;
+  --font:'Inter',-apple-system,sans-serif;
+}
+:root.light{
+  --bg:#f0f4f9;--bg2:#ffffff;--bg3:#e4ecf5;--bg4:#d8e6f3;
+  --glass:rgba(255,255,255,.70);--glass2:rgba(255,255,255,.90);
+  --line:rgba(11,37,69,.07);--line2:rgba(11,37,69,.12);
+  --text:#0b2140;--muted:rgba(11,33,64,.55);--dim:rgba(11,33,64,.35);
+  --accent:#1a6eb5;--accent2:#2683d4;--accentbg:rgba(26,110,181,.08);
+  --ok:#059669;--okbg:rgba(5,150,105,.08);
+  --warn:#d97706;--warnbg:rgba(217,119,6,.08);
+  --risk:#dc2626;--riskbg:rgba(220,38,38,.08);
+}
+
+body{
+  font-family:var(--font);background:var(--bg);color:var(--text);
+  font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  transition:background .4s,color .3s;overflow-x:hidden;padding-top:64px;
+}
+
+/* ─── LAYOUT SHELL ─────────────────────────────────────── */
+.framer-layout-root{display:flex;flex-direction:column;align-items:center;width:100%}
+
+/* ─── NAV ──────────────────────────────────────────────── */
+nav{
+  position:fixed;top:0;left:0;width:100%;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 6%;
+  background:rgba(5,13,24,0.75);
+  backdrop-filter:blur(20px) saturate(180%);
+  -webkit-backdrop-filter:blur(20px) saturate(180%);
+  border-bottom:0.5px solid var(--line2);
+  z-index:9999;transition:background .4s;
+}
+:root.light nav{background:rgba(240,244,249,0.82);}
+.nav-logo{font-size:14px;font-weight:600;letter-spacing:-.02em;color:var(--text);text-decoration:none}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:12px;color:var(--muted);text-decoration:none;letter-spacing:.02em;transition:color .15s}
+.nav-links a:hover{color:var(--text)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.nav-date{font-size:11px;color:var(--dim);letter-spacing:.04em}
+.theme-btn{width:36px;height:20px;border-radius:10px;background:var(--glass2);border:0.5px solid var(--line2);position:relative;cursor:pointer;transition:background .3s;flex-shrink:0}
+.theme-btn::after{content:'';position:absolute;top:3px;left:3px;width:14px;height:14px;border-radius:50%;background:var(--accent);transition:transform .3s}
+:root.light .theme-btn::after{transform:translateX(16px)}
+.theme-label{font-size:11px;color:var(--dim);letter-spacing:.04em;cursor:pointer;user-select:none}
+
+/* ─── SECTION BAR ──────────────────────────────────────── */
+.section-bar{
+  width:100%;max-width:1600px;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  padding:.7rem 6%;border-bottom:0.5px solid var(--line);border-top:0.5px solid var(--line);
+  font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;
+}
+.section-bar div:nth-child(2){padding-left:10%}
+.section-bar div:nth-child(3){text-align:center}
+.section-bar div:nth-child(4){text-align:right}
+
+/* ─── HERO ─────────────────────────────────────────────── */
+.hero {
+  width: 100%;
+  max-width: 1600px;
+  min-height: calc(100vh - 64px - 160px);
+  display: grid;
+  grid-template-columns: 1.1fr 1.4fr; /* <-- Rebalanceo: menos texto, más imagen */
+  padding: 5rem 6% 4rem;
+  align-items: center;
+  gap: 2.5rem;                        /* <-- Reducido de 5rem a 2.5rem para evitar colisiones */
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 55% at 75% 35%,rgba(74,158,224,.09) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 40% at 20% 70%,rgba(74,158,224,.05) 0%,transparent 55%);
+}
+:root.light .hero-bg{
+  background:
+    radial-gradient(ellipse 60% 55% at 75% 35%,rgba(26,110,181,.06) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 40% at 20% 70%,rgba(26,110,181,.03) 0%,transparent 55%);
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;                        /* <-- Fuerza al bloque a usar todo el ancho de su columna */
+  text-align: left;
+}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:28px}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--accent)}
+.hero-h1 {
+  font-size: clamp(44px, 5.5vw, 76px); /* <-- Reducido sutilmente el máximo para pantallas medianas */
+  font-weight: 200;
+  line-height: 1.05;                  /* <-- Ajustado para que el interlineado sea más limpio si rompe */
+  letter-spacing: -.045em;
+  color: var(--text);
+  margin-bottom: 28px;
+  white-space: nowrap;                /* <-- Evita que "proyectos 2026" se divida en dos líneas */
+}
+.hero-h1 strong{font-weight:700}
+.hero-h1 em{font-style:normal;color:var(--accent)}
+.hero-sub{font-size:16px;color:var(--muted);max-width:480px;line-height:1.6;font-weight:300}
+.hero {
+  width: 100%;
+  max-width: 1600px;
+  min-height: calc(100vh - 64px - 160px);
+  display: grid;
+  grid-template-columns: 1fr 1.4fr; /* <-- Cambiado de 1.3fr 1fr a 1fr 1.4fr */
+  padding: 5rem 6% 4rem;
+  align-items: center;
+  gap: 4rem;                        /* Reducimos ligeramente el gap para ganar espacio */
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-img-zone {
+  position: relative;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;             /* <-- Cambiado a 16/9 para que no se haga demasiado alta al ensancharse */
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.08);
+  background: #061120;
+}
+.hero-img-zone::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 8px,var(--glass) 8px,var(--glass) 9px);opacity:.4}
+.hero-img-label{font-size:11px;color:var(--dim);letter-spacing:.06em;text-transform:uppercase;position:relative;z-index:1}
+.hero-img-code{font-family:monospace;font-size:10px;color:var(--dim);position:relative;z-index:1}
+
+/* ─── METRICS BAND ─────────────────────────────────────── */
+.metrics-band{width:100%;display:flex;border-bottom:0.5px solid var(--line);border-top:0.5px solid var(--line)}
+.mband-cell{flex:1;padding:28px 32px;border-right:0.5px solid var(--line)}
+.mband-cell:last-child{border-right:none}
+.mband-num{font-size:clamp(32px,3.8vw,52px);font-weight:200;letter-spacing:-.05em;line-height:1;color:var(--text)}
+.mband-num.hi{color:var(--accent)}
+.mband-lbl{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-top:8px}
+
+/* ─── MARQUEE 1 (SE QUEDA TAL CUAL TU CÓDIGO) ──────────────── */
+.marquee-strip{width:100%;overflow:hidden;padding:3.5rem 0;border-bottom:0.5px solid var(--line);border-top:0.5px solid var(--line)}
+.marquee-inner{display:flex;flex-shrink:0;gap:6rem;animation:marqueeScroll 18s linear infinite;white-space:nowrap}
+.marquee-text{font-size:clamp(40px,5.5vw,70px);font-weight:300;text-transform:uppercase;letter-spacing:-.04em;color:var(--text);flex-shrink:0;opacity:.7}
+.marquee-text em{font-style:normal;color:var(--accent);opacity:1}
+@keyframes marqueeScroll{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(-50%,0,0)}}
+
+
+/* ─── MODIFICACIONES AL HERO PARA EL EFECTO DETRÁS ────────── */
+.hero {
+  position: relative;
+  overflow: hidden; 
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2; /* Al frente */
+}
+
+/* Forzamos que la tarjeta de la imagen quede por encima de la marquesina 2 */
+.hero-img-zone {
+  position: relative;
+  z-index: 10; /* Prioridad alta para tapar el texto */
+  background: #061120;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.4); 
+}
+
+
+/* ─── NUEVO: MARQUEE 2 (ESTILO PALMER - DETRÁS DEL RENDER) ── */
+.marquee-hero-behind {
+  position: absolute;       /* Se superpone en la sección Hero */
+  bottom: 12%;              /* Altura ideal para cruzar detrás del render */
+  left: 0;
+  width: 100%;
+  z-index: 3;               /* Por detrás de la imagen (10) pero arriba del fondo */
+  overflow: hidden;
+  padding: 1.5rem 0;
+  pointer-events: none;     /* No interrumpe los clics ni selección */
+  border-top: 0.5px solid rgba(255,255,255,.05);
+  border-bottom: 0.5px solid rgba(255,255,255,.05);
+}
+
+/* Variación de texto gigante y negrita exclusivo para la marquesina 2 */
+.marquee-hero-behind .marquee-text {
+  font-size: clamp(65px, 9vw, 130px); 
+  font-weight: 700;         /* Letras gruesas estilo Palmer */
+  letter-spacing: -.03em;
+  opacity: .12;             /* Muy sutil como marca de agua para que no sature */
+}
+
+.marquee-hero-behind .marquee-text em {
+  font-weight: 700;
+  font-style: normal;
+  color: var(--accent);
+}
+
+
+
+/* ─── SECTIONS ─────────────────────────────────────────── */
+.section{width:100%;max-width:1600px;padding:7rem 6%;border-bottom:0.5px solid var(--line)}
+.eyebrow{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+.section-title{font-size:clamp(30px,4vw,50px);font-weight:300;letter-spacing:-.03em;line-height:1.1;margin-bottom:14px;color:var(--text)}
+.section-title strong{font-weight:700}
+.section-sub{font-size:16px;color:var(--muted);max-width:1240px;line-height:1.7;font-weight:300;margin-bottom:3.5rem}
+
+/* ─── IMG ZONES ─────────────────────────────────────────── */
+.img-zone{border-radius:var(--r);border:0.5px dashed var(--line2);background:var(--glass);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;position:relative;overflow:hidden}
+.img-zone::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 6px,var(--glass) 6px,var(--glass) 7px);opacity:.4}
+.img-zone-content{position:relative;z-index:1;text-align:center}
+.img-zone-icon{font-size:22px;display:block;margin-bottom:6px;opacity:.25}
+.img-zone-text{font-size:10px;color:var(--dim);letter-spacing:.06em;text-transform:uppercase}
+.img-zone-code{font-family:monospace;font-size:10px;color:var(--dim);margin-top:4px;opacity:.7}
+.img-block{width:100%;aspect-ratio:21/6;margin-bottom:3rem}
+
+/* ─── FILTERS ──────────────────────────────────────────── */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px;align-items:center}
+.filter-btn{font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;padding:7px 18px;border-radius:20px;border:0.5px solid var(--line2);background:transparent;color:var(--muted);cursor:pointer;transition:all .2s;font-family:var(--font)}
+.filter-btn:hover{background:var(--glass2);color:var(--text)}
+.filter-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.filter-count-label{font-size:11px;color:var(--dim);margin-left:auto;letter-spacing:.04em}
+
+/* ─── PROJECT GRID ─────────────────────────────────────── */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px}
+.pgrid-card{
+  background:var(--bg2);border:0.5px solid var(--line);border-radius:var(--r);
+  overflow:hidden;transition:border-color .25s,transform .2s;
+  position:relative;display:flex;flex-direction:column;
+}
+.pgrid-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent);opacity:0;transition:opacity .2s}
+.pgrid-card:hover{border-color:var(--line2);transform:translateY(-1px)}
+.pgrid-card:hover::before{opacity:1}
+.pgrid-card.hidden{display:none}
+.pgrid-card-inner{padding:22px 24px;display:flex;flex-direction:column;gap:12px}
+.pgrid-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.pgrid-tags{display:flex;flex-wrap:wrap;gap:4px}
+.pgrid-name{font-size:17px;font-weight:600;color:var(--text);letter-spacing:-.015em;line-height:1.25}
+.pgrid-leader{font-size:12px;color:var(--dim)}
+.prog-num-sm{font-size:22px;font-weight:200;letter-spacing:-.03em;color:var(--text)}
+
+/* ── COMPACT PROGRESS ── */
+.prog-compact{padding:12px 0 4px;border-top:0.5px solid var(--line)}
+/* fila de números */
+.prog-row{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:8px}
+.prog-pct-main{font-size:22px;font-weight:600;letter-spacing:-.04em;color:var(--text);line-height:1}
+.prog-pct-prev{font-size:11px;color:var(--dim);letter-spacing:-.01em}
+/* delta badge grande */
+.prog-delta{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:700;letter-spacing:.02em;padding:3px 9px;border-radius:20px;line-height:1}
+.prog-delta-up{background:var(--okbg);color:var(--ok)}
+.prog-delta-flat{background:var(--glass);color:var(--muted)}
+.prog-delta-down{background:var(--riskbg);color:var(--risk)}
+/* barras dobles */
+.prog-bars{display:flex;flex-direction:column;gap:4px}
+.prog-bar-row{display:grid;grid-template-columns:36px 1fr;align-items:center;gap:8px}
+.prog-bar-lbl{font-size:9px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--dim);text-align:right}
+.prog-bar-track{height:5px;background:var(--line2);border-radius:3px;position:relative;overflow:hidden}
+.prog-bar-fill{height:100%;border-radius:3px;position:absolute;top:0;left:0;transition:width 1.4s cubic-bezier(.4,0,.2,1)}
+.prog-bar-fill.mayo{background:var(--accent)}
+.prog-bar-fill.abril{background:var(--dim);opacity:.55}
+/* light overrides */
+
+/* ── TABS ── */
+.pcard-tabs{display:flex;border-top:0.5px solid var(--line);background:var(--bg)}
+.pcard-tab{flex:1;font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--dim);padding:9px 4px;text-align:center;cursor:pointer;border:none;background:transparent;font-family:var(--font);transition:color .15s,background .15s;border-bottom:2px solid transparent;margin-bottom:-0.5px}
+.pcard-tab:hover{color:var(--muted);background:var(--glass)}
+.pcard-tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.pcard-tab-content{
+  display:none;padding:16px 24px 20px;
+  border-top:0.5px solid var(--line);font-size:13px;min-height:0;
+  animation:tabFadeIn .18s ease both;
+}
+.pcard-tab-content.active{display:block}
+@keyframes tabFadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── EVENTS IN TABS ── */
+.tab-group{margin-bottom:14px}
+.tab-group:last-child{margin-bottom:0}
+.tab-glabel{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.tab-glist{list-style:none;display:flex;flex-direction:column;gap:5px}
+.tab-glist li{font-size:13px;color:var(--muted);padding-left:12px;position:relative;line-height:1.5}
+.tab-glist li::before{content:'';position:absolute;left:0;top:8px;width:5px;height:1px;background:var(--accent)}
+.tab-solicitud{font-size:12.5px;color:var(--accent);padding:9px 11px;background:var(--accentbg);border-radius:var(--r3);border-left:2px solid var(--accent);line-height:1.55;margin-top:6px}
+
+/* ── RISK IN TABS ── */
+.tab-risk{background:var(--riskbg);border-radius:var(--r3);padding:11px 13px;border-left:2px solid var(--risk)}
+.tab-risk-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:4px;line-height:1.4}
+.tab-risk-mit{font-size:12px;color:var(--muted);margin-bottom:4px;line-height:1.45}
+.tab-risk-resp{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.tab-no-risk{font-size:12px;color:var(--dim);letter-spacing:.04em;text-transform:uppercase;padding:8px 0}
+
+/* ── CHART IN TABS ── */
+.tab-chart{display:flex;flex-direction:column;gap:12px}
+.tab-donut-row{display:flex;align-items:center;gap:14px;margin-bottom:4px}
+.tab-donut-pct{font-size:22px;font-weight:200;letter-spacing:-.04em;color:var(--text)}
+.tab-donut-sub{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--dim)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:760px){.pgrid{grid-template-columns:1fr}}
+
+
+/* ─── TAGS ─────────────────────────────────────────────── */
+.tag{font-size:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:20px;border:0.5px solid}
+.tag-admin{background:var(--accentbg);color:var(--accent);border-color:rgba(74,158,224,.25)}
+.tag-op{background:rgba(251,191,36,.08);color:var(--warn);border-color:rgba(251,191,36,.2)}
+.tag-ia{background:rgba(52,211,153,.08);color:var(--ok);border-color:rgba(52,211,153,.2)}
+.tag-neg{background:var(--glass);color:var(--muted);border-color:var(--line2)}
+
+/* ─── STATUS ────────────────────────────────────────────── */
+.status-pill{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:20px}
+.status-ok{background:var(--okbg);color:var(--ok)}
+.status-warn{background:var(--warnbg);color:var(--warn)}
+.status-dim{background:var(--glass);color:var(--muted)}
+.status-dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+
+/* ─── PROGRESS ─────────────────────────────────────────── */
+.prog-wrap{margin-top:auto}
+.prog-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px}
+.prog-lbl{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.prog-num{font-size:28px;font-weight:200;letter-spacing:-.04em;color:var(--text)}
+.prog-track{height:2px;background:var(--line2);border-radius:2px;overflow:hidden}
+.prog-fill{height:100%;border-radius:2px;background:var(--accent);transition:width 1.4s cubic-bezier(.4,0,.2,1)}
+
+/* ─── EVENTS ────────────────────────────────────────────── */
+.ev-group{margin-bottom:20px}
+.ev-group:last-child{margin-bottom:0}
+.ev-lbl{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.ev-list{list-style:none;display:flex;flex-direction:column;gap:7px}
+.ev-list li{font-size:14px;color:var(--muted);padding-left:14px;position:relative;line-height:1.5}
+.ev-list li::before{content:'';position:absolute;left:0;top:8px;width:6px;height:1px;background:var(--accent)}
+
+/* ─── CHARTS ────────────────────────────────────────────── */
+.chart-block{padding:20px 28px;background:var(--bg3);border-top:0.5px solid var(--line);display:flex;flex-direction:column;gap:14px}
+.chart-title{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.donut-wrap{display:flex;align-items:center;gap:16px}
+.donut-meta{display:flex;flex-direction:column;gap:3px}
+.donut-pct{font-size:24px;font-weight:200;letter-spacing:-.03em;color:var(--text)}
+.donut-sub{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--dim)}
+.gantt-wrap{overflow:hidden}
+.gantt-months{display:grid;grid-template-columns:60px 1fr;gap:6px;margin-bottom:5px}
+.gantt-month-labels{position:relative;height:14px}
+.gantt-month-lbl{position:absolute;font-size:9px;color:var(--dim);letter-spacing:.04em;transform:translateX(-50%)}
+.gantt-row{display:grid;grid-template-columns:60px 1fr;gap:6px;align-items:center;margin-bottom:5px}
+.gantt-lbl{font-size:10px;color:var(--dim);letter-spacing:.04em;text-align:right;white-space:nowrap}
+.gantt-track{height:7px;background:var(--line2);border-radius:4px;position:relative;overflow:visible}
+.gantt-bar{height:100%;border-radius:4px;position:absolute;top:0;transition:width 1s cubic-bezier(.4,0,.2,1)}
+.gantt-bar.plan{opacity:.28}
+.gantt-bar.real{opacity:1}
+.gantt-today{position:absolute;top:-3px;bottom:-3px;width:1.5px;background:var(--warn);border-radius:1px;z-index:2}
+.phase-legend{display:flex;flex-wrap:wrap;gap:6px 12px;margin-top:4px}
+.phase-dot-item{display:flex;align-items:center;gap:5px;font-size:9px;color:var(--muted)}
+.phase-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+
+/* ─── CARTERA BOARD ─────────────────────────────────────── */
+.board{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.bcard{background:var(--bg2);border:0.5px solid var(--line);border-radius:var(--r);padding:28px 24px;display:flex;flex-direction:column;transition:border-color .25s,transform .25s;position:relative;overflow:hidden}
+.bcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent);opacity:0;transition:opacity .2s}
+.bcard:hover{border-color:var(--accent);transform:translateY(-2px)}
+.bcard:hover::before{opacity:1}
+.bcard.hidden{display:none}
+.bcard-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.bcard-name{font-size:16px;font-weight:500;color:var(--text);line-height:1.35;margin-bottom:20px;letter-spacing:-.01em}
+.bcard-meta{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;margin-bottom:20px}
+.bmeta-lbl{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--dim);margin-bottom:3px}
+.bmeta-val{font-size:13px;color:var(--text)}
+.bcard-toggle{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);cursor:pointer;margin-top:auto;padding-top:14px;border-top:0.5px solid var(--line);user-select:none;display:flex;justify-content:space-between;align-items:center}
+.bcard-arrow{transition:transform .25s;display:inline-block}
+.bcard-toggle.open .bcard-arrow{transform:rotate(180deg)}
+.bcard-detail{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1),opacity .3s;opacity:0}
+.bcard-detail.open{max-height:400px;opacity:1}
+.bcard-detail-inner{padding-top:14px;font-size:13px;color:var(--muted);line-height:1.65}
+.ia-chip{display:inline-block;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;background:rgba(52,211,153,.10);color:var(--ok);border:0.5px solid rgba(52,211,153,.2)}
+
+/* ─── IA GRID ────────────────────────────────────────────── */
+.ia-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;background:var(--line);margin-top:2rem;border-radius:var(--r);overflow:hidden}
+.ia-cell{background:var(--bg2);padding:40px 32px;transition:background .2s}
+.ia-cell:hover{background:var(--bg3)}
+.ia-cell-num{font-size:44px;font-weight:200;letter-spacing:-.04em;color:var(--accent);margin-bottom:14px}
+.ia-cell-title{font-size:16px;font-weight:500;color:var(--text);margin-bottom:10px}
+.ia-cell-body{font-size:13.5px;color:var(--muted);line-height:1.65}
+/* ─── IA PILLS RESALTADOS ──────────────────────────────── */
+.ia-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 18px;
+}
+
+.ia-pill {
+  font-size: 10px;
+  font-weight: 600;              /* Letra un poco más firme */
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 4px 12px;             /* Más espaciado interno */
+  border-radius: 20px;
+  
+  /* Colores de la paleta ITISA */
+  background: var(--accentbg);   /* Fondo azul translúcido sutil */
+  color: var(--accent2);         /* Texto azul brillante legible */
+  border: 0.5px solid rgba(74, 158, 224, 0.25); /* Borde fino a juego */
+  
+  transition: all 0.2s ease;
+}
+
+/* Efecto hover sutil por si pasan el cursor por encima */
+.ia-cell:hover .ia-pill {
+  border-color: var(--accent2);
+  background: rgba(74, 158, 224, 0.15);
+}
+
+/* ─── ARCH ───────────────────────────────────────────────── */
+.arch-flow{display:grid;grid-template-columns:1fr 36px 1fr 36px 1fr;align-items:start;gap:8px;margin:3rem 0}
+.arch-node{background:var(--bg2);border:0.5px solid var(--line);border-radius:var(--r2);padding:28px 24px;transition:all .3s}
+.arch-node.hi{border-color:rgba(74,158,224,.3);background:rgba(74,158,224,.04)}
+.arch-arrow{display:flex;align-items:center;justify-content:center;padding-top:40px;color:var(--accent);font-size:18px;opacity:.6}
+.arch-node-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:5px}
+.arch-node-title.accent{color:var(--accent)}
+.arch-node-sub{font-size:11px;color:var(--muted);margin-bottom:12px;font-style:italic}
+.arch-node-items{list-style:none}
+.arch-node-items li{font-size:11px;color:var(--dim);padding:5px 0;border-bottom:0.5px solid var(--line);line-height:1.4}
+.arch-profiles{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border-radius:var(--r2);overflow:hidden;margin-top:1.5rem}
+.arch-profile{background:var(--bg2);padding:22px 24px}
+.arch-profile-role{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.arch-profile-q{font-size:13px;color:var(--muted);font-style:italic;line-height:1.5}
+
+/* ─── COURSES ────────────────────────────────────────────── */
+.cursos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.curso-card{background:var(--bg2);border:0.5px solid var(--line);border-radius:var(--r2);padding:28px 24px;transition:border-color .2s,transform .2s}
+.curso-card:hover{border-color:var(--line2);transform:translateY(-2px)}
+.curso-tag{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:12px;display:block}
+.curso-tag.pending{color:var(--muted)}
+.curso-title{font-size:15px;font-weight:500;color:var(--text);margin-bottom:14px}
+.curso-items{list-style:none}
+.curso-items li{font-size:13px;color:var(--muted);padding:7px 0;border-bottom:0.5px solid var(--line);line-height:1.4}
+.curso-items li:last-child{border-bottom:none}
+
+/* ─── FICHAS ─────────────────────────────────────────────── */
+.ficha-grid-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(380px,1fr));gap:20px}
+.fcard{background:var(--bg2);border:0.5px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;transition:border-color .25s,transform .25s;position:relative}
+.fcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent);opacity:0;transition:opacity .2s}
+.fcard:hover{border-color:var(--accent);transform:translateY(-2px)}
+.fcard:hover::before{opacity:1}
+.fcard-header{padding:22px 26px 18px;border-bottom:0.5px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.fcard-name{font-size:16px;font-weight:500;color:var(--text);letter-spacing:-.01em;flex:1}
+.fcard-body{display:flex;flex-direction:column;flex:1}
+.fcard-section{padding:18px 26px;border-bottom:0.5px solid var(--line)}
+.fcard-section:last-child{border-bottom:none}
+.fcard-slabel{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.fcard-list{list-style:none;display:flex;flex-direction:column}
+.fcard-list li{font-size:13px;color:var(--muted);padding:6px 0;border-bottom:0.5px solid var(--line);line-height:1.5;display:flex;align-items:flex-start;gap:7px}
+.fcard-list li:last-child{border-bottom:none}
+.fcard-list li::before{content:'';width:5px;height:1px;background:var(--accent);flex-shrink:0;margin-top:9px}
+.fcard-note{font-size:12.5px;color:var(--muted);line-height:1.65}
+.fcard-hl{font-size:12px;color:var(--accent);line-height:1.65;padding:10px 12px;background:var(--accentbg);border-radius:var(--r3);border-left:2px solid var(--accent);margin-top:8px}
+.fcard-pills{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.fcard-pill{font-size:10px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:20px;border:0.5px solid var(--line2);color:var(--dim)}
+@media(max-width:760px){.ficha-grid-cards{grid-template-columns:1fr}}
+.styled-table{width:100%;border-collapse:collapse}
+.styled-table th{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);text-align:left;padding:14px 16px 14px 0;border-bottom:0.5px solid var(--line2)}
+.styled-table td{font-size:13px;color:var(--muted);padding:16px 16px 16px 0;border-bottom:0.5px solid var(--line);vertical-align:middle}
+.styled-table td:first-child{color:var(--text);font-weight:500}
+.styled-table tr:hover td{color:var(--text)}
+
+/* ─── CLOSING ────────────────────────────────────────────── */
+.closing{min-height:78vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8rem 6%;position:relative;overflow:hidden;border-top:0.5px solid var(--line)}
+.closing-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 50% 60% at 50% 100%,rgba(74,158,224,.08) 0%,transparent 65%)}
+:root.light .closing-bg{background:radial-gradient(ellipse 50% 60% at 50% 100%,rgba(26,110,181,.05) 0%,transparent 65%)}
+.closing-eyebrow{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:24px;position:relative;z-index:1}
+.closing-title{font-size:clamp(52px,9vw,110px);font-weight:200;letter-spacing:-.05em;line-height:.92;color:var(--text);position:relative;z-index:1;margin-bottom:36px}
+.closing-title strong{font-weight:700}
+.closing-line{width:48px;height:1px;background:var(--accent);margin:0 auto 28px}
+.closing-name{font-size:22px;font-weight:300;color:var(--text);position:relative;z-index:1;letter-spacing:-.01em}
+.closing-role{font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:6px;position:relative;z-index:1}
+
+/* ─── FOOTER ─────────────────────────────────────────────── */
+footer{width:100%;max-width:1600px;padding:28px 6%;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-top:0.5px solid var(--line)}
+footer p{font-size:12px;color:var(--dim)}
+
+/* ─── PDF BUTTON ─────────────────────────────────────────── */
+.pdf-btn{position:fixed;bottom:2rem;right:2rem;background:var(--text);color:var(--bg);border:none;padding:.85rem 1.4rem;font-family:var(--font);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;border-radius:30px;cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.35);z-index:10000;display:flex;align-items:center;gap:.6rem;transition:transform .2s}
+.pdf-btn:hover{transform:scale(1.04)}
+
+/* ─── ANIMATIONS ─────────────────────────────────────────── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.hero-eyebrow{animation:fadeUp .8s cubic-bezier(0.16,1,0.3,1) both}
+.hero-h1{animation:fadeUp .8s .08s cubic-bezier(0.16,1,0.3,1) both}
+.hero-sub{animation:fadeUp .8s .16s cubic-bezier(0.16,1,0.3,1) both}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(0.16,1,0.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.stagger-1{transition-delay:.05s}.stagger-2{transition-delay:.1s}.stagger-3{transition-delay:.15s}.stagger-4{transition-delay:.2s}
+
+/* ─── RESPONSIVE ─────────────────────────────────────────── */
+@media(max-width:1100px){.board{grid-template-columns:1fr 1fr}.arch-flow{grid-template-columns:1fr}.arch-arrow{padding-top:0;transform:rotate(90deg);margin:8px 0}.hero{grid-template-columns:1fr}}
+@media(max-width:760px){nav{padding:0 20px}.nav-links{display:none}.board{grid-template-columns:1fr}.pgrid{grid-template-columns:1fr}.metrics-band{flex-wrap:wrap}.mband-cell{flex:1 1 50%}.ficha-grid{grid-template-columns:1fr}.arch-profiles{grid-template-columns:1fr}.section-bar div:nth-child(2),.section-bar div:nth-child(3){display:none}}
+
+  /* ── PALMER CURSOR ─────────────────────────────────────── */
+  * { cursor: none !important; }
+  #cursor-dot {
+    position: fixed; top: 0; left: 0; z-index: 99999; pointer-events: none;
+    width: 10px; height: 10px; border-radius: 50%; background: var(--text);
+    transform: translate(-50%, -50%);
+    transition: transform .08s ease, opacity .2s ease, background .2s ease, width .2s ease, height .2s ease;
+    mix-blend-mode: difference;
+  }
+  #cursor-ring {
+    position: fixed; top: 0; left: 0; z-index: 99998; pointer-events: none;
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1px solid rgba(232,237,245,0.35);
+    transform: translate(-50%, -50%);
+    transition: transform .18s cubic-bezier(0.16,1,0.3,1), width .25s, height .25s, opacity .2s, border-color .2s;
+  }
+  #cursor-dot.hovering { width: 6px; height: 6px; background: var(--accent); }
+  #cursor-ring.hovering { width: 52px; height: 52px; border-color: var(--accent); opacity: .7; }
+  #cursor-dot.clicking { transform: translate(-50%,-50%) scale(.7); }
+  #cursor-ring.clicking { transform: translate(-50%,-50%) scale(.85); }
+
+  /* ── MAGNETIC IMAGE HOVER ───────────────────────────────── */
+  .magnetic-img {
+    transition: transform .4s cubic-bezier(0.16,1,0.3,1), box-shadow .4s ease;
+    will-change: transform;
+  }
+  .magnetic-img:hover { box-shadow: 0 24px 48px rgba(0,0,0,.4); }
+  .pgrid-card { cursor: none !important; }
+  .img-zone { cursor: none !important; }
+  a, button, .filter-btn, .bcard-toggle, .theme-btn, .theme-label, .pdf-btn, .nav-links a {
+    cursor: none !important;
   }
 
-  :root.light {
-    --bg: #F5F7FA;
-    --bg2: #FFFFFF;
-    --bg3: #EAF0F8;
-    --line: rgba(0,0,0,0.08);
-    --line2: rgba(0,0,0,0.13);
-    --text: #0B2545;
-    --muted: rgba(11,37,69,0.55);
-    --dim: rgba(11,37,69,0.35);
-    --accent: #1E6FB5;
-    --accent2: #2E7FC1;
-    --ok: #16a34a;
-    --warn: #d97706;
-    --risk: #dc2626;
-    --blue: #1E6FB5;
-  }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  /* ── RISK DETAIL BLOCK ───────────────────────────────── */
+  .risk-detail-block{background:var(--riskbg);border-radius:var(--r3);padding:12px 14px;margin-top:6px;border-left:2px solid var(--risk)}
+  .risk-detail-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:5px;line-height:1.4}
+  .risk-detail-mit{font-size:12px;color:var(--muted);margin-bottom:5px;line-height:1.5}
+  .risk-detail-resp{font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:var(--dim)}
+  .solicitud-block{background:var(--accentbg);border-radius:var(--r3);padding:10px 12px;margin-top:6px;border-left:2px solid var(--accent);font-size:13px;color:var(--muted);line-height:1.5}
 
-  html { scroll-behavior: smooth; }
+  .foto-card{border-radius:14px;overflow:hidden;border:0.5px solid var(--line2);cursor:none !important;position:relative;transition:border-color .3s,box-shadow .4s,transform .3s}
+  .foto-card::before{display:none !important}
+  .foto-card:hover{border-color:var(--accent);box-shadow:0 16px 40px rgba(0,0,0,.2);transform:translateY(-3px)}
+  .foto-card-img{width:100%;height:380px;overflow:hidden;position:relative}
+  .foto-card-img img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transform:scale(1);transition:transform .6s cubic-bezier(0.16,1,0.3,1)}
+  .foto-card:hover .foto-card-img img{transform:scale(1.07)}
+
+@media print {
+  /* ── Reset for print ── */
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+
+  /* Hide non-content elements */
+  nav, .pdf-btn, #cursor-dot, #cursor-ring,
+  .marquee-strip, .filter-bar, .pcard-tabs,
+  .hero-scroll-hint, .section-bar { display: none !important; }
+
+  /* Show all tab content */
+  .pcard-tab-content { display: block !important; opacity: 1 !important; }
 
   body {
-    background: var(--bg);
-    background-image: radial-gradient(ellipse 80% 40% at 50% 0%, rgba(91,173,236,0.04) 0%, transparent 60%);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
-    line-height: 1.65;
-    -webkit-font-smoothing: antialiased;
+    background: #ffffff !important;
+    color: #0b2140 !important;
+    padding-top: 0 !important;
+    font-size: 12px !important;
   }
 
-  /* NAV */
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 48px;
-    background: rgba(7,17,31,0.94);
-    backdrop-filter: blur(12px);
-    border-bottom: 0.5px solid var(--line2);
+  /* Light mode for print */
+  :root {
+    --bg: #ffffff !important;
+    --bg2: #ffffff !important;
+    --bg3: #f4f7fb !important;
+    --bg4: #e8eef7 !important;
+    --text: #0b2140 !important;
+    --muted: rgba(11,33,64,.60) !important;
+    --dim: rgba(11,33,64,.40) !important;
+    --accent: #1a6eb5 !important;
+    --line: rgba(11,37,69,.10) !important;
+    --line2: rgba(11,37,69,.16) !important;
+    --accentbg: rgba(26,110,181,.08) !important;
+    --glass: rgba(255,255,255,.9) !important;
+    --glass2: rgba(255,255,255,1) !important;
+    --ok: #059669 !important;
+    --okbg: rgba(5,150,105,.08) !important;
+    --warn: #b45309 !important;
+    --warnbg: rgba(180,83,9,.08) !important;
+    --risk: #dc2626 !important;
+    --riskbg: rgba(220,38,38,.08) !important;
   }
-  .nav-logo { font-family: 'DM Serif Display', serif; font-size: 15px; letter-spacing: .04em; color: var(--text); text-decoration: none; }
-  .nav-links { display: flex; gap: 32px; list-style: none; }
-  .nav-links a { font-size: 12px; color: var(--muted); text-decoration: none; letter-spacing: .06em; text-transform: uppercase; transition: color .2s; }
-  .nav-links a:hover { color: var(--text); }
-  .nav-date { font-size: 11px; color: var(--dim); letter-spacing: .08em; text-transform: uppercase; }
 
-  /* SECTIONS */
-  section { padding: 96px 48px; border-bottom: 0.5px solid var(--line); }
-  .eyebrow { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
-  .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 5vw, 52px); font-weight: 400; line-height: 1.08; letter-spacing: -.02em; margin-bottom: 16px; }
-  .section-sub { font-size: 15px; color: var(--muted); max-width: 520px; line-height: 1.7; margin-bottom: 56px; }
+  /* Layout */
+  .framer-layout-root { display: block !important; }
+  .section { padding: 1.5rem 1.5rem !important; border-bottom: 0.5px solid #d1dae8 !important; max-width: 100% !important; }
 
-  /* HERO */
+  /* Hero: simple on print */
   .hero {
-    min-height: 92vh; display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 96px 48px; border-bottom: 0.5px solid var(--line);
-    position: relative; overflow: hidden;
+    display: block !important;
+    min-height: auto !important;
+    padding: 2rem 1.5rem 1.5rem !important;
+    page-break-after: always;
   }
-  .hero::before {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(ellipse 60% 50% at 80% 40%, rgba(91,173,236,0.07) 0%, transparent 70%);
-    pointer-events: none;
+  .hero-img-zone { display: none !important; }
+  .hero-h1 { font-size: 42px !important; margin-bottom: 1rem !important; }
+  .metrics-band { display: flex !important; border: 0.5px solid #d1dae8 !important; }
+  .mband-cell { padding: 16px 20px !important; border-right: 0.5px solid #d1dae8 !important; }
+  .mband-num { font-size: 32px !important; color: #0b2140 !important; }
+  .mband-num.hi { color: #1a6eb5 !important; }
+
+  /* Page breaks between sections */
+  #proyectos  { page-break-before: always; }
+  #cartera    { page-break-before: always; }
+  #ia         { page-break-before: always; }
+  #fichas     { page-break-before: always; }
+  #cierre     { page-break-before: always; }
+
+  /* Project grid: 2 columns */
+  .pgrid { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+  .pgrid-card { break-inside: avoid; border: 0.5px solid #d1dae8 !important; background: #fff !important; }
+  .pgrid-card-inner { padding: 16px !important; }
+  .pcard-tabs { display: none !important; }
+  .pcard-tab-content { border-top: 0.5px solid #e8eef7 !important; padding: 12px 16px !important; }
+  .prog-bar-track { background: #dce6f0 !important; }
+  .prog-bar-fill.mayo { background: #1a6eb5 !important; }
+  .prog-bar-fill.abril { background: #9ab0cc !important; opacity:.55 !important; }
+
+  /* Board: 2 columns */
+  .board { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+  .bcard { break-inside: avoid; border: 0.5px solid #d1dae8 !important; background: #f4f7fb !important; }
+  .bcard-detail { max-height: none !important; opacity: 1 !important; display: block !important; }
+
+  /* IA grid */
+  .ia-grid { display: grid !important; grid-template-columns: 1fr 1fr 1fr !important; gap: 1px !important; }
+  .ia-cell { background: #f4f7fb !important; padding: 20px !important; break-inside: avoid; }
+
+  /* Arch */
+  .arch-flow { display: grid !important; grid-template-columns: 1fr 32px 1fr 32px 1fr !important; }
+  .arch-node { background: #f4f7fb !important; border: 0.5px solid #d1dae8 !important; break-inside: avoid; }
+  .arch-profiles { display: grid !important; grid-template-columns: repeat(3,1fr) !important; }
+  .arch-profile { background: #f4f7fb !important; break-inside: avoid; }
+
+  /* Fichas */
+  .ficha-grid-cards { display: grid !important; grid-template-columns: 1fr 1fr !important; gap: 12px !important; }
+  .fcard { break-inside: avoid; border: 0.5px solid #d1dae8 !important; background: #fff !important; }
+
+  /* Foto cards */
+  .foto-card { break-inside: avoid; }
+  .foto-card-img { height: 200px !important; }
+
+  /* Closing */
+  .closing { min-height: auto !important; padding: 3rem !important; }
+  .closing-title { font-size: 48px !important; }
+  .closing-bg { display: none !important; }
+
+  /* Tags & pills */
+  .tag { border: 0.5px solid #d1dae8 !important; }
+  .status-pill { border: 0.5px solid #d1dae8 !important; }
+
+  /* Gantt */
+  .gantt-track { background: #e8eef7 !important; }
+  .chart-block { background: #f4f7fb !important; }
+
+  /* Cursor off */
+  * { cursor: default !important; }
+}
+
+
+  .export-check-row{
+    display:flex;align-items:center;gap:12px;
+    padding:10px 14px;border-radius:10px;
+    border:0.5px solid var(--line);
+    cursor:pointer;transition:border-color .15s,background .15s;
+    user-select:none;
   }
-  .hero-tag {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 40px;
+  .export-check-row:hover{border-color:var(--line2);background:var(--glass)}
+  .export-check-row input[type="checkbox"]{
+    width:16px;height:16px;accent-color:var(--accent);
+    cursor:pointer;flex-shrink:0;
   }
-  .hero-tag span { width: 24px; height: 1px; background: var(--accent); display: inline-block; }
-  .hero-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(52px, 9vw, 100px);
-    font-weight: 400; line-height: .96; letter-spacing: -.04em;
-    max-width: 820px; margin-bottom: 40px;
+  .export-check-row:has(input:checked){
+    border-color:var(--accent);background:var(--accentbg);
   }
-  .hero-title em { font-style: italic; color: var(--muted); }
-  .hero-meta { display: flex; gap: 48px; flex-wrap: wrap; border-top: 0.5px solid var(--line2); padding-top: 32px; margin-top: 8px; }
-  .hero-meta-item { display: flex; flex-direction: column; gap: 4px; }
-  .hero-meta-label { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); }
-  .hero-meta-value { font-size: 15px; color: var(--text); font-weight: 300; }
+  .export-check-icon{font-size:18px;flex-shrink:0;width:28px;text-align:center}
+  .export-check-title{font-size:13px;font-weight:500;color:var(--text);line-height:1.3}
+  .export-check-sub{font-size:11px;color:var(--dim);margin-top:1px}
 
-  /* RESUMEN METRICAS */
-  .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1px; background: var(--line2); border: 0.5px solid var(--line2); }
-  .metric-cell { background: var(--bg); padding: 40px 32px; }
-  .metric-num { font-family: 'DM Serif Display', serif; font-size: clamp(40px, 6vw, 60px); font-weight: 400; line-height: 1; letter-spacing: -.04em; color: var(--text); }
-  .metric-label { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-top: 10px; }
 
-  /* PROJECT CARDS */
-  .projects-grid { display: flex; flex-direction: column; gap: 2px; }
-  .project-card {
-    background: var(--bg2); border: 0.5px solid var(--line);
-    padding: 40px 40px 36px; display: grid;
-    grid-template-columns: 1fr 240px; gap: 40px; align-items: start;
-    transition: background .2s;
-  }
-  .project-card:hover { background: var(--bg3); }
-  .project-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
-  .project-name { font-family: 'DM Serif Display', serif; font-size: 26px; font-weight: 400; letter-spacing: -.02em; line-height: 1.2; flex: 1; }
-  .project-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
-  .badge {
-    font-size: 10px; letter-spacing: .1em; text-transform: uppercase; font-weight: 500;
-    padding: 4px 10px; border-radius: 2px;
-  }
-  .badge-admin { background: rgba(58,143,212,0.15); color: var(--blue); }
-  .badge-op { background: rgba(91,173,236,0.18); color: var(--accent); }
-  .badge-ia { background: rgba(91,173,236,0.22); color: #f5a742; }
-  .badge-neg { background: rgba(255,255,255,0.06); color: var(--muted); }
-  .project-meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 24px; margin-bottom: 24px; }
-  .project-meta-item .label { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--dim); margin-bottom: 2px; }
-  .project-meta-item .val { font-size: 14px; color: var(--text); font-weight: 300; }
-
-  /* PROGRESS BAR */
-  .progress-wrap { margin-bottom: 28px; }
-  .progress-label { display: flex; justify-content: space-between; margin-bottom: 8px; }
-  .progress-label span:first-child { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
-  .progress-label span:last-child { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--text); }
-  .progress-track { height: 3px; background: var(--line2); border-radius: 2px; overflow: hidden; }
-  .progress-fill { height: 100%; border-radius: 2px; background: var(--accent); transition: width 1.2s cubic-bezier(.4,0,.2,1); }
-
-  /* STATUS DOT */
-  .status-dot { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
-  .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-  .dot-ok { background: var(--ok); box-shadow: 0 0 6px var(--ok); }
-  .dot-warn { background: var(--warn); box-shadow: 0 0 6px var(--warn); }
-  .dot-pending { background: var(--muted); }
-
-  /* EVENT LISTS */
-  .events-panel { display: flex; flex-direction: column; gap: 28px; }
-  .events-group-title { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
-  .event-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-  .event-list li { font-size: 13px; color: var(--muted); padding-left: 14px; position: relative; line-height: 1.5; }
-  .event-list li::before { content: '—'; position: absolute; left: 0; color: var(--dim); }
-
-  /* RISKS */
-  .risk-row { border-top: 0.5px solid var(--line); padding: 14px 0; display: grid; grid-template-columns: 1fr 1fr auto; gap: 20px; }
-  .risk-title-cell { font-size: 13px; color: var(--text); }
-  .risk-mit { font-size: 12px; color: var(--muted); }
-  .risk-resp { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--dim); }
-
-  /* TABLE */
-  .data-table { width: 100%; border-collapse: collapse; }
-  .data-table th { font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); text-align: left; padding: 14px 0; border-bottom: 0.5px solid var(--line2); font-weight: 500; }
-  .data-table td { font-size: 14px; color: var(--muted); padding: 16px 0; border-bottom: 0.5px solid var(--line); vertical-align: top; }
-  .data-table td:first-child { color: var(--text); font-weight: 400; }
-  .data-table tr:hover td { color: var(--text); }
-
-  /* IA SECTION */
-  .ia-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2px; background: var(--line); }
-  .ia-cell { background: var(--bg); padding: 36px 28px; }
-  .ia-cell-title { font-family: 'DM Serif Display', serif; font-size: 18px; margin-bottom: 12px; }
-  .ia-cell-body { font-size: 13px; color: var(--muted); line-height: 1.6; }
-  .ia-cell-tools { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; }
-  .tool-pill { font-size: 10px; letter-spacing: .06em; text-transform: uppercase; padding: 3px 9px; border: 0.5px solid var(--line2); border-radius: 2px; color: var(--dim); }
-
-  /* ARCH DIAGRAM */
-  .arch-flow { display: grid; grid-template-columns: 1fr 40px 1fr 40px 1fr; align-items: start; gap: 8px; margin: 40px 0; }
-  .arch-node { background: var(--bg2); border: 0.5px solid var(--line2); padding: 28px 24px; }
-  .arch-arrow { display: flex; align-items: center; justify-content: center; padding-top: 40px; color: var(--accent); font-size: 20px; }
-  .arch-node-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 10px; letter-spacing: .02em; }
-  .arch-node-body { font-size: 12px; color: var(--muted); line-height: 1.6; }
-  .arch-node-items { list-style: none; margin-top: 8px; }
-  .arch-node-items li { font-size: 11px; color: var(--dim); padding: 3px 0; border-bottom: 0.5px solid var(--line); }
-  .arch-profiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--line); margin-top: 8px; }
-  .arch-profile { background: var(--bg2); padding: 20px 20px; }
-  .arch-profile-role { font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
-  .arch-profile-q { font-size: 13px; color: var(--muted); font-style: italic; line-height: 1.5; }
-
-  /* CURSOS */
-  .cursos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2px; background: var(--line); }
-  .curso-card { background: var(--bg); padding: 32px 28px; }
-  .curso-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 6px; letter-spacing: .03em; }
-  .curso-tag { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; display: block; }
-  .curso-items { list-style: none; }
-  .curso-items li { font-size: 13px; color: var(--muted); padding: 6px 0; border-bottom: 0.5px solid var(--line); }
-  .curso-items li:last-child { border-bottom: none; }
-
-  /* CARTERA */
-  .cartera-section { background: var(--bg); }
-
-  /* CLOSING */
-  .closing {
-    min-height: 70vh; display: flex; flex-direction: column; justify-content: center;
-    align-items: center; text-align: center; gap: 24px; border-bottom: none;
-    position: relative; overflow: hidden;
-  }
-  .closing::before {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(ellipse 50% 60% at 50% 80%, rgba(91,173,236,0.07) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .closing-title { font-family: 'DM Serif Display', serif; font-size: clamp(48px, 8vw, 88px); font-weight: 400; letter-spacing: -.04em; line-height: .95; }
-  .closing-sub { font-size: 14px; color: var(--muted); letter-spacing: .06em; }
-  .closing-name { font-family: 'DM Serif Display', serif; font-size: 22px; margin-top: 16px; }
-  .closing-role { font-size: 12px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
-
-  /* FOOTER */
-  footer { padding: 28px 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; border-top: 0.5px solid var(--line); }
-  footer p { font-size: 11px; color: var(--dim); letter-spacing: .06em; }
-
-  /* DIVIDER */
-  .section-divider { width: 40px; height: 1px; background: var(--accent); margin-bottom: 48px; }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-  .hero-tag, .hero-title, .hero-meta { animation: fadeUp .8s cubic-bezier(.4,0,.2,1) both; }
-  .hero-title { animation-delay: .1s; }
-  .hero-meta { animation-delay: .2s; }
-
-  @media (max-width: 720px) {
-    nav { padding: 16px 24px; }
-    nav .nav-links { display: none; }
-    section { padding: 64px 24px; }
-    .hero { padding: 64px 24px; }
-    .project-card { grid-template-columns: 1fr; }
-    .arch-flow { grid-template-columns: 1fr; }
-    .arch-arrow { padding-top: 0; transform: rotate(90deg); }
-  }
-
-  .theme-toggle {
-    display: flex; align-items: center; gap: 8px;
-    background: transparent; border: 0.5px solid var(--line2);
-    border-radius: 20px; padding: 6px 14px; cursor: pointer;
-    font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
-    color: var(--muted); font-family: 'DM Sans', sans-serif;
-    transition: border-color .2s, color .2s;
-  }
-  .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
-  .theme-toggle .toggle-icon { font-size: 14px; line-height: 1; }
-
-  :root.light .nav-logo { color: var(--text); }
-  :root.light .nav-links a { color: var(--muted); }
-  :root.light .nav-links a:hover { color: var(--text); }
-  :root.light .nav-date { color: var(--dim); }
-  :root.light nav { background: rgba(245,247,250,0.94); border-bottom-color: var(--line2); }
-
-  :root.light .hero::before { background: radial-gradient(ellipse 60% 50% at 80% 40%, rgba(30,111,181,0.06) 0%, transparent 70%); }
-  :root.light .closing::before { background: radial-gradient(ellipse 50% 60% at 50% 80%, rgba(30,111,181,0.06) 0%, transparent 70%); }
-  :root.light body { background-image: radial-gradient(ellipse 80% 40% at 50% 0%, rgba(30,111,181,0.04) 0%, transparent 60%); }
-
-  :root.light .badge-admin { background: rgba(30,111,181,0.12); color: #1E6FB5; }
-  :root.light .badge-op { background: rgba(30,111,181,0.08); color: #1E6FB5; }
-  :root.light .badge-ia { background: rgba(30,111,181,0.15); color: #155ea0; }
-  :root.light .badge-neg { background: rgba(11,37,69,0.07); color: var(--muted); }
-
-  :root.light .progress-fill { background: #1E6FB5; }
-  :root.light .dot-ok { background: var(--ok); box-shadow: 0 0 6px rgba(22,163,74,0.4); }
-  :root.light .tool-pill { border-color: var(--line2); color: var(--muted); }
-
-  :root.light .data-table th { color: #1E6FB5; }
-  :root.light .data-table td { color: var(--muted); border-bottom-color: var(--line); }
-  :root.light .data-table td:first-child { color: var(--text); }
-
-  :root.light .metric-num { color: var(--text); }
-  :root.light .metric-num.accent-num { color: #1E6FB5; }
-
-  :root.light .arch-node { background: var(--bg2); border-color: var(--line2); }
-  :root.light .arch-node-body { color: var(--muted); }
-  :root.light .arch-node-items li { color: var(--dim); border-bottom-color: var(--line); }
-  :root.light .arch-profile { background: var(--bg2); }
-  :root.light .arch-profile-q { color: var(--muted); }
-
-  :root.light .ia-cell { background: var(--bg2); }
-  :root.light .ia-cell-body { color: var(--muted); }
-  :root.light .curso-card { background: var(--bg2); }
-  :root.light .curso-items li { color: var(--muted); border-bottom-color: var(--line); }
-  :root.light .section-divider { background: #1E6FB5; }
-  :root.light .events-group-title { color: #1E6FB5; }
-  :root.light .event-list li { color: var(--muted); }
-  :root.light .event-list li::before { color: var(--dim); }
-  :root.light .risk-resp { color: var(--dim); }
-  :root.light .risk-mit { color: var(--muted); }
-  :root.light footer { border-top-color: var(--line2); }
-  :root.light footer p { color: var(--dim); }
-  :root.light .hero-tag { color: #1E6FB5; }
-  :root.light .hero-tag span { background: #1E6FB5; }
-  :root.light .eyebrow { color: #1E6FB5; }
-  :root.light .closing-sub { color: var(--muted); }
-
+/* ─── PORTFOLIO CIRCLE MAP ──────────────────────────────────── */
+.circlemap-section{padding:5rem 6%;width:100%;max-width:1600px;margin:0 auto}
+.circlemap-layout{display:grid;grid-template-columns:1fr 560px;gap:4rem;align-items:center}
+@media(max-width:1100px){.circlemap-layout{grid-template-columns:1fr}}
+.circlemap-title{font-size:clamp(28px,3vw,40px);font-weight:200;letter-spacing:-.04em;color:var(--text);margin-bottom:8px}
+.circlemap-sub{font-size:13px;color:var(--muted);margin-bottom:28px;line-height:1.6}
+.circlemap-stats{display:flex;gap:28px;flex-wrap:wrap;margin-bottom:28px}
+.circlemap-stat-num{font-size:32px;font-weight:200;letter-spacing:-.05em;color:var(--accent)}
+.circlemap-stat-lbl{font-size:10px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.circlemap-legend{display:flex;flex-direction:column;gap:10px;border-top:0.5px solid var(--line);padding-top:20px}
+.circlemap-legend-row{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text)}
+.circlemap-legend-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.circlemap-wrap{position:relative;width:100%;aspect-ratio:1/1;max-width:560px}
+.circlemap-svg{width:100%;height:100%;overflow:visible}
+/* tooltip */
+.cmap-tooltip{position:absolute;pointer-events:none;opacity:0;transition:opacity .15s;
+  background:var(--bg2);border:0.5px solid var(--line2);border-radius:10px;
+  padding:12px 16px;min-width:200px;z-index:100;box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.cmap-tooltip.show{opacity:1}
+.cmap-tt-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px}
+.cmap-tt-row{font-size:11px;color:var(--muted);line-height:1.8}
+.cmap-tt-row span{color:var(--text);font-weight:500}
+.quad-tt-name{font-size:12px;font-weight:600;color:var(--text);margin-bottom:5px}
+.quad-tt-row{font-size:11px;color:var(--muted);line-height:1.7}
+.quad-tt-row span{color:var(--text);font-weight:500}
 </style>
 </head>
 <body>
+
+<!-- EXPORT MODAL -->
+<div id="export-overlay" style="display:none;position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);align-items:center;justify-content:center">
+  <div id="export-modal" style="background:var(--bg2);border:0.5px solid var(--line2);border-radius:20px;padding:2rem 2.5rem;width:min(520px,90vw);position:relative;box-shadow:0 32px 80px rgba(0,0,0,.5)">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
+      <div>
+        <p style="font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:4px">Grupo ITISA · TI</p>
+        <h3 style="font-size:20px;font-weight:500;color:var(--text);letter-spacing:-.02em">Exportar reporte</h3>
+      </div>
+      <button onclick="closeExport()" style="background:var(--glass2);border:0.5px solid var(--line2);border-radius:50%;width:32px;height:32px;cursor:pointer;font-size:16px;color:var(--muted);display:flex;align-items:center;justify-content:center;font-family:var(--font)">×</button>
+    </div>
+
+    <p style="font-size:13px;color:var(--muted);margin-bottom:1.25rem">Selecciona las secciones a incluir en el PDF:</p>
+
+    <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:1.5rem" id="section-checks">
+      <label class="export-check-row" data-sec="inicio">
+        <input type="checkbox" value="inicio" checked>
+        <div><div class="export-check-title">Portada</div><div class="export-check-sub">Hero + KPIs principales</div></div>
+      </label>
+      <label class="export-check-row" data-sec="proyectos">
+        <input type="checkbox" value="proyectos" checked>
+        <div><div class="export-check-title">Proyectos en curso</div><div class="export-check-sub">6 proyectos con avance, eventos y cronograma</div></div>
+      </label>
+      <label class="export-check-row" data-sec="cartera">
+        <input type="checkbox" value="cartera" checked>
+        <div><div class="export-check-title">Cartera de proyectos</div><div class="export-check-sub">8 iniciativas en pipeline</div></div>
+      </label>
+      <label class="export-check-row" data-sec="entregado">
+        <input type="checkbox" value="entregado" checked>
+        <div><div class="export-check-title">Entregado en el periodo</div><div class="export-check-sub">App maniobras</div></div>
+      </label>
+      <label class="export-check-row" data-sec="ia">
+        <input type="checkbox" value="ia" checked>
+        <div><div class="export-check-title">Inteligencia Artificial</div><div class="export-check-sub">Estrategia Data &amp; AI + Piloto V1.0</div></div>
+      </label>
+      <label class="export-check-row" data-sec="fichas">
+        <input type="checkbox" value="fichas" checked>
+        <div><div class="export-check-title">Fichas de detalle</div><div class="export-check-sub">Alcance, beneficios y tecnología</div></div>
+      </label>
+      <label class="export-check-row" data-sec="cierre">
+        <input type="checkbox" value="cierre" checked>
+        <div><div class="export-check-title">Cierre</div><div class="export-check-sub"> TI</div></div>
+      </label>
+    </div>
+
+    <div style="display:flex;gap:10px;align-items:center;margin-bottom:1.25rem;padding:12px 14px;background:var(--glass);border-radius:10px;border:0.5px solid var(--line2)">
+      <span style="font-size:11px;color:var(--dim)">Tema del PDF:</span>
+      <button onclick="setTheme('dark')" id="theme-dark-btn" style="font-size:11px;font-weight:600;padding:5px 14px;border-radius:20px;border:0.5px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer;font-family:var(--font)">Oscuro</button>
+      <button onclick="setTheme('light')" id="theme-light-btn" style="font-size:11px;font-weight:600;padding:5px 14px;border-radius:20px;border:0.5px solid var(--line2);background:transparent;color:var(--muted);cursor:pointer;font-family:var(--font)">Claro</button>
+    </div>
+
+    <div style="display:flex;gap:10px">
+      <button onclick="selectAll(true)" style="font-size:11px;color:var(--accent);background:transparent;border:none;cursor:pointer;font-family:var(--font);padding:0">Seleccionar todo</button>
+      <button onclick="selectAll(false)" style="font-size:11px;color:var(--muted);background:transparent;border:none;cursor:pointer;font-family:var(--font);padding:0">Ninguno</button>
+      <button onclick="runExport()" id="run-export-btn" style="margin-left:auto;background:var(--text);color:var(--bg);border:none;padding:.75rem 1.75rem;font-family:var(--font);font-size:13px;font-weight:600;letter-spacing:.04em;border-radius:30px;cursor:pointer;display:flex;align-items:center;gap:8px">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+        Generar PDF
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- TRIGGER BUTTON -->
+<button class="pdf-btn" onclick="openExport()">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+  Exportar PDF
+</button>
+
+<div id="main">
+<div class="framer-layout-root">
 
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">Grupo ITISA · TI</a>
   <ul class="nav-links">
-    <li><a href="#proyectos">Proyectos</a></li>
-    <li><a href="#cartera">Cartera</a></li>
-    <li><a href="#ia">Inteligencia artificial</a></li>
-    <li><a href="#fichas">Fichas detalle</a></li>
-    <li><a href="#cierre">Contacto</a></li>
+    <li><a href="#proyectos">  Proyectos</a></li>
+    <li><a href="#cartera">  Cartera</a></li>
+    <li><a href="#ia">  Inteligencia Artificial</a></li>
+    <li><a href="#fichas">  Fichas Detalle</a></li>
+    <li><a href="#cierre">  Cierre</a></li>
   </ul>
-  <div style="display:flex;align-items:center;gap:12px">
-    <span class="nav-date">Actualización: 15 abril 2026</span>
-    <button class="theme-toggle" onclick="toggleTheme()" id="theme-btn" aria-label="Cambiar tema">
-      <span class="toggle-icon" id="theme-icon">☀</span>
-      <span id="theme-label">Claro</span>
-    </button>
+  <div class="nav-right">
+    <span class="nav-date">29 Mayo 2026</span>
+    <span class="theme-label" id="theme-lbl" onclick="toggleTheme()">Claro</span>
+    <div class="theme-btn" onclick="toggleTheme()" aria-label="Cambiar tema"></div>
   </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="inicio">
-  <div class="hero-tag"><span></span>Subdirección TI · Avance 2026</div>
-  <h1 class="hero-title">Avance de<br>proyectos <em>2026</em></h1>
-  <div class="hero-meta">
-    <div class="hero-meta-item">
-      <span class="hero-meta-label">Corte</span>
-      <span class="hero-meta-value">15 de abril 2026</span>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Subdirección TI · Avance 2026</div>
+    <h1 class="hero-h1">Avance de<br><strong>proyectos</strong> <em>2026</em></h1>
+    <p class="hero-sub">Actualización de proyectos T.I. al 29 de mayo de 2026. </p>
+  </div>
+<div class="hero-img-zone">
+  <img src="hero-itisa.jpg" style="width:100%;height:100%;object-fit:cover;position:absolute;inset:0">
+</div>
+  <!-- Scroll indicator -->
+  <div class="hero-scroll-hint" style="position:absolute;bottom:2rem;left:6%;display:flex;align-items:center;gap:10px;z-index:2;animation:fadeUp .8s .5s ease both">
+    <div style="display:flex;flex-direction:column;gap:3px">
+      <div style="width:1px;height:32px;background:var(--accent);opacity:.5;margin:0 auto"></div>
+      <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/></svg>
     </div>
-    <div class="hero-meta-item">
-      <span class="hero-meta-label">Proyectos activos</span>
-      <span class="hero-meta-value">6 en curso</span>
-    </div>
-    <div class="hero-meta-item">
-      <span class="hero-meta-label">En cartera</span>
-      <span class="hero-meta-value">8 iniciativas</span>
-    </div>
-    <div class="hero-meta-item">
-      <span class="hero-meta-label">Área</span>
-      <span class="hero-meta-value">Subdirección TI</span>
-    </div>
+    <span style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)">Ver</span>
   </div>
 </section>
 
-<!-- MÉTRICAS RÁPIDAS -->
-<section style="padding: 0; border-bottom: 0.5px solid var(--line);">
-  <div class="metrics-grid">
-    <div class="metric-cell">
-      <div class="metric-num">6</div>
-      <div class="metric-label">Proyectos en curso</div>
-    </div>
-    <div class="metric-cell">
-      <div class="metric-num">8</div>
-      <div class="metric-label">En cartera</div>
-    </div>
-    <div class="metric-cell">
-      <div class="metric-num">4</div>
-      <div class="metric-label">Negocios impactados</div>
-    </div>
-    <div class="metric-cell">
-      <div class="metric-num" style="color:var(--accent)">3</div>
-      <div class="metric-label">Con componente de IA</div>
-    </div>
+
+
+<!-- METRICS BAND -->
+<div class="metrics-band">
+  <div class="mband-cell reveal stagger-1"><div class="mband-num">6</div><div class="mband-lbl">Proyectos en curso</div></div>
+  <div class="mband-cell reveal stagger-2"><div class="mband-num">8</div><div class="mband-lbl">En cartera</div></div>
+  <div class="mband-cell reveal stagger-3"><div class="mband-num">4</div><div class="mband-lbl">Negocios impactados</div></div>
+  <div class="mband-cell reveal stagger-4"><div class="mband-num hi">3</div><div class="mband-lbl">Con componente IA</div></div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span class="marquee-text">Transformación digital /&nbsp;</span>
+    <span class="marquee-text"><em>IA & Data</em> /&nbsp;</span>
+    <span class="marquee-text">Automatización/&nbsp;</span>
+    <span class="marquee-text">Optimización /&nbsp;</span>
+    <span class="marquee-text">Transformación digital /&nbsp;</span>
+    <span class="marquee-text"><em>IA & Data</em> /&nbsp;</span>
+    <span class="marquee-text">Automatización/&nbsp;</span>
+    <span class="marquee-text">Optimización /&nbsp;</span>
   </div>
-</section>
+</div>
 
 <!-- PROYECTOS EN CURSO -->
-<section id="proyectos">
+<section class="section" id="proyectos">
   <p class="eyebrow">01 — Proyectos en curso</p>
-  <h2 class="section-title">En desarrollo</h2>
-  <p class="section-sub">Iniciativas activas con seguimiento al 15 de abril de 2026. Cada proyecto incluye avance real, eventos recientes, próximas actividades y riesgos identificados.</p>
+  <h2 class="section-title">En <strong>desarrollo</strong></h2>
+  <p class="section-sub">Iniciativas activas con seguimiento. Cada proyecto incluye avance real, eventos recientes, próximas actividades y riesgos identificados.</p>
 
-  <div class="projects-grid">
+  <!-- FILTROS -->
+  <div class="filter-bar reveal" id="filters">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)">Tipo</span>
+      <button class="filter-btn active" data-f="tipo" data-v="all">Todos</button>
+      <button class="filter-btn" data-f="tipo" data-v="administrativo">Administrativo</button>
+      <button class="filter-btn" data-f="tipo" data-v="operativo">Operativo</button>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)">Estado</span>
+      <button class="filter-btn active" data-f="estado" data-v="all">Todos</button>
+      <button class="filter-btn" data-f="estado" data-v="desarrollo">Desarrollo</button>
+      <button class="filter-btn" data-f="estado" data-v="pruebas">Pruebas</button>
+      <button class="filter-btn" data-f="estado" data-v="contratacion">Contratación</button>
+      <button class="filter-btn" data-f="estado" data-v="pendiente">Pendiente</button>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <span style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)">IA</span>
+      <button class="filter-btn active" data-f="ia" data-v="all">Todos</button>
+      <button class="filter-btn" data-f="ia" data-v="ia">Con IA</button>
+    </div>
+    <span class="filter-count-label"><span id="proj-count">6</span> proyectos</span>
+  </div>
 
-    <!-- Portal de Contratistas -->
-    <div class="project-card">
-      <div>
-        <div class="project-badges">
-          <span class="badge badge-admin">Administrativo</span>
-          <span class="badge badge-neg">Prefabricados</span>
+  <div class="pgrid" id="pgrid">
+
+    <div class="pgrid-card reveal" data-tipo="administrativo" data-estado="desarrollo" data-ia="no" id="card-pcon">
+      <div class="pgrid-card-inner">
+        <div class="pgrid-top">
+          <div class="pgrid-tags"><span class="tag tag-admin">Administrativo</span><span class="tag tag-neg">Prefabricados</span></div>
+          <span class="status-pill status-ok"><span class="status-dot"></span>Desarrollo</span>
         </div>
-        <h3 class="project-name">Portal de contratistas</h3>
-        <div class="project-meta-grid">
-          <div class="project-meta-item"><div class="label">Líder usuario</div><div class="val">Nuria</div></div>
-          <div class="project-meta-item"><div class="label">Etapa</div><div class="val">Desarrollo</div></div>
-          <div class="project-meta-item"><div class="label">Inicio — Fin</div><div class="val">8 mar → 3 jul</div></div>
-          <div class="project-meta-item"><div class="label">Estado</div><div class="val"><span class="status-dot"><span class="dot dot-ok"></span>En curso</span></div></div>
-        </div>
-        <div class="progress-wrap">
-          <div class="progress-label">
-            <span>Avance actual</span>
-            <span>23%</span>
+        <div class="pgrid-name">Portal de contratistas</div>
+        <div class="pgrid-leader">Nuria · 8 mar → 3 jul</div>
+        <div class="prog-compact">
+          <div class="prog-row">
+            <div>
+              <div class="prog-pct-main">48%</div>
+              <div class="prog-pct-prev">Abril: 23%</div>
+            </div>
+            <span class="prog-delta prog-delta-up">▲ +25 pp</span>
           </div>
-          <div class="progress-track"><div class="progress-fill" style="width:23%"></div></div>
-        </div>
-        <div class="events-panel">
-          <div>
-            <p class="events-group-title">Concluido</p>
-            <ul class="event-list">
-              <li>Firma electrónica en uso por prefabricados</li>
-              <li>Integración con la API de la firma electrónica</li>
-            </ul>
-          </div>
-          <div>
-            <p class="events-group-title">Actividad siguiente</p>
-            <ul class="event-list">
-              <li>Ajustar proceso SAP para controlar segunda etapa de las piezas</li>
-              <li>Contratar Portal REPSE al proveedor</li>
-            </ul>
-          </div>
-          <div>
-            <p class="events-group-title">Solicitud</p>
-            <ul class="event-list">
-              <li>Promover la firma electrónica en todas las áreas de prefabricados</li>
-            </ul>
+          <div class="prog-bars">
+            <div class="prog-bar-row"><span class="prog-bar-lbl">May</span><div class="prog-bar-track"><div class="prog-bar-fill mayo" style="width:48%"></div></div></div>
+            <div class="prog-bar-row"><span class="prog-bar-lbl">Abr</span><div class="prog-bar-track"><div class="prog-bar-fill abril" style="width:23%"></div></div></div>
           </div>
         </div>
       </div>
-      <div>
-        <p class="events-group-title" style="margin-bottom:12px">Riesgos identificados</p>
-        <div class="risk-row">
-          <div class="risk-title-cell">El portal REPSE no esté a tiempo</div>
-          <div class="risk-mit">Planear el desarrollo para su integración posterior</div>
-          <div class="risk-resp">TI</div>
+
+      <!-- TABS -->
+      <div class="pcard-tabs" role="tablist">
+        <button class="pcard-tab" onclick="switchTab(this,'pcon','eventos')" role="tab">Eventos</button>
+        <button class="pcard-tab" onclick="switchTab(this,'pcon','riesgo')" role="tab">Riesgo</button>
+        <button class="pcard-tab" onclick="switchTab(this,'pcon','gantt')" role="tab">Cronograma</button>
+      </div>
+
+      <!-- TAB: Eventos -->
+      <div class="pcard-tab-content" data-card="pcon" data-tab="eventos">
+        <div class="tab-group">
+          <div class="tab-glabel">Concluido</div>
+          <ul class="tab-glist"><li>Pantalla de captura completada</li><li>Integración con eFirma implementada</li></ul>
+        </div>
+        <div class="tab-group">
+          <div class="tab-glabel">Actividad siguiente</div>
+          <ul class="tab-glist"><li>Validar números de serie</li><li>Generación de documento Pedido — a cargo de Roberto Barrera</li></ul>
+        </div>
+      </div>
+
+      <!-- TAB: Riesgo -->
+      <div class="pcard-tab-content" data-card="pcon" data-tab="riesgo">
+        <div class="tab-risk">
+          <div class="tab-risk-title">El portal REPSE no esté a tiempo</div>
+          <div class="tab-risk-mit">Planear el desarrollo para su integración posterior</div>
+          <div class="tab-risk-resp">Responsable: TI</div>
+        </div>
+      </div>
+
+      <!-- TAB: Cronograma -->
+      <div class="pcard-tab-content" data-card="pcon" data-tab="gantt">
+        <div class="tab-chart">
+          <div class="tab-donut-row">
+            <svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="#4A9EE0" stroke-width="4" stroke-dasharray="54.3 113.1" stroke-dashoffset="28.3" stroke-linecap="round"/></svg>
+            <div><div class="tab-donut-pct">48%</div><div class="tab-donut-sub">Avance real</div></div>
+          </div>
+          <div class="gantt-wrap">
+            <div class="gantt-months"><div></div><div class="gantt-month-labels" style="position:relative;height:14px"><span class="gantt-month-lbl" style="left:0%">Mar</span><span class="gantt-month-lbl" style="left:25%">Abr</span><span class="gantt-month-lbl" style="left:50%">May</span><span class="gantt-month-lbl" style="left:75%">Jun</span><span class="gantt-month-lbl" style="left:100%">Jul</span></div></div>
+            <div class="gantt-row"><div class="gantt-lbl">Plan</div><div class="gantt-track"><div class="gantt-bar plan" style="left:0%;width:18%;background:#4A9EE0"></div><div class="gantt-bar plan" style="left:18%;width:36%;background:#e07b4a"></div><div class="gantt-bar plan" style="left:54%;width:24%;background:#34d399"></div><div class="gantt-bar plan" style="left:78%;width:22%;background:#a44ae0"></div><div class="gantt-today" style="left:73%"></div></div></div>
+            <div class="gantt-row"><div class="gantt-lbl">Real</div><div class="gantt-track"><div class="gantt-bar real" style="left:0%;width:18%;background:#4A9EE0"></div><div class="gantt-bar real" style="left:18%;width:30%;background:#e07b4a"></div><div class="gantt-today" style="left:73%"></div></div></div>
+          </div>
+          <div class="phase-legend"><div class="phase-dot-item"><div class="phase-dot" style="background:#4A9EE0"></div>Diseño</div><div class="phase-dot-item"><div class="phase-dot" style="background:#e07b4a"></div>Desarrollo</div><div class="phase-dot-item"><div class="phase-dot" style="background:#34d399"></div>Pruebas</div><div class="phase-dot-item"><div class="phase-dot" style="background:#a44ae0"></div>Implementar</div></div>
         </div>
       </div>
     </div>
+    <div class="pgrid-card reveal" data-tipo="administrativo" data-estado="contratacion" data-ia="no" id="card-repse">
+      <div class="pgrid-card-inner">
+        <div class="pgrid-top">
+          <div class="pgrid-tags"><span class="tag tag-admin">Administrativo</span><span class="tag tag-neg">Prefabricados</span></div>
+          <span class="status-pill status-warn"><span class="status-dot"></span>Contratación</span>
+        </div>
+        <div class="pgrid-name">Portal REPSE</div>
+        <div class="pgrid-leader">Iris Vázquez · Por confirmar</div>
+        <div class="prog-compact">
+          <div class="prog-row">
+            <div>
+              <div class="prog-pct-main">—</div>
+              <div class="prog-pct-prev">Sin inicio</div>
+            </div>
+          </div>
+          <div class="prog-bars">
+            <div class="prog-bar-row"><span class="prog-bar-lbl">May</span><div class="prog-bar-track"><div class="prog-bar-fill mayo" style="width:0%"></div></div></div>
+          </div>
+        </div>
+      </div>
 
-    <!-- Portal REPSE -->
-    <div class="project-card">
-      <div>
-        <div class="project-badges">
-          <span class="badge badge-admin">Administrativo</span>
-          <span class="badge badge-neg">Prefabricados</span>
-        </div>
-        <h3 class="project-name">Portal REPSE</h3>
-        <div class="project-meta-grid">
-          <div class="project-meta-item"><div class="label">Líder usuario</div><div class="val">Iris Vázquez</div></div>
-          <div class="project-meta-item"><div class="label">Etapa</div><div class="val">Contratación</div></div>
-          <div class="project-meta-item"><div class="label">Inicio — Fin</div><div class="val">Por confirmar</div></div>
-          <div class="project-meta-item"><div class="label">Estado</div><div class="val"><span class="status-dot"><span class="dot dot-warn"></span>En gestión</span></div></div>
-        </div>
-        <div class="progress-wrap">
-          <div class="progress-label">
-            <span>Avance actual</span>
-            <span>—</span>
-          </div>
-          <div class="progress-track"><div class="progress-fill" style="width:5%"></div></div>
-        </div>
-        <div class="events-panel">
-          <div>
-            <p class="events-group-title">Actividad siguiente</p>
-            <ul class="event-list">
-              <li>Cambio de proveedor por falta de documentación</li>
-              <li>Contratar nueva opción en dos semanas</li>
-            </ul>
-          </div>
-        </div>
+      <!-- TABS -->
+      <div class="pcard-tabs" role="tablist">
+        <button class="pcard-tab" onclick="switchTab(this,'repse','eventos')" role="tab">Eventos</button>
+        <button class="pcard-tab" onclick="switchTab(this,'repse','riesgo')" role="tab">Riesgo</button>
+        <button class="pcard-tab" onclick="switchTab(this,'repse','gantt')" role="tab">Cronograma</button>
       </div>
-      <div>
-        <p class="events-group-title" style="margin-bottom:12px">Sin riesgos registrados</p>
-        <p style="font-size:12px;color:var(--dim)">Pendiente de confirmar proveedor</p>
-      </div>
-    </div>
 
-    <!-- KHOR -->
-    <div class="project-card">
-      <div>
-        <div class="project-badges">
-          <span class="badge badge-admin">Administrativo</span>
-          <span class="badge badge-neg">Capital Humano</span>
+      <!-- TAB: Eventos -->
+      <div class="pcard-tab-content" data-card="repse" data-tab="eventos">
+        <div class="tab-group">
+          <div class="tab-glabel">Concluido</div>
+          <ul class="tab-glist"><li>Proveedor seleccionado</li></ul>
         </div>
-        <h3 class="project-name">KHOR</h3>
-        <div class="project-meta-grid">
-          <div class="project-meta-item"><div class="label">Líder usuario</div><div class="val">Gabriela Sordo</div></div>
-          <div class="project-meta-item"><div class="label">Etapa</div><div class="val">Pruebas</div></div>
-          <div class="project-meta-item"><div class="label">Plan original</div><div class="val">Ago-Nov 2025</div></div>
-          <div class="project-meta-item"><div class="label">Fin estimado</div><div class="val">15/may/2026</div></div>
+        <div class="tab-group">
+          <div class="tab-glabel">Actividad siguiente</div>
+          <ul class="tab-glist"><li>Firma del contrato</li></ul>
         </div>
-        <div class="progress-wrap">
-          <div class="progress-label">
-            <span>Avance actual</span>
-            <span>75%</span>
-          </div>
-          <div class="progress-track"><div class="progress-fill" style="width:75%"></div></div>
-        </div>
-        <div class="events-panel">
-          <div>
-            <p class="events-group-title">Concluido</p>
-            <ul class="event-list">
-              <li>Sesión en sitio para acelerar el trabajo</li>
-            </ul>
-          </div>
-          <div>
-            <p class="events-group-title">Actividad siguiente</p>
-            <ul class="event-list">
-              <li>Integración con SICOSS en curso</li>
-              <li>Pruebas completas de todos los módulos</li>
-              <li>Preparar archivos de carga</li>
-              <li>Preparar arranque productivo</li>
-            </ul>
-          </div>
-        </div>
+        
       </div>
-      <div>
-        <p class="events-group-title" style="margin-bottom:12px">Riesgos identificados</p>
-        <div class="risk-row">
-          <div class="risk-title-cell">Integración SICOSS demore entrada a productivo</div>
-          <div class="risk-mit">Confirmar recursos asignados por el proveedor</div>
-          <div class="risk-resp">Yadira</div>
+
+      <!-- TAB: Riesgo -->
+      <div class="pcard-tab-content" data-card="repse" data-tab="riesgo">
+        <div class="tab-no-risk">Sin riesgos registrados — pendiente de confirmar proveedor</div>
+      </div>
+
+      <!-- TAB: Cronograma -->
+      <div class="pcard-tab-content" data-card="repse" data-tab="gantt">
+        <div class="tab-chart">
+          <div class="tab-donut-row">
+            <svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="#fbbf24" stroke-width="4" stroke-dasharray="5.5 113.1" stroke-dashoffset="28.3" stroke-linecap="round"/></svg>
+            <div><div class="tab-donut-pct">—</div><div class="tab-donut-sub">Avance real</div></div>
+          </div>
+          <div class="gantt-wrap">
+            <div class="gantt-months"><div></div><div class="gantt-month-labels" style="position:relative;height:14px"><span class="gantt-month-lbl" style="left:0%">Abr</span><span class="gantt-month-lbl" style="left:25%">May</span><span class="gantt-month-lbl" style="left:50%">Jun</span><span class="gantt-month-lbl" style="left:75%">Jul</span><span class="gantt-month-lbl" style="left:100%">Ago</span></div></div>
+            <div class="gantt-row"><div class="gantt-lbl">Plan</div><div class="gantt-track"><div class="gantt-bar plan" style="left:0%;width:20%;background:#fbbf24"></div><div class="gantt-bar plan" style="left:20%;width:40%;background:#e07b4a"></div><div class="gantt-bar plan" style="left:60%;width:25%;background:#34d399"></div><div class="gantt-bar plan" style="left:85%;width:15%;background:#a44ae0"></div><div class="gantt-today" style="left:48%"></div></div></div>
+            <div class="gantt-row"><div class="gantt-lbl">Real</div><div class="gantt-track"><div class="gantt-today" style="left:48%"></div></div></div>
+          </div>
+          <div class="phase-legend"><div class="phase-dot-item"><div class="phase-dot" style="background:#fbbf24"></div>Contratación</div><div class="phase-dot-item"><div class="phase-dot" style="background:#e07b4a"></div>Desarrollo</div><div class="phase-dot-item"><div class="phase-dot" style="background:#34d399"></div>Pruebas</div><div class="phase-dot-item"><div class="phase-dot" style="background:#a44ae0"></div>Implementar</div></div>
         </div>
       </div>
     </div>
+    <div class="pgrid-card reveal" data-tipo="administrativo" data-estado="pruebas" data-ia="no" id="card-khor">
+      <div class="pgrid-card-inner">
+        <div class="pgrid-top">
+          <div class="pgrid-tags"><span class="tag tag-admin">Administrativo</span><span class="tag tag-neg">Capital Humano</span></div>
+          <span class="status-pill status-warn" style="background:var(--riskbg);color:var(--risk)"><span class="status-dot"></span>Retrasado</span>
+        </div>
+        <div class="pgrid-name">KHOR</div>
+        <div class="pgrid-leader">Gabriela Sordo · Plan: Ago-Nov 2025 · Fin est: 17/jul/2026</div>
+        <div class="prog-compact">
+          <div class="prog-row">
+            <div>
+              <div class="prog-pct-main">80%</div>
+              <div class="prog-pct-prev">Abril: 75%</div>
+            </div>
+            <span class="prog-delta prog-delta-up">▲ +5 pp</span>
+          </div>
+          <div class="prog-bars">
+            <div class="prog-bar-row"><span class="prog-bar-lbl">May</span><div class="prog-bar-track"><div class="prog-bar-fill mayo" style="width:80%"></div></div></div>
+            <div class="prog-bar-row"><span class="prog-bar-lbl">Abr</span><div class="prog-bar-track"><div class="prog-bar-fill abril" style="width:75%"></div></div></div>
+          </div>
+        </div>
+      </div>
 
-    <!-- App Inspecciones Prefabricados -->
-    <div class="project-card">
-      <div>
-        <div class="project-badges">
-          <span class="badge badge-op">Operativo</span>
-          <span class="badge badge-neg">Prefabricados</span>
-        </div>
-        <h3 class="project-name">App inspecciones de calidad de piezas</h3>
-        <div class="project-meta-grid">
-          <div class="project-meta-item"><div class="label">Líder usuario</div><div class="val">Fernando Valle</div></div>
-          <div class="project-meta-item"><div class="label">Etapa</div><div class="val">Pendiente</div></div>
-          <div class="project-meta-item"><div class="label">Inicio — Fin</div><div class="val">6 abr → 26 jun</div></div>
-          <div class="project-meta-item"><div class="label">Avance</div><div class="val">16%</div></div>
-        </div>
-        <div class="progress-wrap">
-          <div class="progress-label">
-            <span>Avance actual</span>
-            <span>16%</span>
-          </div>
-          <div class="progress-track"><div class="progress-fill" style="width:16%"></div></div>
-        </div>
-        <div class="events-panel">
-          <div>
-            <p class="events-group-title">Concluido</p>
-            <ul class="event-list">
-              <li>Diseño concluido, inician trabajos de desarrollo</li>
-            </ul>
-          </div>
-          <div>
-            <p class="events-group-title">Actividad siguiente</p>
-            <ul class="event-list">
-              <li>Desarrollo de la app e integración con SAP</li>
-            </ul>
-          </div>
-        </div>
+      <!-- TABS -->
+      <div class="pcard-tabs" role="tablist">
+        <button class="pcard-tab" onclick="switchTab(this,'khor','eventos')" role="tab">Eventos</button>
+        <button class="pcard-tab" onclick="switchTab(this,'khor','riesgo')" role="tab">Riesgo</button>
+        <button class="pcard-tab" onclick="switchTab(this,'khor','gantt')" role="tab">Cronograma</button>
       </div>
-      <div>
-        <p class="events-group-title" style="margin-bottom:12px">Sin riesgos registrados</p>
-        <p style="font-size:12px;color:var(--dim)">Tecnología: Power App + SAP</p>
-      </div>
-    </div>
 
-    <!-- Oportunidades de venta IA -->
-    <div class="project-card">
-      <div>
-        <div class="project-badges">
-          <span class="badge badge-op">Operativo</span>
-          <span class="badge badge-ia">IA</span>
-          <span class="badge badge-neg">Prefabricados · BoConcept</span>
+      <!-- TAB: Eventos -->
+      <div class="pcard-tab-content" data-card="khor" data-tab="eventos">
+        <div class="tab-group">
+          <div class="tab-glabel">Concluido</div>
+          <ul class="tab-glist"><li>Sigue en desarrollo la interfaz con SICOSS</li></ul>
         </div>
-        <h3 class="project-name">Oportunidades de venta</h3>
-        <div class="project-meta-grid">
-          <div class="project-meta-item"><div class="label">Duración estimada</div><div class="val">11 semanas</div></div>
-          <div class="project-meta-item"><div class="label">Etapa</div><div class="val">Pendiente</div></div>
+        <div class="tab-group">
+          <div class="tab-glabel">Actividad siguiente</div>
+          <ul class="tab-glist"><li>Integración con SICOSS en curso</li><li>Pruebas completas de todos los módulos</li><li>Preparar archivos de carga</li><li>Preparar arranque productivo</li></ul>
         </div>
-        <div class="progress-wrap">
-          <div class="progress-label">
-            <span>Avance actual</span>
-            <span>—</span>
-          </div>
-          <div class="progress-track"><div class="progress-fill" style="width:3%"></div></div>
-        </div>
-        <div class="events-panel">
-          <div>
-            <p class="events-group-title">Concluido</p>
-            <ul class="event-list">
-              <li>Propuesta del proveedor recibida</li>
-            </ul>
-          </div>
-          <div>
-            <p class="events-group-title">Actividad siguiente</p>
-            <ul class="event-list">
-              <li>Confirmar ROI por parte de cada negocio</li>
-            </ul>
-          </div>
+        
+      </div>
+
+      <!-- TAB: Riesgo -->
+      <div class="pcard-tab-content" data-card="khor" data-tab="riesgo">
+        <div class="tab-risk">
+          <div class="tab-risk-title">Surjan nuevos errores en las pruebas</div>
+          <div class="tab-risk-mit">Verificar que el proveedor haga sus pruebas primero</div>
+          <div class="tab-risk-resp">Responsable: Yadira</div>
         </div>
       </div>
-      <div>
-        <p class="events-group-title" style="margin-bottom:12px">Riesgos identificados</p>
-        <div class="risk-row">
-          <div class="risk-title-cell">El resultado no sea el correcto</div>
-          <div class="risk-mit">Definir método para confirmar el resultado obtenido</div>
-          <div class="risk-resp">Direcciones</div>
+
+      <!-- TAB: Cronograma -->
+      <div class="pcard-tab-content" data-card="khor" data-tab="gantt">
+        <div class="tab-chart">
+          <div class="tab-donut-row">
+            <svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="#fbbf24" stroke-width="4" stroke-dasharray="90.5 113.1" stroke-dashoffset="28.3" stroke-linecap="round"/></svg>
+            <div><div class="tab-donut-pct">80%</div><div class="tab-donut-sub">Avance real</div></div>
+          </div>
+          <div class="gantt-wrap">
+            <div class="gantt-months"><div></div><div class="gantt-month-labels" style="position:relative;height:14px"><span class="gantt-month-lbl" style="left:0%">Ene</span><span class="gantt-month-lbl" style="left:25%">Feb</span><span class="gantt-month-lbl" style="left:50%">Mar</span><span class="gantt-month-lbl" style="left:75%">Abr</span><span class="gantt-month-lbl" style="left:100%">May</span></div></div>
+            <div class="gantt-row"><div class="gantt-lbl">Plan</div><div class="gantt-track"><div class="gantt-bar plan" style="left:0%;width:20%;background:#4A9EE0"></div><div class="gantt-bar plan" style="left:20%;width:30%;background:#e07b4a"></div><div class="gantt-bar plan" style="left:50%;width:25%;background:#34d399"></div><div class="gantt-bar plan" style="left:75%;width:25%;background:#a44ae0"></div><div class="gantt-today" style="left:99%"></div></div></div>
+            <div class="gantt-row"><div class="gantt-lbl">Real</div><div class="gantt-track"><div class="gantt-bar real" style="left:0%;width:20%;background:#4A9EE0"></div><div class="gantt-bar real" style="left:20%;width:35%;background:#e07b4a"></div><div class="gantt-bar real" style="left:55%;width:25%;background:#34d399"></div><div class="gantt-today" style="left:99%"></div></div></div>
+          </div>
+          <div class="phase-legend"><div class="phase-dot-item"><div class="phase-dot" style="background:#4A9EE0"></div>Diseño</div><div class="phase-dot-item"><div class="phase-dot" style="background:#e07b4a"></div>Desarrollo</div><div class="phase-dot-item"><div class="phase-dot" style="background:#34d399"></div>Pruebas</div><div class="phase-dot-item"><div class="phase-dot" style="background:#a44ae0"></div>Implementar</div></div>
         </div>
       </div>
     </div>
-
-    <!-- Inspecciones Durmientes -->
-    <div class="project-card">
-      <div>
-        <div class="project-badges">
-          <span class="badge badge-op">Operativo</span>
-          <span class="badge badge-neg">Durmientes</span>
+    <div class="pgrid-card reveal" data-tipo="operativo" data-estado="pendiente" data-ia="no" id="card-insp">
+      <div class="pgrid-card-inner">
+        <div class="pgrid-top">
+          <div class="pgrid-tags"><span class="tag tag-op">Operativo</span><span class="tag tag-neg">Prefabricados</span></div>
+          <span class="status-pill status-warn"><span class="status-dot"></span>Desarrollo</span>
         </div>
-        <h3 class="project-name">Inspecciones de calidad — Durmientes &amp; cilindros de concreto</h3>
-        <div class="project-meta-grid">
-          <div class="project-meta-item"><div class="label">Líder usuario</div><div class="val">José Isabel</div></div>
-          <div class="project-meta-item"><div class="label">Etapa</div><div class="val">Desarrollo</div></div>
-          <div class="project-meta-item"><div class="label">Inicio — Fin</div><div class="val">23 mar → 30 abr</div></div>
-          <div class="project-meta-item"><div class="label">Avance</div><div class="val">40%</div></div>
-        </div>
-        <div class="progress-wrap">
-          <div class="progress-label">
-            <span>Avance actual</span>
-            <span>40%</span>
+        <div class="pgrid-name">App inspecciones de calidad de piezas</div>
+        <div class="pgrid-leader">Fernando Valle · 6 abr → 26 jun · Power App + SAP</div>
+        <div class="prog-compact">
+          <div class="prog-row">
+            <div>
+              <div class="prog-pct-main">20%</div>
+              <div class="prog-pct-prev">Abril: 16%</div>
+            </div>
+            <span class="prog-delta prog-delta-up">▲ +4 pp</span>
           </div>
-          <div class="progress-track"><div class="progress-fill" style="width:40%"></div></div>
-        </div>
-        <div class="events-panel">
-          <div>
-            <p class="events-group-title">Concluido</p>
-            <ul class="event-list">
-              <li>Análisis concluido</li>
-              <li>Configuración SAP concluida</li>
-            </ul>
-          </div>
-          <div>
-            <p class="events-group-title">Actividad siguiente</p>
-            <ul class="event-list">
-              <li>Desarrollo de pantalla de captura en curso</li>
-              <li>Desarrollo de formato</li>
-            </ul>
+          <div class="prog-bars">
+            <div class="prog-bar-row"><span class="prog-bar-lbl">May</span><div class="prog-bar-track"><div class="prog-bar-fill mayo" style="width:20%"></div></div></div>
+            <div class="prog-bar-row"><span class="prog-bar-lbl">Abr</span><div class="prog-bar-track"><div class="prog-bar-fill abril" style="width:16%"></div></div></div>
           </div>
         </div>
       </div>
-      <div>
-        <p class="events-group-title" style="margin-bottom:12px">Riesgos identificados</p>
-        <div class="risk-row">
-          <div class="risk-title-cell">Resistencia al cambio</div>
-          <div class="risk-mit">Involucrar a gerencia y dirección del negocio</div>
-          <div class="risk-resp">Javier</div>
+
+      <!-- TABS -->
+      <div class="pcard-tabs" role="tablist">
+        <button class="pcard-tab" onclick="switchTab(this,'insp','eventos')" role="tab">Eventos</button>
+        <button class="pcard-tab" onclick="switchTab(this,'insp','riesgo')" role="tab">Riesgo</button>
+        <button class="pcard-tab" onclick="switchTab(this,'insp','gantt')" role="tab">Cronograma</button>
+      </div>
+
+      <!-- TAB: Eventos -->
+      <div class="pcard-tab-content" data-card="insp" data-tab="eventos">
+        <div class="tab-group">
+          <div class="tab-glabel">Concluido</div>
+          <ul class="tab-glist"><li>Diseño de la app completado</li><li>2 de 3 interfaces con SAP completadas</li></ul>
+        </div>
+        <div class="tab-group">
+          <div class="tab-glabel">Actividad siguiente</div>
+          <ul class="tab-glist"><li>Iniciar desarrollo de la app</li><li>Completar tercera interfaz con SAP</li></ul>
+        </div>
+        
+      </div>
+
+      <!-- TAB: Riesgo -->
+      <div class="pcard-tab-content" data-card="insp" data-tab="riesgo">
+        <div class="tab-no-risk">Sin riesgos registrados</div>
+      </div>
+
+      <!-- TAB: Cronograma -->
+      <div class="pcard-tab-content" data-card="insp" data-tab="gantt">
+        <div class="tab-chart">
+          <div class="tab-donut-row">
+            <svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="#fbbf24" stroke-width="4" stroke-dasharray="22.6 113.1" stroke-dashoffset="28.3" stroke-linecap="round"/></svg>
+            <div><div class="tab-donut-pct">20%</div><div class="tab-donut-sub">Avance real</div></div>
+          </div>
+          <div class="gantt-wrap">
+            <div class="gantt-months"><div></div><div class="gantt-month-labels" style="position:relative;height:14px"><span class="gantt-month-lbl" style="left:0%">Abr</span><span class="gantt-month-lbl" style="left:33%">May</span><span class="gantt-month-lbl" style="left:66%">Jun</span><span class="gantt-month-lbl" style="left:100%">Jul</span></div></div>
+            <div class="gantt-row"><div class="gantt-lbl">Plan</div><div class="gantt-track"><div class="gantt-bar plan" style="left:0%;width:25%;background:#4A9EE0"></div><div class="gantt-bar plan" style="left:25%;width:40%;background:#e07b4a"></div><div class="gantt-bar plan" style="left:65%;width:20%;background:#34d399"></div><div class="gantt-bar plan" style="left:85%;width:15%;background:#a44ae0"></div><div class="gantt-today" style="left:64%"></div></div></div>
+            <div class="gantt-row"><div class="gantt-lbl">Real</div><div class="gantt-track"><div class="gantt-bar real" style="left:0%;width:25%;background:#4A9EE0"></div><div class="gantt-bar real" style="left:25%;width:8%;background:#e07b4a"></div><div class="gantt-today" style="left:64%"></div></div></div>
+          </div>
+          <div class="phase-legend"><div class="phase-dot-item"><div class="phase-dot" style="background:#4A9EE0"></div>Diseño</div><div class="phase-dot-item"><div class="phase-dot" style="background:#e07b4a"></div>Desarrollo</div><div class="phase-dot-item"><div class="phase-dot" style="background:#34d399"></div>Pruebas</div><div class="phase-dot-item"><div class="phase-dot" style="background:#a44ae0"></div>Implementar</div></div>
         </div>
       </div>
     </div>
+    <div class="pgrid-card reveal" data-tipo="operativo" data-estado="pendiente" data-ia="ia" id="card-oport">
+      <div class="pgrid-card-inner">
+        <div class="pgrid-top">
+          <div class="pgrid-tags"><span class="tag tag-op">Operativo</span><span class="tag tag-ia">IA</span><span class="tag tag-neg">Prefabricados · BoConcept</span></div>
+          <span class="status-pill status-dim"><span class="status-dot"></span>Pendiente</span>
+        </div>
+        <div class="pgrid-name">Oportunidades de venta</div>
+        <div class="pgrid-leader">Carlos Araujo · Felipe Medina · Por confirmar · IA + Agentes + Web scraping</div>
+        <div class="prog-compact">
+          <div class="prog-row">
+            <div>
+              <div class="prog-pct-main">—</div>
+              <div class="prog-pct-prev">Sin inicio</div>
+            </div>
+          </div>
+          <div class="prog-bars">
+            <div class="prog-bar-row"><span class="prog-bar-lbl">May</span><div class="prog-bar-track"><div class="prog-bar-fill mayo" style="width:0%"></div></div></div>
+          </div>
+        </div>
+      </div>
 
+      <!-- TABS -->
+      <div class="pcard-tabs" role="tablist">
+        <button class="pcard-tab" onclick="switchTab(this,'oport','eventos')" role="tab">Eventos</button>
+        <button class="pcard-tab" onclick="switchTab(this,'oport','riesgo')" role="tab">Riesgo</button>
+        <button class="pcard-tab" onclick="switchTab(this,'oport','gantt')" role="tab">Cronograma</button>
+      </div>
+
+      <!-- TAB: Eventos -->
+      <div class="pcard-tab-content" data-card="oport" data-tab="eventos">
+        <div class="tab-group">
+          <div class="tab-glabel">Concluido</div>
+          <ul class="tab-glist"><li>Propuesta del proveedor recibida</li></ul>
+        </div>
+        <div class="tab-group">
+          <div class="tab-glabel">Actividad siguiente</div>
+          <ul class="tab-glist"><li>Confirmar ROI por parte de cada negocio</li><li>Definir fecha de inicio del proyecto</li></ul>
+        </div>
+        
+      </div>
+
+      <!-- TAB: Riesgo -->
+      <div class="pcard-tab-content" data-card="oport" data-tab="riesgo">
+        <div class="tab-risk">
+          <div class="tab-risk-title">El resultado no sea el correcto</div>
+          <div class="tab-risk-mit">Definir un método para confirmar el resultado obtenido</div>
+          <div class="tab-risk-resp">Responsable: Direcciones</div>
+        </div>
+      </div>
+
+      <!-- TAB: Cronograma -->
+      <div class="pcard-tab-content" data-card="oport" data-tab="gantt">
+        <div class="tab-chart">
+          <div class="tab-donut-row">
+            <svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="#4A9EE0" stroke-width="4" stroke-dasharray="4 113.1" stroke-dashoffset="28.3" stroke-linecap="round"/></svg>
+            <div><div class="tab-donut-pct">—</div><div class="tab-donut-sub">Avance real</div></div>
+          </div>
+          <div class="gantt-wrap">
+            <div class="gantt-months"><div></div><div class="gantt-month-labels" style="position:relative;height:14px"><span class="gantt-month-lbl" style="left:0%">Abr</span><span class="gantt-month-lbl" style="left:25%">May</span><span class="gantt-month-lbl" style="left:50%">Jun</span><span class="gantt-month-lbl" style="left:75%">Jul</span><span class="gantt-month-lbl" style="left:100%">Ago</span></div></div>
+            <div class="gantt-row"><div class="gantt-lbl">Plan</div><div class="gantt-track"><div class="gantt-bar plan" style="left:5%;width:22%;background:#4A9EE0"></div><div class="gantt-bar plan" style="left:27%;width:35%;background:#e07b4a"></div><div class="gantt-bar plan" style="left:62%;width:22%;background:#34d399"></div><div class="gantt-bar plan" style="left:84%;width:16%;background:#a44ae0"></div><div class="gantt-today" style="left:46%"></div></div></div>
+            <div class="gantt-row"><div class="gantt-lbl">Real</div><div class="gantt-track"><div class="gantt-today" style="left:46%"></div></div></div>
+          </div>
+          <div class="phase-legend"><div class="phase-dot-item"><div class="phase-dot" style="background:#4A9EE0"></div>Planeación</div><div class="phase-dot-item"><div class="phase-dot" style="background:#e07b4a"></div>Implementación</div><div class="phase-dot-item"><div class="phase-dot" style="background:#34d399"></div>Pruebas</div><div class="phase-dot-item"><div class="phase-dot" style="background:#a44ae0"></div>Despliegue</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="pgrid-card reveal" data-tipo="operativo" data-estado="desarrollo" data-ia="no" id="card-durm">
+      <div class="pgrid-card-inner">
+        <div class="pgrid-top">
+          <div class="pgrid-tags"><span class="tag tag-op">Operativo</span><span class="tag tag-neg">Durmientes</span></div>
+          <span class="status-pill status-ok"><span class="status-dot"></span>Pruebas</span>
+        </div>
+        <div class="pgrid-name">Inspecciones de cilindros de concreto</div>
+        <div class="pgrid-leader">José Isabel · 23 mar → 30 abr (plan) · SAP-QM</div>
+        <div class="prog-compact">
+          <div class="prog-row">
+            <div>
+              <div class="prog-pct-main">80%</div>
+              <div class="prog-pct-prev">Abril: 40%</div>
+            </div>
+            <span class="prog-delta prog-delta-up">▲ +40 pp</span>
+          </div>
+          <div class="prog-bars">
+            <div class="prog-bar-row"><span class="prog-bar-lbl">May</span><div class="prog-bar-track"><div class="prog-bar-fill mayo" style="width:80%"></div></div></div>
+            <div class="prog-bar-row"><span class="prog-bar-lbl">Abr</span><div class="prog-bar-track"><div class="prog-bar-fill abril" style="width:40%"></div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABS -->
+      <div class="pcard-tabs" role="tablist">
+        <button class="pcard-tab" onclick="switchTab(this,'durm','eventos')" role="tab">Eventos</button>
+        <button class="pcard-tab" onclick="switchTab(this,'durm','riesgo')" role="tab">Riesgo</button>
+        <button class="pcard-tab" onclick="switchTab(this,'durm','gantt')" role="tab">Cronograma</button>
+      </div>
+
+      <!-- TAB: Eventos -->
+      <div class="pcard-tab-content" data-card="durm" data-tab="eventos">
+        <div class="tab-group">
+          <div class="tab-glabel">Concluido</div>
+          <ul class="tab-glist"><li>Pantalla de captura completada</li></ul>
+        </div>
+        <div class="tab-group">
+          <div class="tab-glabel">Actividad siguiente</div>
+          <ul class="tab-glist"><li>Formato de salida en curso</li><li>Ajuste solicitado a la pantalla</li></ul>
+        </div>
+        
+      </div>
+
+      <!-- TAB: Riesgo -->
+      <div class="pcard-tab-content" data-card="durm" data-tab="riesgo">
+        <div class="tab-risk">
+          <div class="tab-risk-title">Se presente resistencia al cambio</div>
+          <div class="tab-risk-mit">Involucrar a gerencia y dirección del negocio</div>
+          <div class="tab-risk-resp">Responsable: Javier</div>
+        </div>
+      </div>
+
+      <!-- TAB: Cronograma -->
+      <div class="pcard-tab-content" data-card="durm" data-tab="gantt">
+        <div class="tab-chart">
+          <div class="tab-donut-row">
+            <svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="#34d399" stroke-width="4" stroke-dasharray="90.5 113.1" stroke-dashoffset="28.3" stroke-linecap="round"/></svg>
+            <div><div class="tab-donut-pct">80%</div><div class="tab-donut-sub">Avance real</div></div>
+          </div>
+          <div class="gantt-wrap">
+            <div class="gantt-months"><div></div><div class="gantt-month-labels" style="position:relative;height:14px"><span class="gantt-month-lbl" style="left:0%">Mar</span><span class="gantt-month-lbl" style="left:33%">Abr</span><span class="gantt-month-lbl" style="left:66%">May</span><span class="gantt-month-lbl" style="left:100%">Jun</span></div></div>
+            <div class="gantt-row"><div class="gantt-lbl">Plan</div><div class="gantt-track"><div class="gantt-bar plan" style="left:0%;width:20%;background:#4A9EE0"></div><div class="gantt-bar plan" style="left:20%;width:30%;background:#e07b4a"></div><div class="gantt-bar plan" style="left:50%;width:25%;background:#34d399"></div><div class="gantt-bar plan" style="left:75%;width:25%;background:#a44ae0"></div><div class="gantt-today" style="left:97%"></div></div></div>
+            <div class="gantt-row"><div class="gantt-lbl">Real</div><div class="gantt-track"><div class="gantt-bar real" style="left:0%;width:20%;background:#4A9EE0"></div><div class="gantt-bar real" style="left:20%;width:30%;background:#e07b4a"></div><div class="gantt-bar real" style="left:50%;width:22%;background:#34d399"></div><div class="gantt-today" style="left:97%"></div></div></div>
+          </div>
+          <div class="phase-legend"><div class="phase-dot-item"><div class="phase-dot" style="background:#4A9EE0"></div>Análisis</div><div class="phase-dot-item"><div class="phase-dot" style="background:#e07b4a"></div>Configuración</div><div class="phase-dot-item"><div class="phase-dot" style="background:#34d399"></div>Pruebas</div><div class="phase-dot-item"><div class="phase-dot" style="background:#a44ae0"></div>Liberación</div></div>
+        </div>
+      </div>
+    </div>
+  </div><!-- /pgrid -->
+  <div id="no-results" style="display:none;text-align:center;padding:64px 0;color:var(--muted);font-size:14px">Ningún proyecto coincide con los filtros.</div>
+</section>
+
+
+<!-- PORTAFOLIO MAPA CIRCULAR -->
+<section class="section" style="background:var(--bg2)" id="portafolio-mapa">
+
+  <p class="eyebrow">01 &mdash; Proyectos en curso (Mapa del portafolio)</p>
+
+  <!-- Header row -->
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;margin-bottom:2.5rem">
+    <div>
+      <h2 style="font-size:clamp(24px,2.8vw,36px);font-weight:200;letter-spacing:-.04em;color:var(--text);line-height:1.1">
+        Concentracion del <strong>Portafolio</strong>
+      </h2>
+      <p style="font-size:12px;color:var(--muted);margin-top:6px">
+        Posicion segun tipo de capacidad &middot; Y = Valor al negocio &middot; Radio = Esfuerzo
+      </p>
+    </div>
+    <!-- MINI FILTERS duplicados aqui -->
+    <div id="cmap-filters" style="display:flex;flex-direction:column;gap:8px">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span style="font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);min-width:40px">TIPO</span>
+        <button class="cmf-btn cmf-active" data-f="tipo" data-v="all">Todos</button>
+        <button class="cmf-btn" data-f="tipo" data-v="administrativo">Administrativo</button>
+        <button class="cmf-btn" data-f="tipo" data-v="operativo">Operativo</button>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+        <span style="font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);min-width:40px">ESTADO</span>
+        <button class="cmf-btn cmf-active" data-f="estado" data-v="all">Todos</button>
+        <button class="cmf-btn" data-f="estado" data-v="desarrollo">Desarrollo</button>
+        <button class="cmf-btn" data-f="estado" data-v="pruebas">Pruebas</button>
+        <button class="cmf-btn" data-f="estado" data-v="contratacion">Contratacion</button>
+        <button class="cmf-btn" data-f="estado" data-v="pendiente">Pendiente</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main layout: legend left, chart right -->
+  <div style="display:grid;grid-template-columns:220px 1fr;gap:3rem;align-items:start">
+
+    <!-- LEFT: compact legend -->
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <!-- Stats -->
+      <div style="display:flex;flex-direction:column;gap:10px" id="cmap-stats"></div>
+      <!-- Separator -->
+      <div style="height:0.5px;background:var(--line)"></div>
+      <!-- Project list -->
+      <div style="display:flex;flex-direction:column;gap:8px" id="cmap-legend"></div>
+      <!-- Note -->
+      <p style="font-size:10px;color:var(--dim);line-height:1.55;border-top:0.5px solid var(--line);padding-top:12px">
+        Radio = Esfuerzo requerido<br>Arco = % avance actual
+      </p>
+    </div>
+
+    <!-- RIGHT: SVG chart -->
+    <div style="position:relative;width:100%;aspect-ratio:16/9;margin:0 auto">
+      <svg id="cmap-svg" viewBox="0 0 900 506"
+           style="width:100%;height:100%;overflow:visible;display:block"></svg>
+      <div id="cmap-tt"
+           style="position:absolute;pointer-events:none;opacity:0;transition:opacity .15s;
+                  background:var(--bg3);border:0.5px solid var(--line2);border-radius:10px;
+                  padding:12px 16px;min-width:190px;z-index:100;
+                  box-shadow:0 8px 32px rgba(0,0,0,.4)"></div>
+    </div>
   </div>
 </section>
+
+<style>
+/* Mini filter buttons in cmap section */
+.cmf-btn{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  padding:5px 12px;border-radius:20px;border:0.5px solid var(--line2);
+  background:transparent;color:var(--muted);cursor:pointer;
+  transition:all .2s;font-family:var(--font)}
+.cmf-btn:hover{background:var(--glass2);color:var(--text)}
+.cmf-btn.cmf-active{background:var(--accent);color:#fff;border-color:var(--accent)}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  buildCircleMap();
+  initCmapFilters();
+  new MutationObserver(function(){ recolorMap(); })
+    .observe(document.documentElement, {attributes:true, attributeFilter:['class']});
+});
+
+var CMAP_PROJECTS = [
+  {
+    id:'khor', label:'KHOR', tipo:'Back office', area:'Capital Humano',
+    quad:'Q1', px:0.33, py:0.18,
+    valor:4, esfuerzo:4, avance:80, estado:'Rojo', etapa:'Pruebas',
+    color:'#2563EB', fillOpacity:'0.85', ring:'#f59e0b', ringOpacity:'1.0',
+    ftipo:'administrativo', festado:'pruebas', fia:'no'
+  },
+  {
+    id:'pcon', label:'Portal contratistas', tipo:'Back office', area:'Prefabricados',
+    quad:'Q1', px:0.78, py:0.35,
+    valor:4, esfuerzo:4, avance:48, estado:'Verde', etapa:'Desarrollo',
+    color:'#3B82F6', fillOpacity:'0.80', ring:'#10b981', ringOpacity:'1.0',
+    ftipo:'administrativo', festado:'desarrollo', fia:'no'
+  },
+  {
+    id:'repse', label:'Portal REPSE', tipo:'Back office', area:'Prefabricados',
+    quad:'Q1', px:0.52, py:0.68,
+    valor:3, esfuerzo:3, avance:null, estado:'Vacio', etapa:'Contratacion',
+    color:'#60A5FA', fillOpacity:'0.50', ring:'#60A5FA', ringOpacity:'0.30',
+    ftipo:'administrativo', festado:'contratacion', fia:'no'
+  },
+  {
+    id:'insp', label:'App Inspecciones', tipo:'Procesos core', area:'Prefabricados',
+    quad:'Q2', px:0.30, py:0.62,
+    valor:3, esfuerzo:4, avance:20, estado:'Ambar', etapa:'Desarrollo',
+    color:'#D97706', fillOpacity:'0.88', ring:'#f59e0b', ringOpacity:'1.0',
+    ftipo:'operativo', festado:'desarrollo', fia:'no'
+  },
+  {
+    id:'durm', label:'Insp. Cilindros', tipo:'Procesos core', area:'Durmientes',
+    quad:'Q2', px:0.72, py:0.30,
+    valor:4, esfuerzo:2, avance:80, estado:'Verde', etapa:'Pruebas',
+    color:'#F59E0B', fillOpacity:'0.75', ring:'#10b981', ringOpacity:'1.0',
+    ftipo:'operativo', festado:'pruebas', fia:'no'
+  },
+  {
+    id:'oport', label:'Oport. de venta', tipo:'Front office', area:'Prefabricados/Tumex/BoConcept',
+    quad:'Q3', px:0.55, py:0.38,
+    valor:4, esfuerzo:3, avance:null, estado:'Vacio', etapa:'Pendiente',
+    color:'#059669', fillOpacity:'0.60', ring:'#34d399', ringOpacity:'0.40',
+    ftipo:'operativo', festado:'pendiente', fia:'ia'
+  }
+];
+
+function buildCircleMap() {
+  var svg = document.getElementById('cmap-svg');
+  if (!svg) return;
+
+  var W=900, H=506, CX=520, CY=253, R=220;
+  var NS = 'http://www.w3.org/2000/svg';
+
+  function el(tag, attrs, parent) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  function txt(t, attrs, parent) {
+    var e = el('text', attrs, parent);
+    e.textContent = t;
+    return e;
+  }
+
+  var isLight = document.documentElement.classList.contains('light');
+  svg.style.color = isLight ? '#0b2140' : '#e8edf5';
+
+  /* ── DEFS ── */
+  var defs = el('defs', {}, svg);
+  var clip = el('clipPath', {id:'cmapClip'}, defs);
+  el('circle', {cx:CX, cy:CY, r:R}, clip);
+
+  /* ── FONDO GENERAL del circulo ── */
+  /* Dark: bg2 fill para el circulo, Light: white */
+  var bgFill = isLight ? 'rgba(240,244,249,0.95)' : 'rgba(10,22,40,0.60)';
+  var gBg = el('g', {'clip-path':'url(#cmapClip)'}, svg);
+  el('rect', {x:CX-R, y:CY-R, width:R*2, height:R*2, fill:bgFill}, gBg);
+
+  /* ── CUADRANTES con colores muy sutiles ── */
+  var qFills = isLight
+    ? ['rgba(37,99,235,0.07)','rgba(217,119,6,0.07)','rgba(5,150,105,0.06)','rgba(100,116,139,0.04)']
+    : ['rgba(59,130,246,0.12)','rgba(245,158,11,0.10)','rgba(16,185,129,0.09)','rgba(255,255,255,0.03)'];
+  var g = el('g', {'clip-path':'url(#cmapClip)'}, svg);
+  el('rect', {x:CX-R, y:CY-R, width:R, height:R, fill:qFills[0]}, g);
+  el('rect', {x:CX,   y:CY-R, width:R, height:R, fill:qFills[1]}, g);
+  el('rect', {x:CX-R, y:CY,   width:R, height:R, fill:qFills[2]}, g);
+  el('rect', {x:CX,   y:CY,   width:R, height:R, fill:qFills[3]}, g);
+
+  /* ── CIRCULOS de referencia estilo Garmin: lineas finas, muy tenues ── */
+  var ringColor = isLight ? 'rgba(11,33,64,0.08)' : 'rgba(255,255,255,0.06)';
+  [0.25, 0.50, 0.75].forEach(function(f){
+    el('circle', {cx:CX, cy:CY, r:R*f, fill:'none',
+      stroke:ringColor, 'stroke-width':'0.75'}, g);
+  });
+
+  /* ── BORDE del circulo ── */
+  el('circle', {cx:CX, cy:CY, r:R, fill:'none',
+    stroke: isLight ? 'rgba(11,33,64,0.12)' : 'rgba(255,255,255,0.10)',
+    'stroke-width':'1'}, svg);
+
+  /* ── EJES: linea fina discontinua ── */
+  var axColor = isLight ? 'rgba(11,33,64,0.10)' : 'rgba(255,255,255,0.08)';
+  el('line', {x1:CX, y1:CY-R-16, x2:CX, y2:CY+R+16,
+    stroke:axColor, 'stroke-width':'0.75', 'stroke-dasharray':'3 4'}, svg);
+  el('line', {x1:CX-R-16, y1:CY, x2:CX+R+16, y2:CY,
+    stroke:axColor, 'stroke-width':'0.75', 'stroke-dasharray':'3 4'}, svg);
+
+  /* ── ETIQUETAS de eje: estilo Garmin (muy pequeño, capslock, tenue) ── */
+  var axLblAttrs = {'font-size':'8', 'font-weight':'500', fill:'currentColor',
+    opacity: isLight ? '0.30' : '0.25', 'font-family':'Inter,sans-serif',
+    'letter-spacing':'.10em'};
+  txt('MAYOR VALOR', Object.assign({}, axLblAttrs, {x:CX, y:CY-R-22, 'text-anchor':'middle'}), svg);
+  txt('MENOR VALOR', Object.assign({}, axLblAttrs, {x:CX, y:CY+R+30, 'text-anchor':'middle'}), svg);
+  txt('INTERNO',     Object.assign({}, axLblAttrs, {x:CX-R-22, y:CY+3, 'text-anchor':'end'}), svg);
+  txt('EXTERNO',     Object.assign({}, axLblAttrs, {x:CX+R+22, y:CY+3, 'text-anchor':'start'}), svg);
+
+  /* ── ETIQUETAS DE CUADRANTE: textPath fuera del circulo, estilo Garmin ── */
+  var Rl = R + 22;
+  var PI = Math.PI;
+  function arc_path(a1, a2, r, ccw) {
+    var ra = a1*PI/180, rb = a2*PI/180;
+    var xa = CX+r*Math.cos(ra), ya = CY+r*Math.sin(ra);
+    var xb = CX+r*Math.cos(rb), yb = CY+r*Math.sin(rb);
+    var sw = ccw ? 0 : 1;
+    return 'M '+xa.toFixed(1)+' '+ya.toFixed(1)+' A '+r+' '+r+' 0 0 '+sw+' '+xb.toFixed(1)+' '+yb.toFixed(1);
+  }
+  var QDEF = [
+    {label:'BACK OFFICE',        a1:197, a2:253, cssVar:'var(--accent)', flip:false},
+    {label:'CORE CAPABILITIES',  a1:287, a2:353, cssVar:'var(--warn)',   flip:false},
+    {label:'FRONT OFFICE',       a1:107, a2:163, cssVar:'var(--ok)',     flip:true},
+    {label:'PRODUCTS & SERVICES',a1:17,  a2:73,  cssVar:'var(--dim)',    flip:true},
+  ];
+  QDEF.forEach(function(q, qi) {
+    var pid = 'qp'+qi;
+    var pathD = q.flip
+      ? (function(){
+          var ra=q.a1*PI/180, rb=q.a2*PI/180;
+          var xa=CX+Rl*Math.cos(rb), ya=CY+Rl*Math.sin(rb);
+          var xb=CX+Rl*Math.cos(ra), yb=CY+Rl*Math.sin(ra);
+          return 'M '+xa.toFixed(1)+' '+ya.toFixed(1)+' A '+Rl+' '+Rl+' 0 0 0 '+xb.toFixed(1)+' '+yb.toFixed(1);
+        })()
+      : arc_path(q.a1, q.a2, Rl, false);
+    el('path', {id:pid, d:pathD, fill:'none', stroke:'none'}, defs);
+    var tEl = el('text', {'font-size':'8', 'font-weight':'700', fill:q.cssVar,
+      'font-family':'Inter,sans-serif', 'letter-spacing':'.14em', opacity:'0.70'}, svg);
+    var tp = el('textPath', {href:'#'+pid, startOffset:'50%', 'text-anchor':'middle'}, tEl);
+    tp.textContent = q.label;
+  });
+
+  /* ── QUADRANT DIVIDER LINES (delgadas, en el borde del circulo) ── */
+  var divColor = isLight ? 'rgba(11,33,64,0.08)' : 'rgba(255,255,255,0.06)';
+  el('line', {x1:CX, y1:CY-R, x2:CX, y2:CY+R, stroke:divColor, 'stroke-width':'0.5'}, svg);
+  el('line', {x1:CX-R, y1:CY, x2:CX+R, y2:CY, stroke:divColor, 'stroke-width':'0.5'}, svg);
+
+  /* ── HELPER posicion dentro del cuadrante ── */
+  function quadXY(quad, px, py) {
+    var margin = 28, span = R - margin*2;
+    var ix = margin + px*span, iy = margin + py*span;
+    switch(quad){
+      case 'Q1': return {x:CX-ix, y:CY-iy};
+      case 'Q2': return {x:CX+ix, y:CY-iy};
+      case 'Q3': return {x:CX-ix, y:CY+iy};
+      default:   return {x:CX+ix, y:CY+iy};
+    }
+  }
+
+  var tt   = document.getElementById('cmap-tt');
+  var wrap = svg.parentElement;
+
+  /* ── BURBUJAS estilo Garmin ── */
+  CMAP_PROJECTS.forEach(function(p) {
+    var pos = quadXY(p.quad, p.px, p.py);
+    var bx  = pos.x, by = pos.y;
+    var br  = 18 + (p.esfuerzo||3) * 4;
+    var fo  = parseFloat(p.fillOpacity)||0.60;
+
+    /* Grupo para filtrado */
+    var bg = el('g', {id:'cmap-bubble-'+p.id,
+      style:'transition:opacity .35s cubic-bezier(.4,0,.2,1)'}, svg);
+
+    /* Glow exterior sutil */
+    el('circle', {cx:bx, cy:by, r:br+6, fill:p.color, opacity:(fo*0.12).toFixed(2)}, bg);
+
+    /* Track ring (fondo del arco) */
+    if (p.avance != null) {
+      var rr = br+6, circ = 2*Math.PI*rr;
+      el('circle', {cx:bx, cy:by, r:rr, fill:'none', stroke:p.ring,
+        'stroke-width':'2', opacity:'0.15'}, bg);
+      /* Arco de progreso */
+      var dash = (p.avance/100)*circ;
+      el('circle', {cx:bx, cy:by, r:rr, fill:'none', stroke:p.ring,
+        'stroke-width':'2.5', 'stroke-dasharray':dash+' '+circ,
+        'stroke-dashoffset': circ*0.25, 'stroke-linecap':'round',
+        opacity: p.ringOpacity||'0.85',
+        transform:'rotate(-90 '+bx+' '+by+')'}, bg);
+    }
+
+    /* Fill principal — gradiente sutil via dos circulos */
+    el('circle', {cx:bx, cy:by, r:br, fill:p.color, opacity:(fo+0.10).toFixed(2)}, bg);
+    el('circle', {cx:bx, cy:by-br*0.25, r:br*0.65,
+      fill:'rgba(255,255,255,0.06)', opacity:'1'}, bg);  /* highlight sutil */
+
+    /* Etiqueta: nombre corto dentro de la burbuja */
+    var words = p.label.split(' ');
+    var l1 = words.slice(0,2).join(' ');
+    var l2 = words.slice(2).join(' ');
+    var labelFill = 'rgba(255,255,255,0.95)';
+    var ly = l2 ? by-5 : by+4;
+    txt(l1, {x:bx, y:ly, 'font-size':'8', 'font-weight':'600', fill:labelFill,
+      'text-anchor':'middle', 'font-family':'Inter,sans-serif',
+      'dominant-baseline':'middle'}, bg);
+    if (l2) {
+      txt(l2, {x:bx, y:by+8, 'font-size':'8', 'font-weight':'600', fill:labelFill,
+        'text-anchor':'middle', 'font-family':'Inter,sans-serif',
+        'dominant-baseline':'middle'}, bg);
+    }
+
+    /* Hit area */
+    var hit = el('circle', {cx:bx, cy:by, r:br+14, fill:'transparent',
+      style:'cursor:pointer'}, bg);
+    hit.addEventListener('mouseenter', function(){
+      var pct = p.avance != null ? p.avance+'%' : 'Sin inicio';
+      tt.innerHTML =
+        '<div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:8px">'+p.label+'</div>'+
+        '<div style="font-size:11px;color:var(--muted);line-height:1.9">'+
+        'Tipo: <span style="color:var(--text);font-weight:500">'+p.tipo+'</span><br>'+
+        'Area: <span style="color:var(--text);font-weight:500">'+p.area+'</span><br>'+
+        'Etapa: <span style="color:var(--text);font-weight:500">'+p.etapa+'</span><br>'+
+        'Avance: <span style="color:var(--text);font-weight:600">'+pct+'</span><br>'+
+        'Valor neg.: <span style="color:var(--text);font-weight:500">'+p.valor+'/5</span> &nbsp; Esfuerzo: <span style="color:var(--text);font-weight:500">'+p.esfuerzo+'/5</span>'+
+        '</div>';
+      var wr = wrap.getBoundingClientRect();
+      var hr = hit.getBoundingClientRect();
+      var tx = hr.left - wr.left + hr.width/2 - 95;
+      var ty = hr.top  - wr.top  - 145;
+      if (tx < 4) tx = 4;
+      if (ty < 4) ty = hr.top - wr.top + hr.height + 8;
+      tt.style.left = tx+'px'; tt.style.top = ty+'px'; tt.style.opacity = '1';
+    });
+    hit.addEventListener('mouseleave', function(){ tt.style.opacity = '0'; });
+  });
+
+  /* ── LEYENDA izquierda ── */
+  var types = {};
+  CMAP_PROJECTS.forEach(function(p){ types[p.tipo]=(types[p.tipo]||0)+1; });
+  var total = CMAP_PROJECTS.length;
+  var tc = {'Back office':'var(--accent)','Procesos core':'var(--warn)','Front office':'var(--ok)'};
+
+  var statsEl = document.getElementById('cmap-stats');
+  if (statsEl) {
+    statsEl.innerHTML = Object.keys(types).map(function(t){
+      return '<div style="display:flex;align-items:baseline;gap:8px">'+
+        '<div style="font-size:26px;font-weight:200;letter-spacing:-.04em;color:var(--accent)">'+
+          Math.round(types[t]/total*100)+'%</div>'+
+        '<div style="font-size:9px;font-weight:600;letter-spacing:.10em;text-transform:uppercase;color:var(--dim)">'+t+'</div>'+
+        '</div>';
+    }).join('');
+  }
+
+  var legEl = document.getElementById('cmap-legend');
+  if (legEl) {
+    legEl.innerHTML = CMAP_PROJECTS.map(function(p){
+      var pct = p.avance!=null ? p.avance+'%' : '--';
+      var pctColor = p.ring || p.color;
+      return '<div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:0.5px solid var(--line)">'+
+        '<div style="width:7px;height:7px;border-radius:50%;flex-shrink:0;background:'+p.color+';opacity:0.80"></div>'+
+        '<div style="flex:1;font-size:11px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+p.label+'</div>'+
+        '<div style="font-size:10px;font-weight:700;color:'+pctColor+';min-width:26px;text-align:right">'+pct+'</div>'+
+        '</div>';
+    }).join('');
+  }
+}
+
+function recolorMap() {
+  var svg = document.getElementById('cmap-svg');
+  if (!svg) return;
+  // Full rebuild so colors (bg quadrants, rings, labels) match the new theme
+  while (svg.firstChild) svg.removeChild(svg.firstChild);
+  buildCircleMap();
+  // Re-apply current filter state
+  if (window.filterState) syncCircleMap(filterState);
+}
+
+function syncCircleMap(fs) {
+  if (!window.CMAP_PROJECTS) return;
+  CMAP_PROJECTS.forEach(function(p) {
+    var g = document.getElementById('cmap-bubble-'+p.id);
+    if (!g) return;
+    var match =
+      (fs.tipo   === 'all' || p.ftipo   === fs.tipo) &&
+      (fs.estado === 'all' || p.festado === fs.estado) &&
+      (fs.ia     === 'all' || p.fia     === fs.ia);
+    g.style.opacity = match ? '1' : '0.08';
+  });
+}
+
+function initCmapFilters() {
+  document.querySelectorAll('#cmap-filters .cmf-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var f = this.dataset.f, v = this.dataset.v;
+      /* Update this filter group */
+      this.closest('div').querySelectorAll('.cmf-btn').forEach(function(b){ b.classList.remove('cmf-active'); });
+      this.classList.add('cmf-active');
+      /* Sync filterState + main filter buttons */
+      if (window.filterState) {
+        filterState[f] = v;
+        /* Mirror to main filter buttons */
+        document.querySelectorAll('#filters .filter-btn[data-f="'+f+'"]').forEach(function(b){ b.classList.remove('active'); });
+        var main = document.querySelector('#filters .filter-btn[data-f="'+f+'"][data-v="'+v+'"]');
+        if (main) main.classList.add('active');
+        /* Update card grid */
+        var vis = 0;
+        document.querySelectorAll('#pgrid .pgrid-card').forEach(function(c){
+          var ok = (filterState.tipo==='all'||c.dataset.tipo===filterState.tipo) &&
+                   (filterState.estado==='all'||c.dataset.estado===filterState.estado) &&
+                   (filterState.ia==='all'||c.dataset.ia===filterState.ia);
+          c.classList.toggle('hidden', !ok); if(ok) vis++;
+        });
+        var pc = document.getElementById('proj-count'); if(pc) pc.textContent = vis;
+        var nr = document.getElementById('no-results'); if(nr) nr.style.display = vis===0?'block':'none';
+      }
+      syncCircleMap(filterState||{tipo:'all',estado:'all',ia:'all'});
+    });
+  });
+}
+</script>
+
+<!-- MARQUEE 2 -->
+<div class="marquee-strip">
+  <div class="marquee-inner" style="animation-direction:reverse">
+    <span class="marquee-text">DIRECCIÓN GRAL. /&nbsp;</span>
+    <span class="marquee-text"><em>UN NEGOCIO</em> /&nbsp;</span>
+    <span class="marquee-text">ÁREAS SOPORTE /&nbsp;</span>
+    <span class="marquee-text">VENTAS /&nbsp;</span>
+    <span class="marquee-text">DIRECCIÓN GRAL. /&nbsp;</span>
+    <span class="marquee-text"><em>UN NEGOCIO</em> /&nbsp;</span>
+    <span class="marquee-text">ÁREAS SOPORT /&nbsp;</span>
+    <span class="marquee-text">VENTAS /&nbsp;</span>
+  </div>
+</div>
 
 <!-- CARTERA -->
-<section id="cartera" style="background: var(--bg);">
-  <p class="eyebrow">02 — Proyectos en cartera</p>
-  <h2 class="section-title">Próximas iniciativas</h2>
-  <p class="section-sub">Proyectos definidos y priorizados, pendientes de arranque formal.</p>
-
-  <table class="data-table">
-    <thead>
-      <tr>
-        <th>Proyecto</th>
-        <th>Negocio</th>
-        <th>Tipo</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>App de obra</td>
-        <td>Prefabricados</td>
-        <td>Optimiza procesos</td>
-      </tr>
-      <tr>
-        <td>Dossier de calidad</td>
-        <td>Prefabricados · Tumex · Durmientes</td>
-        <td>Optimiza procesos</td>
-      </tr>
-      <tr>
-        <td>Cotizador de ventas</td>
-        <td>Tumex</td>
-        <td>Optimiza procesos</td>
-      </tr>
-      <tr>
-        <td>Mejoras proceso inventario y facturación</td>
-        <td>BC Muebles</td>
-        <td>Control administrativo</td>
-      </tr>
-      <tr>
-        <td>EDGE + REVIT + centro habilitado</td>
-        <td>Prefabricados</td>
-        <td>Optimiza procesos · <span style="color:var(--accent);font-size:11px;letter-spacing:.06em;text-transform:uppercase">IA</span></td>
-      </tr>
-      <tr>
-        <td>Optimizador de la producción</td>
-        <td>Prefabricados</td>
-        <td>Optimiza procesos · <span style="color:var(--accent);font-size:11px;letter-spacing:.06em;text-transform:uppercase">IA</span></td>
-      </tr>
-      <tr>
-        <td>Registro automatizado de facturas de proveedor</td>
-        <td>Administración</td>
-        <td>Automatiza procesos · <span style="color:var(--accent);font-size:11px;letter-spacing:.06em;text-transform:uppercase">IA</span></td>
-      </tr>
-      <tr>
-        <td>Gestión de moldes</td>
-        <td>Prefabricados</td>
-        <td>Optimiza procesos</td>
-      </tr>
-    </tbody>
-  </table>
+<section class="section" id="cartera" style="background:var(--bg2)">
+  <p class="eyebrow">02 — Plan maestro</p>
+  <h2 class="section-title">Proyectos en <strong>cartera</strong></h2>
+  <p class="section-sub">Pipeline estratégico ordenado por prioridades de negocio e impacto operacional.</p>
+  <div class="filter-bar reveal">
+    <button class="filter-btn active" onclick="filterBoard('all',this)">Todos</button>
+    <button class="filter-btn" onclick="filterBoard('optimiza',this)">Optimiza procesos</button>
+    <button class="filter-btn" onclick="filterBoard('automatiza',this)">Automatiza</button>
+    <button class="filter-btn" onclick="filterBoard('control',this)">Control admin</button>
+    <button class="filter-btn" onclick="filterBoard('ia',this)">Con IA</button>
+    <span class="filter-count-label" id="board-count">8 proyectos</span>
+  </div>
+  <div class="board reveal" id="board">
+    <div class="bcard" data-cat="optimiza"><div class="bcard-top"><div class="pgrid-tags"><span class="tag tag-op">Operativo</span><span class="tag tag-neg">Prefabricados</span></div><span class="status-pill status-dim"><span class="status-dot"></span>Por iniciar</span></div><div class="bcard-name">App de obra</div><div class="bcard-meta"><div><div class="bmeta-lbl">Negocio</div><div class="bmeta-val">Prefabricados</div></div><div><div class="bmeta-lbl">Tipo</div><div class="bmeta-val">Optimiza procesos</div></div></div><div class="bcard-toggle" onclick="toggleBcard(this)">Detalles <span class="bcard-arrow">▼</span></div><div class="bcard-detail"><div class="bcard-detail-inner">Gestión digital de obra en campo con integración a SAP para control de avance y materiales.</div></div></div>
+    <div class="bcard" data-cat="optimiza"><div class="bcard-top"><div class="pgrid-tags"><span class="tag tag-op">Operativo</span><span class="tag tag-neg">P · T · D</span></div><span class="status-pill status-dim"><span class="status-dot"></span>Por iniciar</span></div><div class="bcard-name">Dossier de calidad</div><div class="bcard-meta"><div><div class="bmeta-lbl">Negocio</div><div class="bmeta-val">Prefabricados · Tumex · Durmientes</div></div><div><div class="bmeta-lbl">Tipo</div><div class="bmeta-val">Optimiza procesos</div></div></div><div class="bcard-toggle" onclick="toggleBcard(this)">Detalles <span class="bcard-arrow">▼</span></div><div class="bcard-detail"><div class="bcard-detail-inner">Digitalización del expediente de calidad por pieza/producto, reemplazando procesos manuales en papel.</div></div></div>
+    <div class="bcard" data-cat="optimiza"><div class="bcard-top"><div class="pgrid-tags"><span class="tag tag-op">Operativo</span><span class="tag tag-neg">Tumex</span></div><span class="status-pill status-dim"><span class="status-dot"></span>Por iniciar</span></div><div class="bcard-name">Cotizador de ventas</div><div class="bcard-meta"><div><div class="bmeta-lbl">Negocio</div><div class="bmeta-val">Tumex</div></div><div><div class="bmeta-lbl">Tipo</div><div class="bmeta-val">Optimiza procesos</div></div></div><div class="bcard-toggle" onclick="toggleBcard(this)">Detalles <span class="bcard-arrow">▼</span></div><div class="bcard-detail"><div class="bcard-detail-inner">Herramienta de cotización estructurada integrada a precios y disponibilidad en tiempo real.</div></div></div>
+    <div class="bcard" data-cat="control"><div class="bcard-top"><div class="pgrid-tags"><span class="tag tag-admin">Administrativo</span><span class="tag tag-neg">BC Muebles</span></div><span class="status-pill status-dim"><span class="status-dot"></span>Por iniciar</span></div><div class="bcard-name">Mejoras proceso inventario y facturación</div><div class="bcard-meta"><div><div class="bmeta-lbl">Negocio</div><div class="bmeta-val">BC Muebles</div></div><div><div class="bmeta-lbl">Tipo</div><div class="bmeta-val">Control administrativo</div></div></div><div class="bcard-toggle" onclick="toggleBcard(this)">Detalles <span class="bcard-arrow">▼</span></div><div class="bcard-detail"><div class="bcard-detail-inner">Optimización del ciclo de inventario y facturación electrónica con validaciones automáticas.</div></div></div>
+    <div class="bcard" data-cat="optimiza ia"><div class="bcard-top"><div class="pgrid-tags"><span class="tag tag-op">Operativo</span><span class="tag tag-ia">IA</span><span class="tag tag-neg">Prefabricados</span></div><span class="status-pill status-dim"><span class="status-dot"></span>Por iniciar</span></div><div class="bcard-name">EDGE + REVIT + centro habilitado</div><div class="bcard-meta"><div><div class="bmeta-lbl">Negocio</div><div class="bmeta-val">Prefabricados</div></div><div><div class="bmeta-lbl">Tipo</div><div class="bmeta-val">Optimiza + IA</div></div></div><div class="bcard-toggle" onclick="toggleBcard(this)">Detalles <span class="bcard-arrow">▼</span></div><div class="bcard-detail"><div class="bcard-detail-inner">Integración de herramientas BIM con IA para habilitación de centros de producción y seguimiento digital.</div></div></div>
+    <div class="bcard" data-cat="optimiza ia"><div class="bcard-top"><div class="pgrid-tags"><span class="tag tag-op">Operativo</span><span class="tag tag-ia">IA</span><span class="tag tag-neg">Prefabricados</span></div><span class="status-pill status-dim"><span class="status-dot"></span>Por iniciar</span></div><div class="bcard-name">Optimizador de la producción</div><div class="bcard-meta"><div><div class="bmeta-lbl">Negocio</div><div class="bmeta-val">Prefabricados</div></div><div><div class="bmeta-lbl">Tipo</div><div class="bmeta-val">Optimiza + IA</div></div></div><div class="bcard-toggle" onclick="toggleBcard(this)">Detalles <span class="bcard-arrow">▼</span></div><div class="bcard-detail"><div class="bcard-detail-inner">Modelo predictivo para secuenciación de producción y reducción de tiempos muertos en planta.</div></div></div>
+    <div class="bcard" data-cat="automatiza ia"><div class="bcard-top"><div class="pgrid-tags"><span class="tag tag-admin">Administrativo</span><span class="tag tag-ia">IA</span><span class="tag tag-neg">Administración</span></div><span class="status-pill status-dim"><span class="status-dot"></span>Por iniciar</span></div><div class="bcard-name">Registro automatizado de facturas de proveedor</div><div class="bcard-meta"><div><div class="bmeta-lbl">Negocio</div><div class="bmeta-val">Administración</div></div><div><div class="bmeta-lbl">Tipo</div><div class="bmeta-val">Automatiza + IA</div></div></div><div class="bcard-toggle" onclick="toggleBcard(this)">Detalles <span class="bcard-arrow">▼</span></div><div class="bcard-detail"><div class="bcard-detail-inner">Extracción automática de datos de facturas PDF y captura en SAP mediante OCR + validaciones IA.</div></div></div>
+    <div class="bcard" data-cat="optimiza"><div class="bcard-top"><div class="pgrid-tags"><span class="tag tag-op">Operativo</span><span class="tag tag-neg">Prefabricados</span></div><span class="status-pill status-dim"><span class="status-dot"></span>Por iniciar</span></div><div class="bcard-name">Gestión de moldes</div><div class="bcard-meta"><div><div class="bmeta-lbl">Negocio</div><div class="bmeta-val">Prefabricados</div></div><div><div class="bmeta-lbl">Tipo</div><div class="bmeta-val">Optimiza procesos</div></div></div><div class="bcard-toggle" onclick="toggleBcard(this)">Detalles <span class="bcard-arrow">▼</span></div><div class="bcard-detail"><div class="bcard-detail-inner">Sistema de trazabilidad de moldes por vida útil, mantenimiento y asignación por proyecto.</div></div></div>
+  </div>
 </section>
 
-<!-- INTELIGENCIA ARTIFICIAL -->
-<section id="ia">
-  <p class="eyebrow">03 — Inteligencia artificial</p>
-  <h2 class="section-title">Hoja de ruta IA</h2>
-  <p class="section-sub">Mapa de capacidades y proyectos de IA organizados por impacto y nivel de complejidad tecnológica.</p>
+<!-- ENTREGADO -->
+<section class="section" id="entregado">
+  <p class="eyebrow">03 — Entregado en el periodo</p>
+  <h2 class="section-title"><strong>App maniobras</strong></h2>
+  
+  <p class="section-sub" style="margin-bottom: 1rem !important;">Proyecto concluido y entregado durante el periodo de reporte.</p>
+  
+  <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top: 0; margin-bottom: 2rem;">
+    <span class="status-pill status-ok" style="font-size:12px; padding:8px 16px">
+      <span class="status-dot"></span>Entregado · 1T 2026
+    </span>
+  </div>
 
-  <div class="ia-grid">
-    <div class="ia-cell">
-      <div class="ia-cell-title">IA personal</div>
-      <div class="ia-cell-body">Resuelve temas personales, ayuda en búsquedas en internet, lee y prepara documentos, correos, presentaciones. Corrige archivos Excel y genera imágenes.</div>
-      <div class="ia-cell-tools">
-        <span class="tool-pill">chatGPT · Copilot</span>
-        <span class="tool-pill">Claude</span>
-        <span class="tool-pill">Gemini</span>
+  <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-bottom:2rem">
+    <div class="foto-card">
+      <div class="foto-card-img">
+        <img src="app_maniobras.jpg" alt="App maniobras 1">
       </div>
     </div>
-    <div class="ia-cell">
-      <div class="ia-cell-title">Automatización de procesos</div>
-      <div class="ia-cell-body">Ejecuta tareas repetitivas. Proyectos: registro de facturas de proveedor, lector de documentos para REPSE y análisis posterior.</div>
-      <div class="ia-cell-tools">
-        <span class="tool-pill">Gestor agentes</span>
+    <div class="foto-card">
+      <div class="foto-card-img">
+        <img src="app_maniobras_2.jpg" alt="App maniobras 2">
       </div>
     </div>
-    <div class="ia-cell">
-      <div class="ia-cell-title">Análisis de datos</div>
-      <div class="ia-cell-body">Emplea información del ERP o el BI. Encuentra patrones, tendencias o anomalías. Chat inmerso en BI o ERP para consultas y análisis.</div>
-      <div class="ia-cell-tools">
-        <span class="tool-pill">Data lakes</span>
-      </div>
-    </div>
-    <div class="ia-cell">
-      <div class="ia-cell-title">Atención al cliente</div>
-      <div class="ia-cell-body">Interactúa con los sistemas de la empresa. Búsqueda de oportunidades de ventas.</div>
-      <div class="ia-cell-tools">
-        <span class="tool-pill">Chat bot</span>
-      </div>
-    </div>
-    <div class="ia-cell">
-      <div class="ia-cell-title">Procesos operativos</div>
-      <div class="ia-cell-body">Tiempo, costo, calidad, disponibilidad y decisión. Optimizador de la producción y predicción de mantenimiento requerido.</div>
-      <div class="ia-cell-tools">
-        <span class="tool-pill">Machine learning</span>
-        <span class="tool-pill">Optimizador</span>
-        <span class="tool-pill">APS</span>
+    <div class="foto-card">
+      <div class="foto-card-img">
+        <img src="app_maniobras_3.jpg" alt="App maniobras 3">
       </div>
     </div>
   </div>
 
-  <!-- Piloto Análisis de datos -->
-  <div style="margin-top: 64px;">
-    <div class="section-divider"></div>
-    <p class="eyebrow">Proyecto piloto activo</p>
-    <h3 style="font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;margin-bottom:8px;letter-spacing:-.02em">Análisis de datos — Seguimiento de avance<br><em style="color:var(--muted);font-style:italic">Proyecto Piloto V1.0</em></h3>
-    <p style="font-size:14px;color:var(--muted);margin-bottom:40px;max-width:560px">Motor de razonamiento Python + Anthropic sobre Data Mart SQL Server, con Claude Sonnet como capa de lenguaje natural.</p>
+</section>
 
+<!-- IA -->
+<section class="section" id="ia" style="background:var(--bg2)">
+  <p class="eyebrow">04 — Intelligent Infrastructure</p>
+  <h2 class="section-title">Estrategia <strong>Data &amp; AI</strong></h2>
+  <p class="section-sub">Mapa de capacidades y proyectos de inteligencia artificial por nivel de impacto.</p>
+  <div class="ia-grid reveal">
+    <div class="ia-cell"><div class="ia-cell-num">01</div><div class="ia-cell-title">IA personal</div><div class="ia-cell-body">Resuelve tareas personales: búsquedas, documentos, correos, presentaciones, Excel e imágenes.</div><div class="ia-pills"><span class="ia-pill">chatGPT · Copilot</span><span class="ia-pill">Claude</span><span class="ia-pill">Gemini</span></div></div>
+    <div class="ia-cell"><div class="ia-cell-num">02</div><div class="ia-cell-title">Automatización de procesos</div><div class="ia-cell-body">Ejecuta tareas repetitivas: registro de facturas de proveedor, lector de documentos REPSE y análisis posterior.</div><div class="ia-pills"><span class="ia-pill">Gestor agentes</span></div></div>
+    <div class="ia-cell"><div class="ia-cell-num">03</div><div class="ia-cell-title">Análisis de datos</div><div class="ia-cell-body">Emplea información del ERP o BI. Encuentra patrones, tendencias o anomalías. Chat inmerso en datos corporativos.</div><div class="ia-pills"><span class="ia-pill">Data lakes</span></div></div>
+    <div class="ia-cell"><div class="ia-cell-num">04</div><div class="ia-cell-title">Atención al cliente</div><div class="ia-cell-body">Interactúa con los sistemas de la empresa. Búsqueda de oportunidades de ventas mediante agentes autónomos.</div><div class="ia-pills"><span class="ia-pill">Chat bot</span></div></div>
+    <div class="ia-cell"><div class="ia-cell-num">05</div><div class="ia-cell-title">Procesos operativos</div><div class="ia-cell-body">Tiempo, costo, calidad, disponibilidad y decisión. Optimizador de producción y predicción de mantenimiento requerido.</div><div class="ia-pills"><span class="ia-pill">Machine learning</span><span class="ia-pill">Optimizador</span><span class="ia-pill">APS</span></div></div>
+  </div>
+
+  <div style="margin-top:5rem" class="reveal">
+    <div style="width:40px;height:2px;background:var(--accent);margin-bottom:28px"></div>
+    <p class="eyebrow">Proyecto piloto activo</p>
+    <h3 style="font-size:clamp(22px,3vw,34px);font-weight:300;letter-spacing:-.02em;margin-bottom:10px">Análisis de datos — Seguimiento de avance <em style="font-style:italic;color:var(--muted)">Piloto V1.0</em></h3>
+    <p class="section-sub">Motor de razonamiento Python + Anthropic sobre Data Mart SQL Server con Claude Sonnet como capa de lenguaje natural.</p>
     <div class="arch-flow">
       <div class="arch-node">
         <div class="arch-node-title">SAP ECC — Origen</div>
-        <div class="arch-node-body">Sistema de origen principal</div>
+        <div class="arch-node-sub">Sistema de origen</div>
         <ul class="arch-node-items">
           <li>Órdenes de producción (AFKO/AFRU)</li>
           <li>Mov. de materiales (MSEG/MKPF)</li>
@@ -785,7 +1801,7 @@
       <div class="arch-arrow">→</div>
       <div class="arch-node">
         <div class="arch-node-title">Staging + ETL</div>
-        <div class="arch-node-body">Limpieza y transformación</div>
+        <div class="arch-node-sub">Limpieza y transformación</div>
         <ul class="arch-node-items">
           <li>Homologación de claves de material</li>
           <li>Equivalencias y correcciones</li>
@@ -794,309 +1810,303 @@
         </ul>
       </div>
       <div class="arch-arrow">→</div>
-      <div class="arch-node" style="border-color:rgba(91,173,236,0.28);">
-        <div class="arch-node-title" style="color:var(--accent)">Claude — Anthropic Sonnet</div>
-        <div class="arch-node-body">Motor de razonamiento. Recibe pregunta → aplica system prompt con glosario → consulta Data Mart → genera respuesta en lenguaje natural con insights adicionales.</div>
+      <div class="arch-node hi">
+        <div class="arch-node-title accent">Data Mart SQL Server</div>
+        <div class="arch-node-sub">SQL Server — modelo normalizado</div>
         <ul class="arch-node-items">
-          <li>Data Mart SQL Server</li>
-          <li>Aplicación Python orquestadora</li>
+          <li>Planta de montaje (piezas) · Lotes · Proyectos</li>
+          <li>Materiales · Familias</li>
+          <li>Avance real piezas</li>
+          <li>Secuencia de montaje (plan vs real)</li>
         </ul>
       </div>
     </div>
 
-    <p style="font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin:32px 0 16px">Perfiles de usuario</p>
+    <div style="display:flex;justify-content:flex-end;padding-right:calc(33% - 18px);margin:8px 0;font-size:20px;color:var(--dim);opacity:.6">↓</div>
+
+    <div class="arch-flow" style="margin-top:0">
+      <div class="arch-node">
+        <div class="arch-node-title">Alcance del piloto</div>
+        <div class="arch-node-sub" style="margin-bottom:8px">Por pieza</div>
+        <ul class="arch-node-items">
+          <li>Plan por etapa (fecha)</li>
+          <li>Avance real (hito)</li>
+          <li>Estatus: en tiempo / retrasada</li>
+        </ul>
+        <div class="arch-node-sub" style="margin:10px 0 6px">Agrupaciones</div>
+        <ul class="arch-node-items">
+          <li>Lote — piezas idénticas</li>
+          <li>Material — CLR, TAR, CAB…</li>
+          <li>Familia — columnas, trabes…</li>
+        </ul>
+        <div class="arch-node-sub" style="margin:10px 0 6px">Etapas del ciclo</div>
+        <ul class="arch-node-items">
+          <li>Ingeniería · Fabricación</li>
+          <li>Flete / Transporte</li>
+          <li>Montaje en obra</li>
+        </ul>
+      </div>
+      <div class="arch-arrow">⟷</div>
+      <div class="arch-node hi">
+        <div class="arch-node-title accent">Claude — Anthropic Sonnet</div>
+        <div class="arch-node-sub">Motor de razonamiento</div>
+        <p style="font-size:13px;color:var(--muted);line-height:1.6;margin-top:10px">Razona sobre los datos y genera respuesta en lenguaje natural con insights adicionales</p>
+      </div>
+      <div class="arch-arrow">⟷</div>
+      <div class="arch-node">
+        <div class="arch-node-title">Aplicación Python</div>
+        <div class="arch-node-sub">Orquestador de preguntas y datos</div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+          <div style="display:flex;gap:8px;align-items:flex-start">
+            <div style="width:20px;height:20px;border-radius:4px;background:var(--accentbg);border:0.5px solid var(--line2);color:var(--accent);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">1</div>
+            <div><div style="font-size:12px;font-weight:600;color:var(--text)">Recibe pregunta</div><div style="font-size:11px;color:var(--dim)">Lenguaje natural del usuario</div></div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:flex-start">
+            <div style="width:20px;height:20px;border-radius:4px;background:var(--accentbg);border:0.5px solid var(--line2);color:var(--accent);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">2</div>
+            <div><div style="font-size:12px;font-weight:600;color:var(--text)">System prompt</div><div style="font-size:11px;color:var(--dim)">Glosario + reglas del negocio</div></div>
+          </div>
+          <div style="display:flex;gap:8px;align-items:flex-start">
+            <div style="width:20px;height:20px;border-radius:4px;background:var(--accentbg);border:0.5px solid var(--line2);color:var(--accent);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">3</div>
+            <div><div style="font-size:12px;font-weight:600;color:var(--text)">Queries al Data Mart</div><div style="font-size:11px;color:var(--dim)">Extrae contexto relevante</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:center;margin:8px 0;font-size:20px;color:var(--dim);opacity:.6">↓</div>
+
     <div class="arch-profiles">
       <div class="arch-profile">
-        <div class="arch-profile-role">Dirección general</div>
-        <div class="arch-profile-q">"¿Qué proyectos están en riesgo de incumplimiento?"</div>
+        <div class="arch-profile-role">Jefe de planta</div>
+        <div class="arch-profile-q">"¿Cuántos m² fabricados esta semana por material?"</div>
       </div>
       <div class="arch-profile">
         <div class="arch-profile-role">Director de proyecto</div>
         <div class="arch-profile-q">"¿Cuántas piezas retrasadas vs plan contractual?"</div>
       </div>
       <div class="arch-profile">
-        <div class="arch-profile-role">Jefe de planta</div>
-        <div class="arch-profile-q">"¿Cuántos m³ fabricados esta semana por material?"</div>
+        <div class="arch-profile-role">Dirección general</div>
+        <div class="arch-profile-q">"¿Qué proyectos están en riesgo de incumplimiento?"</div>
       </div>
     </div>
-  </div>
+<div style="display: flex; justify-content: center; width: 100%; margin: 2rem 0;">
+    
+    <div style="width: 100%; max-width: 800px; padding: 0 1rem;">
+        
+        <div class="foto-card" style="border-radius: 15px; overflow: hidden; height: auto !important; max-height: none !important;">
+            
+            <div class="foto-card-img" style="border-radius: 15px; overflow: hidden; height: auto !important; max-height: none !important;">
+                
+                <img src="arquitectura-piloto.jpg" 
+                     alt="Diagrama de arquitectura del piloto" 
+                     style="width: 100% !important; height: auto !important; display: block !important; border-radius: 15px;">
+                     
+            </div>
+            
+        </div>
+        
+    </div>
+    
+</div>
 
-  <!-- Cursos IA -->
-  <div style="margin-top:64px;">
-    <div class="section-divider"></div>
+  <div style="margin-top:5rem" class="reveal">
+    <div style="width:40px;height:2px;background:var(--accent);margin-bottom:28px"></div>
     <p class="eyebrow">Capacitación</p>
-    <h3 style="font-family:'DM Serif Display',serif;font-size:28px;font-weight:400;margin-bottom:40px;letter-spacing:-.02em">IA personal — Cursos</h3>
+    <h3 style="font-size:clamp(22px,3vw,34px);font-weight:300;letter-spacing:-.02em;margin-bottom:2.5rem">IA personal — <strong>Cursos</strong></h3>
     <div class="cursos-grid">
-      <div class="curso-card">
-        <span class="curso-tag">En curso</span>
-        <div class="curso-title">Copilot en Office 365</div>
-        <ul class="curso-items">
-          <li>Introducción a la IA</li>
-          <li>Leer, redactar y resumir documentos</li>
-          <li>Gestión de contratos *</li>
-        </ul>
-      </div>
-      <div class="curso-card">
-        <span class="curso-tag">En curso</span>
-        <div class="curso-title">Copilot PRO</div>
-        <ul class="curso-items">
-          <li>Copilot en Outlook</li>
-          <li>Copilot en Word</li>
-          <li>Copilot en Excel</li>
-          <li>Copilot en PowerPoint</li>
-        </ul>
-      </div>
-      <div class="curso-card">
-        <span class="curso-tag">En curso</span>
-        <div class="curso-title">Investigación y toma de decisiones</div>
-        <ul class="curso-items">
-          <li>Prompts efectivos</li>
-          <li>Interpretar resultados</li>
-        </ul>
-      </div>
-      <div class="curso-card">
-        <span class="curso-tag" style="color:var(--muted)">En planeación</span>
-        <div class="curso-title">Próximos temas</div>
-        <ul class="curso-items">
-          <li>IA en generación de presentaciones</li>
-          <li>IA en tableros de BI</li>
-          <li>Power Automate</li>
-        </ul>
-      </div>
+      <div class="curso-card"><span class="curso-tag">En curso</span><div class="curso-title">Copilot en Office 365</div><ul class="curso-items"><li>Introducción a la IA</li><li>Leer, redactar y resumir documentos</li><li>Gestión de contratos *</li></ul></div>
+      <div class="curso-card"><span class="curso-tag">En curso</span><div class="curso-title">Copilot PRO</div><ul class="curso-items"><li>Copilot en Outlook</li><li>Copilot en Word</li><li>Copilot en Excel</li><li>Copilot en PowerPoint</li></ul></div>
+      <div class="curso-card"><span class="curso-tag">En curso</span><div class="curso-title">Investigación y toma de decisiones</div><ul class="curso-items"><li>Prompts efectivos</li><li>Interpretar resultados</li></ul></div>
+      <div class="curso-card"><span class="curso-tag pending">En planeación</span><div class="curso-title">Próximos temas</div><ul class="curso-items"><li>IA en generación de presentaciones</li><li>IA en tableros de BI</li><li>Power Automate</li></ul></div>
     </div>
   </div>
 </section>
 
+<section class="section" id="fichas" style="background:var(--bg1)">
+  <p class="eyebrow">05 — Fichas de detalle</p>
+  <h2 class="section-title">Alcance, beneficios <strong>y tecnología</strong></h2>
+  <p class="section-sub">Información completa de cada proyecto activo en formato compacto.</p>
 
-  <!-- ENTREGADO EN EL PERIODO -->
-  <section id="entregado" style="background: var(--bg2);">
-    <p class="eyebrow">04 — Entregado en el periodo</p>
-    <h2 class="section-title">App maniobras</h2>
-    <p class="section-sub">Proyecto concluido y entregado en el periodo de reporte. Aplicación para registro y gestión de maniobras operativas.</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:2px;background:var(--line2);">
-      <div style="background:var(--bg);padding:32px 28px;">
-        <p style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px">Estado</p>
-        <p style="font-size:22px;font-weight:300;color:var(--ok);">● Entregado</p>
+  <div class="board reveal" id="board-fichas">
+
+    <div class="bcard" data-cat="control">
+      <div class="bcard-top">
+        <div class="pgrid-tags">
+          <span class="tag tag-admin">Administrativo</span>
+          <span class="tag tag-neg">Prefabricados</span>
+        </div>
       </div>
-      <div style="background:var(--bg);padding:32px 28px;">
-        <p style="font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px">Producto</p>
-        <p style="font-size:18px;font-weight:300;color:var(--text);">App maniobras</p>
+      <div class="bcard-name">Portal de contratistas</div>
+      <div class="bcard-meta">
+        <div>
+          <div class="bmeta-lbl">Tecnología</div>
+          <div class="bmeta-val">Portal Microsoft · SAP Proyectos · Cuentas por Pagar</div>
+        </div>
+        <div>
+          <div class="bmeta-lbl">Impacto</div>
+          <div class="bmeta-val">Control de obra y mitigación de duplicidad</div>
+        </div>
+      </div>
+      <div class="bcard-toggle" onclick="toggleBcard(this)">Detalles <span class="bcard-arrow">▼</span></div>
+      <div class="bcard-detail">
+        <div class="bcard-detail-inner">
+          <strong>Alcance:</strong> Recepción de estimaciones, inclusión de validaciones (como son REPSE y piezas repetidas), firma electrónica integrada y documentación de soporte digital.<br><br>
+          <strong>Beneficios:</strong> Se evita el riesgo de pagos duplicados para la misma pieza, ahorro de horas administrativas e información de avance de obra disponible.<br><br>
+          <span style="color:var(--accent); font-size:0.85em;"><strong>Consideración relevante:</strong> La gestión previa de contratación debe ejecutarse en tiempo para que el portal entregue los beneficios esperados.</span>
+        </div>
       </div>
     </div>
-  </section>
 
-  <!-- FICHAS DE DETALLE POR PROYECTO -->
-  <section id="fichas">
-    <p class="eyebrow">05 — Fichas de detalle</p>
-    <h2 class="section-title">Alcance, beneficios y tecnología</h2>
-    <p class="section-sub">Información completa de cada proyecto: alcance definido, beneficios esperados, tecnología a emplear y consideraciones relevantes.</p>
-
-    <div class="projects-grid">
-
-      <!-- Ficha Portal de contratistas -->
-      <div class="project-card">
-        <div>
-          <div class="project-badges"><span class="badge badge-admin">Administrativo</span><span class="badge badge-neg">Prefabricados</span></div>
-          <h3 class="project-name">Portal de contratistas</h3>
-          <div class="events-panel">
-            <div>
-              <p class="events-group-title">Alcance del proyecto</p>
-              <ul class="event-list">
-                <li>Recepción de estimaciones</li>
-                <li>Incluir validaciones: REPSE y piezas repetidas</li>
-                <li>Firma electrónica integrada</li>
-                <li>Documentación soporte digital</li>
-              </ul>
-            </div>
-            <div>
-              <p class="events-group-title">Beneficios</p>
-              <ul class="event-list">
-                <li>Se evita el riesgo de pagos duplicados para la misma pieza</li>
-                <li>Ahorro de horas administrativas</li>
-                <li>Información de avance de obra disponible</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div>
-          <p class="events-group-title" style="margin-bottom:12px">Tecnología a emplear</p>
-          <ul class="event-list" style="margin-bottom:24px">
-            <li>Portal Microsoft</li>
-            <li>SAP Proyectos y cuentas por pagar</li>
-          </ul>
-          <p class="events-group-title" style="margin-bottom:12px">Consideraciones relevantes</p>
-          <p style="font-size:13px;color:var(--muted);line-height:1.6">La gestión previa de contratación debe ejecutarse en tiempo para que el portal entregue los beneficios esperados.</p>
+    <div class="bcard" data-cat="control ia">
+      <div class="bcard-top">
+        <div class="pgrid-tags">
+          <span class="tag tag-admin">Administrativo</span>
+          <span class="tag tag-neg">Prefabricados</span>
         </div>
       </div>
-
-      <!-- Ficha Portal REPSE -->
-      <div class="project-card">
+      <div class="bcard-name">Portal REPSE</div>
+      <div class="bcard-meta">
         <div>
-          <div class="project-badges"><span class="badge badge-admin">Administrativo</span><span class="badge badge-neg">Prefabricados</span></div>
-          <h3 class="project-name">Portal REPSE</h3>
-          <div class="events-panel">
-            <div>
-              <p class="events-group-title">Alcance del proyecto</p>
-              <ul class="event-list">
-                <li>Portal para recepción de documentos del proveedor</li>
-                <li>Validaciones de REPSE del documento</li>
-                <li>Alertas en caso de incumplimiento o documentos vencidos</li>
-              </ul>
-            </div>
-            <div>
-              <p class="events-group-title">Beneficios</p>
-              <ul class="event-list">
-                <li>Evitar incumplimientos REPSE frente a la autoridad</li>
-                <li>Ahorro de horas de proceso al equipo administrativo</li>
-              </ul>
-            </div>
-          </div>
+          <div class="bmeta-lbl">Tecnología</div>
+          <div class="bmeta-val">Portal del proveedor</div>
         </div>
         <div>
-          <p class="events-group-title" style="margin-bottom:12px">Tecnología a emplear</p>
-          <ul class="event-list" style="margin-bottom:24px"><li>Portal del proveedor</li></ul>
-          <p class="events-group-title" style="margin-bottom:12px">Consideraciones relevantes</p>
-          <p style="font-size:13px;color:var(--muted);line-height:1.6">Establecer el control interno y con los proveedores para recibir documentos solamente por este portal.</p>
-          <p style="font-size:13px;color:var(--accent);margin-top:12px;line-height:1.6"><i style="font-style:normal">★</i> Concluyendo este proyecto se puede integrar la IA para ejecutar las validaciones de razonabilidad de las cifras del proveedor.</p>
+          <div class="bmeta-lbl">Impacto</div>
+          <div class="bmeta-val">Compliance y automatización fiscal</div>
         </div>
       </div>
-
-      <!-- Ficha KHOR -->
-      <div class="project-card">
-        <div>
-          <div class="project-badges"><span class="badge badge-admin">Administrativo</span><span class="badge badge-neg">Capital Humano</span></div>
-          <h3 class="project-name">KHOR</h3>
-          <div class="events-panel">
-            <div>
-              <p class="events-group-title">Alcance del proyecto</p>
-              <ul class="event-list">
-                <li>Sistema de gestión de personal para todas las empresas del grupo</li>
-              </ul>
-            </div>
-            <div>
-              <p class="events-group-title">Beneficios</p>
-              <ul class="event-list">
-                <li>Registro único del empleado en un solo lugar</li>
-                <li>Eliminar exceles</li>
-                <li>Información disponible al momento</li>
-                <li>Integración de procesos en equipos móviles</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div>
-          <p class="events-group-title" style="margin-bottom:12px">Tecnología a emplear</p>
-          <ul class="event-list" style="margin-bottom:24px"><li>Portal del proveedor</li></ul>
-          <p class="events-group-title" style="margin-bottom:12px">Consideraciones relevantes</p>
-          <p style="font-size:13px;color:var(--muted);line-height:1.6">Se requieren pruebas exhaustivas en la integración con SICOSS.</p>
+      <div class="bcard-toggle" onclick="toggleBcard(this)">Detalles <span class="bcard-arrow">▼</span></div>
+      <div class="bcard-detail">
+        <div class="bcard-detail-inner">
+          <strong>Alcance:</strong> Portal para recepción de documentos del proveedor, validaciones de REPSE del documento y alertas en caso de incumplimiento o documentos vencidos.<br><br>
+          <strong>Beneficios:</strong> Evitar incumplimientos REPSE frente a la autoridad y ahorro de horas de proceso al equipo administrativo.<br><br>
+          <span style="color:var(--accent); font-size:0.85em;"><strong>Estrategia de Control:</strong> Establecer el control interno y con los proveedores para recibir documentos *solamente* por este portal.</span><br><br>
+          <span style="color:var(--ia-color, #2b579a); font-size:0.85em;"><strong>Hoja de ruta:</strong> Concluyendo este proyecto se puede integrar la IA para ejecutar las validaciones de razonabilidad de las cifras del proveedor.</span>
         </div>
       </div>
-
-      <!-- Ficha App Inspecciones piezas -->
-      <div class="project-card">
-        <div>
-          <div class="project-badges"><span class="badge badge-op">Operativo</span><span class="badge badge-neg">Prefabricados</span></div>
-          <h3 class="project-name">App inspecciones de calidad de piezas</h3>
-          <div class="events-panel">
-            <div>
-              <p class="events-group-title">Alcance del proyecto</p>
-              <ul class="event-list">
-                <li>Generar una app que registre las inspecciones de calidad</li>
-                <li>Integrada con SAP</li>
-              </ul>
-            </div>
-            <div>
-              <p class="events-group-title">Beneficios</p>
-              <ul class="event-list">
-                <li>Inspecciones registradas al momento del evento</li>
-                <li>Información disponible al inspector respecto a piezas listas y pendientes</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div>
-          <p class="events-group-title" style="margin-bottom:12px">Tecnología a emplear</p>
-          <ul class="event-list" style="margin-bottom:24px"><li>Power App + SAP</li></ul>
-          <p class="events-group-title" style="margin-bottom:12px">Consideraciones relevantes</p>
-          <ul class="event-list">
-            <li>Se hará el desarrollo considerando la falta de cobertura celular</li>
-            <li>El proyecto iniciará cuando se concluya el mantenimiento a Cartas asignación</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Ficha Oportunidades de venta -->
-      <div class="project-card">
-        <div>
-          <div class="project-badges"><span class="badge badge-op">Operativo</span><span class="badge badge-ia">IA</span><span class="badge badge-neg">Prefabricados · BoConcept</span></div>
-          <h3 class="project-name">Oportunidades de venta</h3>
-          <div class="events-panel">
-            <div>
-              <p class="events-group-title">Alcance del proyecto</p>
-              <ul class="event-list">
-                <li>Generar un proceso que busque en portales de noticias, redes sociales y portales de licitaciones oportunidades de venta de prefabricados</li>
-              </ul>
-            </div>
-            <div>
-              <p class="events-group-title">Beneficios</p>
-              <ul class="event-list">
-                <li>Incrementar el volumen de venta</li>
-                <li>Disminuir el tiempo de búsqueda de oportunidades</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div>
-          <p class="events-group-title" style="margin-bottom:12px">Tecnología a emplear</p>
-          <ul class="event-list" style="margin-bottom:24px">
-            <li>IA + gestor de agentes + web scraping</li>
-            <li>Integración al CRM</li>
-          </ul>
-          <p class="events-group-title" style="margin-bottom:12px">Consideraciones relevantes</p>
-          <p style="font-size:13px;color:var(--muted);line-height:1.6">Se requiere un análisis del volumen esperado a incrementar en ventas para justificar el proyecto por parte de cada negocio.</p>
-        </div>
-      </div>
-
-      <!-- Ficha Inspecciones Durmientes -->
-      <div class="project-card">
-        <div>
-          <div class="project-badges"><span class="badge badge-op">Operativo</span><span class="badge badge-neg">Durmientes</span></div>
-          <h3 class="project-name">Inspecciones de calidad Durmientes</h3>
-          <div class="events-panel">
-            <div>
-              <p class="events-group-title">Alcance del proyecto</p>
-              <ul class="event-list">
-                <li>Registrar las inspecciones de calidad en SAP</li>
-              </ul>
-            </div>
-            <div>
-              <p class="events-group-title">Beneficios</p>
-              <ul class="event-list">
-                <li>Simplificar la captura de información</li>
-                <li>Ahorrar horas en trascripciones y manejo de archivos Excel</li>
-                <li>Generar formatos desde el sistema</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div>
-          <p class="events-group-title" style="margin-bottom:12px">Tecnología a emplear</p>
-          <ul class="event-list" style="margin-bottom:24px"><li>SAP-QM</li></ul>
-          <p class="events-group-title" style="margin-bottom:12px">Consideraciones relevantes</p>
-          <p style="font-size:13px;color:var(--muted);line-height:1.6">Se iniciará con la inspección de cilindros de concreto.</p>
-        </div>
-      </div>
-
     </div>
-  </section>
 
-  <!-- CIERRE -->
+    <div class="bcard" data-cat="optimiza">
+      <div class="bcard-top">
+        <div class="pgrid-tags">
+          <span class="tag tag-admin">Administrativo</span>
+          <span class="tag tag-neg">Capital Humano</span>
+        </div>
+      </div>
+      <div class="bcard-name">KHOR</div>
+      <div class="bcard-meta">
+        <div>
+          <div class="bmeta-lbl">Tecnología</div>
+          <div class="bmeta-val">Portal del proveedor</div>
+        </div>
+        <div>
+          <div class="bmeta-lbl">Impacto</div>
+          <div class="bmeta-val">Centralización operativa de personal</div>
+        </div>
+      </div>
+      <div class="bcard-toggle" onclick="toggleBcard(this)">Detalles <span class="bcard-arrow">▼</span></div>
+      <div class="bcard-detail">
+        <div class="bcard-detail-inner">
+          <strong>Alcance:</strong> Sistema de gestión de personal para todas las empresas del grupo.<br><br>
+          <strong>Beneficios:</strong> Registro único del empleado en un solo lugar, eliminar exceles, información disponible al momento e integración de procesos en equipos móviles.<br><br>
+          <span style="color:var(--accent); font-size:0.85em;"><strong>Consideración crítica:</strong> Se requieren pruebas exhaustivas en la integración con SICOSS.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bcard" data-cat="optimiza">
+      <div class="bcard-top">
+        <div class="pgrid-tags">
+          <span class="tag tag-op">Operativo</span>
+          <span class="tag tag-neg">Prefabricados</span>
+        </div>
+      </div>
+      <div class="bcard-name">app Inspecciones de calidad de piezas</div>
+      <div class="bcard-meta">
+        <div>
+          <div class="bmeta-lbl">Tecnología</div>
+          <div class="bmeta-val">Power app + SAP</div>
+        </div>
+        <div>
+          <div class="bmeta-lbl">Impacto</div>
+          <div class="bmeta-val">Liberación y estatus de piezas</div>
+        </div>
+      </div>
+      <div class="bcard-toggle" onclick="toggleBcard(this)">Detalles <span class="bcard-arrow">▼</span></div>
+      <div class="bcard-detail">
+        <div class="bcard-detail-inner">
+          <strong>Alcance:</strong> Generar una app que registre las inspecciones de calidad integrada con SAP.<br><br>
+          <strong>Beneficios:</strong> Inspecciones registradas al momento del evento e información disponible al inspector respecto a piezas listas y piezas pendientes.<br><br>
+          <span style="color:var(--accent); font-size:0.85em;"><strong>Restricciones de obra:</strong> Se hará el desarrollo considerando la falta de cobertura celular. El proyecto iniciará cuando se concluya el mantenimiento a Cartas asignación.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bcard" data-cat="automatiza ia">
+      <div class="bcard-top">
+        <div class="pgrid-tags">
+          <span class="tag tag-op">Operativo</span>
+          <span class="tag tag-ia">IA</span>
+          <span class="tag tag-neg">Prefabricados y BoConcept</span>
+        </div>
+      </div>
+      <div class="bcard-name">Oportunidades de venta</div>
+      <div class="bcard-meta">
+        <div>
+          <div class="bmeta-lbl">Tecnología</div>
+          <div class="bmeta-val">IA + gestor de agentes + web scraping + CRM</div>
+        </div>
+        <div>
+          <div class="bmeta-lbl">Impacto</div>
+          <div class="bmeta-val">Volumen comercial</div>
+        </div>
+      </div>
+      <div class="bcard-toggle" onclick="toggleBcard(this)">Detalles <span class="bcard-arrow">▼</span></div>
+      <div class="bcard-detail">
+        <div class="bcard-detail-inner">
+          <strong>Alcance:</strong> Generar un proceso que busque en portales de noticias, redes sociales y portales de licitaciones oportunidades de venta de prefabricados.<br><br>
+          <strong>Beneficios:</strong> Incrementar el volumen de venta y disminuir el tiempo de búsqueda de oportunidades.<br><br>
+          <span style="color:var(--accent); font-size:0.85em;"><strong>Gobernanza financiera:</strong> Se requiere un análisis del volumen esperado a incrementar en ventas para justificar el proyecto por parte de cada negocio.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="bcard" data-cat="optimiza">
+      <div class="bcard-top">
+        <div class="pgrid-tags">
+          <span class="tag tag-op">Operativo</span>
+          <span class="tag tag-neg">Durmientes</span>
+        </div>
+      </div>
+      <div class="bcard-name">Inspecciones de calidad Durmientes</div>
+      <div class="bcard-meta">
+        <div>
+          <div class="bmeta-lbl">Tecnología</div>
+          <div class="bmeta-val">SAP-QM</div>
+        </div>
+        <div>
+          <div class="bmeta-lbl">Impacto</div>
+          <div class="bmeta-val">Estandarización nativa</div>
+        </div>
+      </div>
+      <div class="bcard-toggle" onclick="toggleBcard(this)">Detalles <span class="bcard-arrow">▼</span></div>
+      <div class="bcard-detail">
+        <div class="bcard-detail-inner">
+          <strong>Alcance:</strong> Registrar las inspecciones de calidad en SAP.<br><br>
+          <strong>Beneficios:</strong> Simplificar la captura de información, ahorrar horas en trascripciones y manejos de archivos excel, y generar formatos desde el sistema.<br><br>
+          <span style="color:var(--accent); font-size:0.85em;"><strong>Fase de inicio:</strong> Se iniciará con la inspección de cilindros de concreto.</span>
+        </div>
+      </div>
+    </div>
+
+  </div></section><!-- CIERRE -->
 <section class="closing" id="cierre">
-  <p style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)">Subdirección TI</p>
+  <div class="closing-bg"></div>
+  <p class="closing-eyebrow">Subdirección TI</p>
   <h2 class="closing-title">Gracias</h2>
-  <div class="section-divider" style="margin:0 auto"></div>
+  <div class="closing-line"></div>
   <p class="closing-role">Grupo ITISA</p>
-  <p style="font-size:12px;color:var(--dim);margin-top:8px">Actualización al 15 de abril de 2026</p>
+  <p style="font-size:12px;color:var(--dim);margin-top:10px;position:relative;z-index:1">Actualización al 29 de mayo de 2026</p>
 </section>
 
 <footer>
@@ -1104,62 +2114,329 @@
   <p>Información confidencial — uso interno</p>
 </footer>
 
-<script>
-  const fills = document.querySelectorAll('.progress-fill');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.width = e.target.dataset.w;
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.3 });
+</div></div>
 
-  fills.forEach(f => {
-    const w = f.style.width;
-    f.dataset.w = w;
-    f.style.width = '0%';
-    io.observe(f);
-  });
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateY(0)';
-      }
-    });
-  }, { threshold: 0.08 });
-
-  document.querySelectorAll('.project-card, .metric-cell, .ia-cell, .curso-card, .arch-node, .arch-profile').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity .6s ease, transform .6s ease';
-    observer.observe(el);
-  });
-</script>
 
 <script>
-  function toggleTheme() {
-    const root = document.documentElement;
-    const isLight = root.classList.toggle('light');
-    document.getElementById('theme-icon').textContent = isLight ? '☾' : '☀';
-    document.getElementById('theme-label').textContent = isLight ? 'Oscuro' : 'Claro';
-    localStorage.setItem('itisa-theme', isLight ? 'light' : 'dark');
+function switchTab(btn,cardId,tabName){
+  var card=document.getElementById('card-'+cardId);
+  if(!card) return;
+  var isAlready=btn.classList.contains('active');
+  card.querySelectorAll('.pcard-tab').forEach(function(t){t.classList.remove('active');});
+  card.querySelectorAll('.pcard-tab-content').forEach(function(c){c.classList.remove('active');});
+  if(!isAlready){btn.classList.add('active');var t=card.querySelector('[data-tab="'+tabName+'"]');if(t)t.classList.add('active');}
+}
+function toggleTheme(){
+  var r=document.documentElement,l=document.getElementById('theme-lbl');
+  var isL=r.classList.toggle('light');
+  if(l)l.textContent=isL?'Oscuro':'Claro';
+  localStorage.setItem('itisa-theme',isL?'light':'dark');
+}
+(function(){
+  if(localStorage.getItem('itisa-theme')==='light'){
+    document.documentElement.classList.add('light');
+    document.addEventListener('DOMContentLoaded',function(){var l=document.getElementById('theme-lbl');if(l)l.textContent='Oscuro';});
   }
-  (function() {
-    const saved = localStorage.getItem('itisa-theme');
-    if (saved === 'light') {
-      document.documentElement.classList.add('light');
-      document.addEventListener('DOMContentLoaded', function() {
-        const icon = document.getElementById('theme-icon');
-        const label = document.getElementById('theme-label');
-        if (icon) icon.textContent = '☾';
-        if (label) label.textContent = 'Oscuro';
-      });
-    }
-  })();
-</script>
+})();
+var revObs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');revObs.unobserve(x.target);}});},{threshold:.07});
+document.querySelectorAll('.reveal').forEach(function(el){revObs.observe(el);});
+var progObs=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){var f=x.target,w=f.dataset.w||f.style.width;f.dataset.w=w;f.style.width='0%';requestAnimationFrame(function(){setTimeout(function(){f.style.width=w;},60);});progObs.unobserve(f);}});},{threshold:.3});
+document.querySelectorAll('.prog-fill,.prog-compact-fill').forEach(function(f){f.dataset.w=f.style.width;f.style.width='0%';progObs.observe(f);});
+var filterState={tipo:'all',estado:'all',ia:'all'};
+document.querySelectorAll('#filters .filter-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var f=this.dataset.f,v=this.dataset.v;filterState[f]=v;
+    this.closest('div').querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active');});
+    this.classList.add('active');var vis=0;
+    document.querySelectorAll('#pgrid .pgrid-card').forEach(function(c){
+      var ok=(filterState.tipo==='all'||c.dataset.tipo===filterState.tipo)&&(filterState.estado==='all'||c.dataset.estado===filterState.estado)&&(filterState.ia==='all'||c.dataset.ia===filterState.ia);
+      c.classList.toggle('hidden',!ok);if(ok)vis++;
+    });
+    document.getElementById('proj-count').textContent=vis;
+    var nr=document.getElementById('no-results');if(nr)nr.style.display=vis===0?'block':'none';
+    syncCircleMap(filterState);
+  });
+});
+function filterBoard(cat,btn){
+  document.querySelectorAll('.filter-bar .filter-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');var c=0;
+  document.querySelectorAll('#board .bcard').forEach(function(card){
+    var cats=card.dataset.cat||'',show=cat==='all'||cats.includes(cat);
+    card.classList.toggle('hidden',!show);if(show)c++;
+  });
+  var bc=document.getElementById('board-count');if(bc)bc.textContent=c+' proyectos';
+}
+function toggleBcard(el){el.classList.toggle('open');el.nextElementSibling.classList.toggle('open');}
+function syncCircleMap(fs) {
+  if (!window.CMAP_PROJECTS) return;
+  CMAP_PROJECTS.forEach(function(p) {
+    var g = document.getElementById('cmap-bubble-' + p.id);
+    if (!g) return;
+    var match =
+      (fs.tipo  === 'all' || p.ftipo   === fs.tipo) &&
+      (fs.estado === 'all' || p.festado === fs.estado) &&
+      (fs.ia    === 'all' || p.fia     === fs.ia);
+    g.style.opacity = match ? '1' : '0.10';
+    g.style.transition = 'opacity .35s';
+  });
+}
 
+
+//    EXPORT                                                     
+var pdfTheme='dark';
+function openExport(){document.getElementById('export-overlay').style.display='flex';document.body.style.overflow='hidden';}
+function closeExport(){document.getElementById('export-overlay').style.display='none';document.body.style.overflow='';}
+function setTheme(t){
+  pdfTheme=t;
+  var db=document.getElementById('theme-dark-btn'),lb=document.getElementById('theme-light-btn');
+  if(!db||!lb) return;
+  db.style.background=t==='dark'?'var(--accent)':'transparent'; db.style.color=t==='dark'?'#fff':'var(--muted)'; db.style.borderColor=t==='dark'?'var(--accent)':'var(--line2)';
+  lb.style.background=t==='light'?'var(--accent)':'transparent'; lb.style.color=t==='light'?'#fff':'var(--muted)'; lb.style.borderColor=t==='light'?'var(--accent)':'var(--line2)';
+}
+function selectAll(v){document.querySelectorAll('#section-checks input[type="checkbox"]').forEach(function(cb){cb.checked=v;});}
+
+function runExport(){
+  var checked=[];
+  document.querySelectorAll('#section-checks input:checked').forEach(function(cb){checked.push(cb.value);});
+  if(!checked.length){alert('Selecciona al menos una secci n');return;}
+  var btn=document.getElementById('run-export-btn');
+  btn.textContent='  Cargando ';btn.disabled=true;
+  closeExport();
+
+  function loadScript(src,cb){
+    if(document.querySelector('script[src="'+src+'"]')){cb();return;}
+    var s=document.createElement('script');s.src=src;s.onload=cb;document.head.appendChild(s);
+  }
+
+  function doExport(){
+    btn.textContent='  Generando ';
+    var PDF_W_MM=297, PDF_H_MM=210, MARGIN=0, HEADER=10;
+    var CONTENT_W=PDF_W_MM;
+    var CONTENT_H=PDF_H_MM-HEADER;
+    var DPI=150;
+    var PX_PER_MM=DPI/25.4;
+    var PDF_W_PX=Math.round(PDF_W_MM*PX_PER_MM);
+
+    var bgCol    =pdfTheme==='dark'?'#050d18':'#f0f4f9';
+    var bg2Col   =pdfTheme==='dark'?'#0a1628':'#ffffff';
+    var accentCol=pdfTheme==='dark'?'#4A9EE0':'#1a6eb5';
+    var textCol  =pdfTheme==='dark'?'#e8edf5':'#0b2140';
+
+    var root=document.documentElement;
+    var wasLight=root.classList.contains('light');
+    if(pdfTheme==='light')root.classList.add('light');
+    else root.classList.remove('light');
+
+    // Expand everything before cloning
+    document.querySelectorAll('.pcard-tab-content').forEach(function(t){t.style.display='block';});
+    document.querySelectorAll('.bcard-detail').forEach(function(b){b.style.maxHeight='9999px';b.style.opacity='1';});
+    document.querySelectorAll('.reveal').forEach(function(el){el.classList.add('visible');el.style.opacity='1';el.style.transform='none';});
+    document.querySelectorAll('.prog-compact-fill,.prog-fill').forEach(function(f){if(f.dataset.w)f.style.width=f.dataset.w;});
+
+    var secMap={
+      inicio:    function(){return[document.querySelector('.hero'),document.querySelector('.metrics-band')];},
+      proyectos: function(){return[document.getElementById('proyectos')];},
+      cartera:   function(){return[document.getElementById('cartera')];},
+      entregado: function(){return[document.getElementById('entregado')];},
+      ia:        function(){return[document.getElementById('ia')];},
+      fichas:    function(){return[document.getElementById('fichas')];},
+      cierre:    function(){return[document.getElementById('cierre'),document.querySelector('footer')];}
+    };
+
+    // Build clone list
+    var cloneList=[];
+    checked.forEach(function(id){
+      var els=secMap[id]?secMap[id]():[];
+      els.forEach(function(el){
+        if(!el)return;
+        var clone=el.cloneNode(true);
+        clone.style.cssText='width:'+PDF_W_PX+'px;max-width:'+PDF_W_PX+'px;padding:0;box-sizing:border-box;';
+        clone.querySelectorAll('.pgrid').forEach(function(g){g.style.gridTemplateColumns='repeat(3,1fr)';g.style.gap='16px';});
+        clone.querySelectorAll('.board').forEach(function(g){g.style.gridTemplateColumns='repeat(3,1fr)';g.style.gap='12px';});
+        clone.querySelectorAll('.ficha-grid-cards').forEach(function(g){g.style.gridTemplateColumns='repeat(2,1fr)';});
+        clone.querySelectorAll('.pcard-tab-content').forEach(function(t){t.style.display='block';t.style.opacity='1';});
+        clone.querySelectorAll('.bcard-detail').forEach(function(b){b.style.maxHeight='none';b.style.opacity='1';b.style.display='block';});
+        clone.querySelectorAll('.filter-bar,.pcard-tabs,.section-bar,.hero-scroll-hint,.hero-img-zone,.closing-bg').forEach(function(e){e.style.display='none';});
+        clone.querySelectorAll('.section').forEach(function(s){s.style.maxWidth='100%';s.style.padding='3rem 5%';});
+        clone.querySelectorAll('.metrics-band').forEach(function(m){m.style.maxWidth='100%';});
+        clone.querySelectorAll('.reveal').forEach(function(e){e.style.opacity='1';e.style.transform='none';});
+        clone.querySelectorAll('.hero').forEach(function(e){e.style.minHeight='auto';e.style.padding='2rem 3rem';e.style.gridTemplateColumns='1fr';});
+        clone.querySelectorAll('.closing').forEach(function(e){e.style.minHeight='auto';e.style.padding='3rem';});
+        clone.querySelectorAll('.foto-card-img').forEach(function(e){e.style.height='180px';});
+        clone.querySelectorAll('.metrics-band').forEach(function(e){e.style.maxWidth='100%';});
+        cloneList.push(clone);
+      });
+    });
+
+    // Restore DOM
+    document.querySelectorAll('.pcard-tab-content').forEach(function(t){t.style.display='';});
+    document.querySelectorAll('.bcard-detail').forEach(function(b){b.style.maxHeight='';b.style.opacity='';});
+    if(wasLight)root.classList.add('light');
+    else root.classList.remove('light');
+
+    // Setup PDF and offscreen container
+    var jsPDF=window.jspdf.jsPDF;
+    var pdf=new jsPDF({orientation:'landscape',unit:'mm',format:'a4'});
+    var pageNum=1;
+    var firstPage=true;
+
+    var container=document.createElement('div');
+    container.style.cssText='position:absolute;top:'+window.scrollY+'px;left:-'+(PDF_W_PX+200)+'px;width:'+PDF_W_PX+'px;background:'+bgCol+';z-index:-1;';
+    document.body.appendChild(container);
+
+    function drawHeader(){
+      pdf.setFillColor(bgCol);
+      pdf.rect(0,0,PDF_W_MM,HEADER,'F');
+      pdf.setFont('helvetica','bold');pdf.setFontSize(7);pdf.setTextColor(accentCol);
+      pdf.text('GRUPO ITISA     SUBDIRECCI N TI',MARGIN,7);
+      pdf.setFont('helvetica','normal');pdf.setTextColor(textCol);
+      pdf.text('Avance de Proyectos 2026     29 Mayo 2026',PDF_W_MM/2,7,{align:'center'});
+      pdf.setFontSize(6.5);pdf.text('P g. '+pageNum,PDF_W_MM-MARGIN,7,{align:'right'});
+      pdf.setFillColor(bgCol);pdf.rect(0,0,PDF_W_MM,HEADER,'F');pdf.setDrawColor(accentCol);pdf.setLineWidth(0.3);pdf.line(0,HEADER,PDF_W_MM,HEADER);
+    }
+
+    function captureAndPlace(clone, done){
+      container.innerHTML='';
+      container.appendChild(clone);
+      container.offsetHeight;
+
+      setTimeout(function(){
+        html2canvas(container,{
+          scale:1,
+          useCORS:true,allowTaint:true,
+          backgroundColor:bgCol,
+          width:PDF_W_PX,windowWidth:PDF_W_PX,
+          logging:false
+        }).then(function(canvas){
+          // mm dimensions of this capture
+          var capH_mm = (canvas.height / PX_PER_MM);
+          var capW_mm = CONTENT_W;
+
+          // Does it fit in one page?
+          if(capH_mm <= CONTENT_H){
+            // Single page   center vertically if short
+            if(!firstPage){pdf.addPage();}
+            firstPage=false; drawHeader(); pageNum++;
+            var imgData=canvas.toDataURL('image/jpeg',0.92);
+            pdf.addImage(imgData,'JPEG',0,HEADER,PDF_W_MM,capH_mm);
+          } else {
+            // Scale to fit: shrink content to fill exactly one page height
+            // (keeps proportions, nothing gets cut)
+            var scale=CONTENT_H/capH_mm;
+            var scaledW=capW_mm*scale;
+            var scaledH=CONTENT_H;
+            var xOff=MARGIN+(CONTENT_W-scaledW)/2;
+            if(!firstPage){pdf.addPage();}
+            firstPage=false; drawHeader(); pageNum++;
+            var imgData=canvas.toDataURL('image/jpeg',0.92);
+            pdf.addImage(imgData,'JPEG',0,HEADER,PDF_W_MM,scaledH);
+          }
+          done();
+        }).catch(function(e){console.error(e);done();});
+      },150);
+    }
+
+    var idx=0;
+    function next(){
+      if(idx>=cloneList.length){
+        document.body.removeChild(container);
+        pdf.save('ITISA_Avance_TI_2026.pdf');
+        btn.textContent='  PDF listo';
+        setTimeout(function(){
+          btn.innerHTML='<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> Exportar PDF';
+          btn.disabled=false;
+        },2000);
+        return;
+      }
+      btn.textContent='  '+(idx+1)+'/'+cloneList.length+' ';
+      captureAndPlace(cloneList[idx++],next);
+    }
+    setTimeout(next,300);
+  }
+
+  var loaded=0;
+  ['https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js',
+   'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js'].forEach(function(src){
+    loadScript(src,function(){if(++loaded===2)setTimeout(doExport,200);});
+  });
+}
+function exportPDF(){openExport();}
+</script>
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+<script>
+
+//    PALMER CURSOR                                            
+(function(){
+  const dot = document.getElementById('cursor-dot');
+  const ring = document.getElementById('cursor-ring');
+  if(!dot||!ring) return;
+
+  let mx=0, my=0, rx=0, ry=0;
+  let rafId;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    dot.style.left = mx+'px'; dot.style.top = my+'px';
+    cancelAnimationFrame(rafId);
+    rafId = requestAnimationFrame(animRing);
+  });
+
+  function animRing(){
+    rx += (mx - rx) * 0.14;
+    ry += (my - ry) * 0.14;
+    ring.style.left = rx+'px';
+    ring.style.top  = ry+'px';
+    if(Math.abs(mx-rx)>.5||Math.abs(my-ry)>.5) rafId=requestAnimationFrame(animRing);
+  }
+
+  document.addEventListener('mousedown', ()=>{ dot.classList.add('clicking'); ring.classList.add('clicking'); });
+  document.addEventListener('mouseup',   ()=>{ dot.classList.remove('clicking'); ring.classList.remove('clicking'); });
+
+  // Hover states on interactive elements
+  const hoverEls = 'a,button,.filter-btn,.bcard-toggle,.theme-btn,.theme-label,.pdf-btn,.pgrid-card,.bcard,.nav-logo';
+  document.querySelectorAll(hoverEls).forEach(el=>{
+    el.addEventListener('mouseenter',()=>{ dot.classList.add('hovering'); ring.classList.add('hovering'); });
+    el.addEventListener('mouseleave',()=>{ dot.classList.remove('hovering'); ring.classList.remove('hovering'); });
+  });
+
+  document.addEventListener('mouseleave', ()=>{ dot.style.opacity='0'; ring.style.opacity='0'; });
+  document.addEventListener('mouseenter', ()=>{ dot.style.opacity='1'; ring.style.opacity='1'; });
+})();
+
+//    MAGNETIC HOVER ON IMAGE ZONES                            
+document.querySelectorAll('.img-zone, .hero-img-zone').forEach(el=>{
+  el.classList.add('magnetic-img');
+  el.addEventListener('mousemove', function(e){
+    const r = this.getBoundingClientRect();
+    const cx = r.left + r.width/2;
+    const cy = r.top  + r.height/2;
+    const dx = (e.clientX - cx) * 0.08;
+    const dy = (e.clientY - cy) * 0.08;
+    this.style.transform = `translate(${dx}px, ${dy}px) scale(1.012)`;
+  });
+  el.addEventListener('mouseleave', function(){
+    this.style.transform = 'translate(0,0) scale(1)';
+  });
+});
+
+// Magnetic on project cards too (subtle)
+document.querySelectorAll('.pgrid-card').forEach(el=>{
+  el.addEventListener('mousemove', function(e){
+    const r = this.getBoundingClientRect();
+    const cx = r.left + r.width/2;
+    const cy = r.top  + r.height/2;
+    const dx = (e.clientX - cx) * 0.025;
+    const dy = (e.clientY - cy) * 0.025;
+    this.style.transform = `translate(${dx}px, ${dy}px) translateY(-2px)`;
+  });
+  el.addEventListener('mouseleave', function(){
+    this.style.transform = 'translateY(0)';
+  });
+});
+
+</script>
 </body>
 </html>
