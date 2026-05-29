@@ -1138,7 +1138,7 @@ function buildCircleMap() {
   el('rect', {x:CX-R, y:CY,   width:R, height:R, fill:qFills[2]}, g);
   el('rect', {x:CX,   y:CY,   width:R, height:R, fill:qFills[3]}, g);
 
-  /* ── CIRCULOS de referencia estilo Garmin: lineas finas, muy tenues ── */
+  /* ── CIRCULOS de referencia: lineas finas, muy tenues ── */
   var ringColor = isLight ? 'rgba(11,33,64,0.08)' : 'rgba(255,255,255,0.06)';
   [0.25, 0.50, 0.75].forEach(function(f){
     el('circle', {cx:CX, cy:CY, r:R*f, fill:'none',
