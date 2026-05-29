@@ -858,438 +858,115 @@ footer p{font-size:12px;color:var(--dim)}
 
 <!-- PROYECTOS EN CURSO -->
 <section class="section" id="proyectos">
-  <p class="eyebrow">01 — Proyectos en curso</p>
+  <p class="eyebrow">01 &mdash; Proyectos en curso</p>
   <h2 class="section-title">En <strong>desarrollo</strong></h2>
-  <p class="section-sub">Iniciativas activas con seguimiento. Cada proyecto incluye avance real, eventos recientes, próximas actividades y riesgos identificados.</p>
-
-  <!-- FILTROS -->
+  <p class="section-sub">Iniciativas activas con seguimiento. Cada proyecto incluye avance real, eventos recientes, pr&oacute;ximas actividades y riesgos identificados.</p>
+ 
   <div class="filter-bar reveal" id="filters">
     <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
       <span style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)">Tipo</span>
-      <button class="filter-btn active" data-f="tipo" data-v="all">Todos</button>
-      <button class="filter-btn" data-f="tipo" data-v="administrativo">Administrativo</button>
-      <button class="filter-btn" data-f="tipo" data-v="operativo">Operativo</button>
+      <button class="filter-btn active" data-f="tipo" data-v="all" onclick="filterPgrid('tipo','all',this)">Todos</button>
+      <button class="filter-btn" data-f="tipo" data-v="administrativo" onclick="filterPgrid('tipo','administrativo',this)">Administrativo</button>
+      <button class="filter-btn" data-f="tipo" data-v="operativo" onclick="filterPgrid('tipo','operativo',this)">Operativo</button>
     </div>
     <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
       <span style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)">Estado</span>
-      <button class="filter-btn active" data-f="estado" data-v="all">Todos</button>
-      <button class="filter-btn" data-f="estado" data-v="desarrollo">Desarrollo</button>
-      <button class="filter-btn" data-f="estado" data-v="pruebas">Pruebas</button>
-      <button class="filter-btn" data-f="estado" data-v="contratacion">Contratación</button>
-      <button class="filter-btn" data-f="estado" data-v="pendiente">Pendiente</button>
+      <button class="filter-btn active" data-f="estado" data-v="all" onclick="filterPgrid('estado','all',this)">Todos</button>
+      <button class="filter-btn" data-f="estado" data-v="desarrollo" onclick="filterPgrid('estado','desarrollo',this)">Desarrollo</button>
+      <button class="filter-btn" data-f="estado" data-v="pruebas" onclick="filterPgrid('estado','pruebas',this)">Pruebas</button>
+      <button class="filter-btn" data-f="estado" data-v="contratacion" onclick="filterPgrid('estado','contratacion',this)">Contrataci&oacute;n</button>
+      <button class="filter-btn" data-f="estado" data-v="pendiente" onclick="filterPgrid('estado','pendiente',this)">Pendiente</button>
     </div>
     <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
       <span style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)">IA</span>
-      <button class="filter-btn active" data-f="ia" data-v="all">Todos</button>
-      <button class="filter-btn" data-f="ia" data-v="ia">Con IA</button>
+      <button class="filter-btn active" data-f="ia" data-v="all" onclick="filterPgrid('ia','all',this)">Todos</button>
+      <button class="filter-btn" data-f="ia" data-v="ia" onclick="filterPgrid('ia','ia',this)">Con IA</button>
     </div>
     <span class="filter-count-label"><span id="proj-count">6</span> proyectos</span>
   </div>
-
+ 
   <div class="pgrid" id="pgrid">
-
     <div class="pgrid-card reveal" data-tipo="administrativo" data-estado="desarrollo" data-ia="no" id="card-pcon">
       <div class="pgrid-card-inner">
-        <div class="pgrid-top">
-          <div class="pgrid-tags"><span class="tag tag-admin">Administrativo</span><span class="tag tag-neg">Prefabricados</span></div>
-          <span class="status-pill status-ok"><span class="status-dot"></span>Desarrollo</span>
-        </div>
+        <div class="pgrid-top"><div class="pgrid-tags"><span class="tag tag-admin">Administrativo</span><span class="tag tag-neg">Prefabricados</span></div><span class="status-pill status-ok"><span class="status-dot"></span>Desarrollo</span></div>
         <div class="pgrid-name">Portal de contratistas</div>
-        <div class="pgrid-leader">Nuria · 8 mar → 3 jul</div>
-        <div class="prog-compact">
-          <div class="prog-row">
-            <div>
-              <div class="prog-pct-main">48%</div>
-              <div class="prog-pct-prev">Abril: 23%</div>
-            </div>
-            <span class="prog-delta prog-delta-up">▲ +25 pp</span>
-          </div>
-          <div class="prog-bars">
-            <div class="prog-bar-row"><span class="prog-bar-lbl">May</span><div class="prog-bar-track"><div class="prog-bar-fill mayo" style="width:48%"></div></div></div>
-            <div class="prog-bar-row"><span class="prog-bar-lbl">Abr</span><div class="prog-bar-track"><div class="prog-bar-fill abril" style="width:23%"></div></div></div>
-          </div>
-        </div>
+        <div class="pgrid-leader">Nuria &middot; 8 mar &rarr; 3 jul</div>
+        <div class="prog-compact"><div class="prog-row"><div><div class="prog-pct-main">48%</div><div class="prog-pct-prev">Abril: 23%</div></div><span class="prog-delta prog-delta-up">&#9650; +25 pp</span></div><div class="prog-bars"><div class="prog-bar-row"><span class="prog-bar-lbl">May</span><div class="prog-bar-track"><div class="prog-bar-fill mayo" style="width:48%"></div></div></div><div class="prog-bar-row"><span class="prog-bar-lbl">Abr</span><div class="prog-bar-track"><div class="prog-bar-fill abril" style="width:23%"></div></div></div></div></div>
       </div>
-
-      <!-- TABS -->
-      <div class="pcard-tabs" role="tablist">
-        <button class="pcard-tab" onclick="switchTab(this,'pcon','eventos')" role="tab">Eventos</button>
-        <button class="pcard-tab" onclick="switchTab(this,'pcon','riesgo')" role="tab">Riesgo</button>
-        <button class="pcard-tab" onclick="switchTab(this,'pcon','gantt')" role="tab">Cronograma</button>
-      </div>
-
-      <!-- TAB: Eventos -->
-      <div class="pcard-tab-content" data-card="pcon" data-tab="eventos">
-        <div class="tab-group">
-          <div class="tab-glabel">Concluido</div>
-          <ul class="tab-glist"><li>Pantalla de captura completada</li></ul>
-        </div>
-        <div class="tab-group">
-          <div class="tab-glabel">Actividad siguiente</div>
-          <ul class="tab-glist"><li>Integración con eFirma implementada</li><li>Validar números de serie</li></ul>
-        </div>
-      </div>
-
-      <!-- TAB: Riesgo -->
-      <div class="pcard-tab-content" data-card="pcon" data-tab="riesgo">
-        <div class="tab-risk">
-          <div class="tab-risk-title">Documento Pedido creado</div>
-          <div class="tab-risk-mit">Sin definición de estrategia de mitigación</div>
-          <div class="tab-risk-resp">Responsable: Roberto Barrera</div>
-        </div>
-      </div>
-
-      <!-- TAB: Cronograma -->
-      <div class="pcard-tab-content" data-card="pcon" data-tab="gantt">
-        <div class="tab-chart">
-          <div class="tab-donut-row">
-            <svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="#4A9EE0" stroke-width="4" stroke-dasharray="54.3 113.1" stroke-dashoffset="28.3" stroke-linecap="round"/></svg>
-            <div><div class="tab-donut-pct">48%</div><div class="tab-donut-sub">Avance real</div></div>
-          </div>
-          <div class="gantt-wrap">
-            <div class="gantt-months"><div></div><div class="gantt-month-labels" style="position:relative;height:14px"><span class="gantt-month-lbl" style="left:0%">Mar</span><span class="gantt-month-lbl" style="left:25%">Abr</span><span class="gantt-month-lbl" style="left:50%">May</span><span class="gantt-month-lbl" style="left:75%">Jun</span><span class="gantt-month-lbl" style="left:100%">Jul</span></div></div>
-            <div class="gantt-row"><div class="gantt-lbl">Plan</div><div class="gantt-track"><div class="gantt-bar plan" style="left:0%;width:18%;background:#4A9EE0"></div><div class="gantt-bar plan" style="left:18%;width:36%;background:#e07b4a"></div><div class="gantt-bar plan" style="left:54%;width:24%;background:#34d399"></div><div class="gantt-bar plan" style="left:78%;width:22%;background:#a44ae0"></div><div class="gantt-today" style="left:73%"></div></div></div>
-            <div class="gantt-row"><div class="gantt-lbl">Real</div><div class="gantt-track"><div class="gantt-bar real" style="left:0%;width:18%;background:#4A9EE0"></div><div class="gantt-bar real" style="left:18%;width:30%;background:#e07b4a"></div><div class="gantt-today" style="left:73%"></div></div></div>
-          </div>
-          <div class="phase-legend"><div class="phase-dot-item"><div class="phase-dot" style="background:#4A9EE0"></div>Diseño</div><div class="phase-dot-item"><div class="phase-dot" style="background:#e07b4a"></div>Desarrollo</div><div class="phase-dot-item"><div class="phase-dot" style="background:#34d399"></div>Pruebas</div><div class="phase-dot-item"><div class="phase-dot" style="background:#a44ae0"></div>Implementar</div></div>
-        </div>
-      </div>
+      <div class="pcard-tabs" role="tablist"><button class="pcard-tab" onclick="switchTab(this,'pcon','eventos')" role="tab">Eventos</button><button class="pcard-tab" onclick="switchTab(this,'pcon','riesgo')" role="tab">Riesgo</button><button class="pcard-tab" onclick="switchTab(this,'pcon','gantt')" role="tab">Cronograma</button></div>
+      <div class="pcard-tab-content" data-card="pcon" data-tab="eventos"><div class="tab-group"><div class="tab-glabel">Concluido</div><ul class="tab-glist"><li>Pantalla de captura completada</li><li>Integraci&oacute;n con eFirma implementada</li></ul></div><div class="tab-group"><div class="tab-glabel">Actividad siguiente</div><ul class="tab-glist"><li>Validar n&uacute;meros de serie</li><li>Documento Pedido &mdash; Roberto Barrera</li></ul></div></div>
+      <div class="pcard-tab-content" data-card="pcon" data-tab="riesgo"><div class="tab-risk"><div class="tab-risk-title">Documento Pedido creado</div><div class="tab-risk-mit">Sin definici&oacute;n de estrategia de mitigaci&oacute;n</div><div class="tab-risk-resp">Responsable: Roberto Barrera</div></div></div>
+      <div class="pcard-tab-content" data-card="pcon" data-tab="gantt"><div class="tab-chart"><div class="tab-donut-row"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="#e07b4a" stroke-width="4" stroke-dasharray="54.3 113.1" stroke-dashoffset="28.3" stroke-linecap="round"/></svg><div><div class="tab-donut-pct">48%</div><div class="tab-donut-sub">Avance real</div></div></div><div class="gantt-wrap"><div class="gantt-months"><div></div><div class="gantt-month-labels" style="position:relative;height:14px"><span class="gantt-month-lbl" style="left:0%">Mar</span><span class="gantt-month-lbl" style="left:25%">Abr</span><span class="gantt-month-lbl" style="left:50%">May</span><span class="gantt-month-lbl" style="left:75%">Jun</span><span class="gantt-month-lbl" style="left:100%">Jul</span></div></div><div class="gantt-row"><div class="gantt-lbl">Plan</div><div class="gantt-track"><div class="gantt-bar plan" style="left:0%;width:18%;background:#4A9EE0"></div><div class="gantt-bar plan" style="left:18%;width:36%;background:#e07b4a"></div><div class="gantt-bar plan" style="left:54%;width:24%;background:#34d399"></div><div class="gantt-bar plan" style="left:78%;width:22%;background:#a44ae0"></div><div class="gantt-today" style="left:73%"></div></div></div><div class="gantt-row"><div class="gantt-lbl">Real</div><div class="gantt-track"><div class="gantt-bar real" style="left:0%;width:18%;background:#4A9EE0"></div><div class="gantt-bar real" style="left:18%;width:30%;background:#e07b4a"></div><div class="gantt-today" style="left:73%"></div></div></div></div><div class="phase-legend"><div class="phase-dot-item"><div class="phase-dot" style="background:#4A9EE0"></div>Dise&ntilde;o</div><div class="phase-dot-item"><div class="phase-dot" style="background:#e07b4a"></div>Desarrollo</div><div class="phase-dot-item"><div class="phase-dot" style="background:#34d399"></div>Pruebas</div><div class="phase-dot-item"><div class="phase-dot" style="background:#a44ae0"></div>Implementar</div></div></div></div>
     </div>
+ 
     <div class="pgrid-card reveal" data-tipo="administrativo" data-estado="contratacion" data-ia="no" id="card-repse">
       <div class="pgrid-card-inner">
-        <div class="pgrid-top">
-          <div class="pgrid-tags"><span class="tag tag-admin">Administrativo</span><span class="tag tag-neg">Prefabricados</span></div>
-          <span class="status-pill status-warn"><span class="status-dot"></span>Contratación</span>
-        </div>
+        <div class="pgrid-top"><div class="pgrid-tags"><span class="tag tag-admin">Administrativo</span><span class="tag tag-neg">Prefabricados</span></div><span class="status-pill status-warn"><span class="status-dot"></span>Contrataci&oacute;n</span></div>
         <div class="pgrid-name">Portal REPSE</div>
-        <div class="pgrid-leader">Iris Vázquez · Por confirmar</div>
-        <div class="prog-compact">
-          <div class="prog-row">
-            <div>
-              <div class="prog-pct-main">—</div>
-              <div class="prog-pct-prev">Sin inicio</div>
-            </div>
-          </div>
-          <div class="prog-bars">
-            <div class="prog-bar-row"><span class="prog-bar-lbl">May</span><div class="prog-bar-track"><div class="prog-bar-fill mayo" style="width:0%"></div></div></div>
-            <div class="prog-bar-row"><span class="prog-bar-lbl">Abr</span><div class="prog-bar-track"><div class="prog-bar-fill abril" style="width:0%"></div></div></div>
-          </div>
-        </div>
+        <div class="pgrid-leader">Iris V&aacute;zquez &middot; Por confirmar</div>
+        <div class="prog-compact"><div class="prog-row"><div><div class="prog-pct-main">&mdash;</div><div class="prog-pct-prev">Sin inicio</div></div></div><div class="prog-bars"><div class="prog-bar-row"><span class="prog-bar-lbl">May</span><div class="prog-bar-track"><div class="prog-bar-fill mayo" style="width:0%"></div></div></div><div class="prog-bar-row"><span class="prog-bar-lbl">Abr</span><div class="prog-bar-track"><div class="prog-bar-fill abril" style="width:0%"></div></div></div></div></div>
       </div>
-
-      <!-- TABS -->
-      <div class="pcard-tabs" role="tablist">
-        <button class="pcard-tab" onclick="switchTab(this,'repse','eventos')" role="tab">Eventos</button>
-        <button class="pcard-tab" onclick="switchTab(this,'repse','riesgo')" role="tab">Riesgo</button>
-        <button class="pcard-tab" onclick="switchTab(this,'repse','gantt')" role="tab">Cronograma</button>
-      </div>
-
-      <!-- TAB: Eventos -->
-      <div class="pcard-tab-content" data-card="repse" data-tab="eventos">
-        <div class="tab-group">
-          <div class="tab-glabel">Concluido</div>
-          <ul class="tab-glist"><li>Proveedor seleccionado</li></ul>
-        </div>
-        <div class="tab-group">
-          <div class="tab-glabel">Actividad siguiente</div>
-          <ul class="tab-glist"><li>Firma del contrato</li></ul>
-        </div>
-        
-      </div>
-
-      <!-- TAB: Riesgo -->
-      <div class="pcard-tab-content" data-card="repse" data-tab="riesgo">
-        <div class="tab-no-risk">Sin riesgos registrados, pendiente de confirmar proveedor</div>
-      </div>
-
-      <!-- TAB: Cronograma -->
-      <div class="pcard-tab-content" data-card="repse" data-tab="gantt">
-        <div class="tab-chart">
-          <div class="tab-donut-row">
-            <svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="#fbbf24" stroke-width="4" stroke-dasharray="5.5 113.1" stroke-dashoffset="28.3" stroke-linecap="round"/></svg>
-            <div><div class="tab-donut-pct">—</div><div class="tab-donut-sub">Avance real</div></div>
-          </div>
-          <div class="gantt-wrap">
-            <div class="gantt-months"><div></div><div class="gantt-month-labels" style="position:relative;height:14px"><span class="gantt-month-lbl" style="left:0%">Abr</span><span class="gantt-month-lbl" style="left:25%">May</span><span class="gantt-month-lbl" style="left:50%">Jun</span><span class="gantt-month-lbl" style="left:75%">Jul</span><span class="gantt-month-lbl" style="left:100%">Ago</span></div></div>
-            <div class="gantt-row"><div class="gantt-lbl">Plan</div><div class="gantt-track"><div class="gantt-bar plan" style="left:0%;width:20%;background:#fbbf24"></div><div class="gantt-bar plan" style="left:20%;width:40%;background:#e07b4a"></div><div class="gantt-bar plan" style="left:60%;width:25%;background:#34d399"></div><div class="gantt-bar plan" style="left:85%;width:15%;background:#a44ae0"></div><div class="gantt-today" style="left:48%"></div></div></div>
-            <div class="gantt-row"><div class="gantt-lbl">Real</div><div class="gantt-track"><div class="gantt-today" style="left:48%"></div></div></div>
-          </div>
-          <div class="phase-legend"><div class="phase-dot-item"><div class="phase-dot" style="background:#fbbf24"></div>Contratación</div><div class="phase-dot-item"><div class="phase-dot" style="background:#e07b4a"></div>Desarrollo</div><div class="phase-dot-item"><div class="phase-dot" style="background:#34d399"></div>Pruebas</div><div class="phase-dot-item"><div class="phase-dot" style="background:#a44ae0"></div>Implementar</div></div>
-        </div>
-      </div>
+      <div class="pcard-tabs" role="tablist"><button class="pcard-tab" onclick="switchTab(this,'repse','eventos')" role="tab">Eventos</button><button class="pcard-tab" onclick="switchTab(this,'repse','riesgo')" role="tab">Riesgo</button><button class="pcard-tab" onclick="switchTab(this,'repse','gantt')" role="tab">Cronograma</button></div>
+      <div class="pcard-tab-content" data-card="repse" data-tab="eventos"><div class="tab-group"><div class="tab-glabel">Concluido</div><ul class="tab-glist"><li>Proveedor seleccionado</li></ul></div><div class="tab-group"><div class="tab-glabel">Actividad siguiente</div><ul class="tab-glist"><li>Firma del contrato</li></ul></div></div>
+      <div class="pcard-tab-content" data-card="repse" data-tab="riesgo"><div class="tab-no-risk">Sin riesgos registrados, pendiente de confirmar proveedor</div></div>
+      <div class="pcard-tab-content" data-card="repse" data-tab="gantt"><div class="tab-chart"><div class="tab-donut-row"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="#fbbf24" stroke-width="4" stroke-dasharray="5.5 113.1" stroke-dashoffset="28.3" stroke-linecap="round"/></svg><div><div class="tab-donut-pct">&mdash;</div><div class="tab-donut-sub">Avance real</div></div></div><div class="gantt-wrap"><div class="gantt-months"><div></div><div class="gantt-month-labels" style="position:relative;height:14px"><span class="gantt-month-lbl" style="left:0%">Abr</span><span class="gantt-month-lbl" style="left:25%">May</span><span class="gantt-month-lbl" style="left:50%">Jun</span><span class="gantt-month-lbl" style="left:75%">Jul</span><span class="gantt-month-lbl" style="left:100%">Ago</span></div></div><div class="gantt-row"><div class="gantt-lbl">Plan</div><div class="gantt-track"><div class="gantt-bar plan" style="left:0%;width:20%;background:#fbbf24"></div><div class="gantt-bar plan" style="left:20%;width:40%;background:#e07b4a"></div><div class="gantt-bar plan" style="left:60%;width:25%;background:#34d399"></div><div class="gantt-bar plan" style="left:85%;width:15%;background:#a44ae0"></div><div class="gantt-today" style="left:48%"></div></div></div><div class="gantt-row"><div class="gantt-lbl">Real</div><div class="gantt-track"><div class="gantt-today" style="left:48%"></div></div></div></div><div class="phase-legend"><div class="phase-dot-item"><div class="phase-dot" style="background:#fbbf24"></div>Contrataci&oacute;n</div><div class="phase-dot-item"><div class="phase-dot" style="background:#e07b4a"></div>Desarrollo</div><div class="phase-dot-item"><div class="phase-dot" style="background:#34d399"></div>Pruebas</div><div class="phase-dot-item"><div class="phase-dot" style="background:#a44ae0"></div>Implementar</div></div></div></div>
     </div>
+ 
     <div class="pgrid-card reveal" data-tipo="administrativo" data-estado="pruebas" data-ia="no" id="card-khor">
       <div class="pgrid-card-inner">
-        <div class="pgrid-top">
-          <div class="pgrid-tags"><span class="tag tag-admin">Administrativo</span><span class="tag tag-neg">Capital Humano</span></div>
-          <span class="status-pill status-warn" style="background:var(--riskbg);color:var(--risk)"><span class="status-dot"></span>Retrasado</span>
-        </div>
+        <div class="pgrid-top"><div class="pgrid-tags"><span class="tag tag-admin">Administrativo</span><span class="tag tag-neg">Capital Humano</span></div><span class="status-pill" style="background:var(--riskbg);color:var(--risk)"><span class="status-dot" style="background:var(--risk)"></span>Retrasado</span></div>
         <div class="pgrid-name">KHOR</div>
-        <div class="pgrid-leader">Gabriela Sordo · Plan: Ago-Nov 2025 · Fin est: 17/jul/2026</div>
-        <div class="prog-compact">
-          <div class="prog-row">
-            <div>
-              <div class="prog-pct-main">80%</div>
-              <div class="prog-pct-prev">Abril: 75%</div>
-            </div>
-            <span class="prog-delta prog-delta-up">▲ +5 pp</span>
-          </div>
-          <div class="prog-bars">
-            <div class="prog-bar-row"><span class="prog-bar-lbl">May</span><div class="prog-bar-track"><div class="prog-bar-fill mayo" style="width:80%"></div></div></div>
-            <div class="prog-bar-row"><span class="prog-bar-lbl">Abr</span><div class="prog-bar-track"><div class="prog-bar-fill abril" style="width:75%"></div></div></div>
-          </div>
-        </div>
+        <div class="pgrid-leader">Gabriela Sordo &middot; Plan: Ago-Nov 2025 &middot; Fin est: 17/jul/2026</div>
+        <div class="prog-compact"><div class="prog-row"><div><div class="prog-pct-main">80%</div><div class="prog-pct-prev">Abril: 75%</div></div><span class="prog-delta prog-delta-up">&#9650; +5 pp</span></div><div class="prog-bars"><div class="prog-bar-row"><span class="prog-bar-lbl">May</span><div class="prog-bar-track"><div class="prog-bar-fill mayo" style="width:80%"></div></div></div><div class="prog-bar-row"><span class="prog-bar-lbl">Abr</span><div class="prog-bar-track"><div class="prog-bar-fill abril" style="width:75%"></div></div></div></div></div>
       </div>
-
-      <!-- TABS -->
-      <div class="pcard-tabs" role="tablist">
-        <button class="pcard-tab" onclick="switchTab(this,'khor','eventos')" role="tab">Eventos</button>
-        <button class="pcard-tab" onclick="switchTab(this,'khor','riesgo')" role="tab">Riesgo</button>
-        <button class="pcard-tab" onclick="switchTab(this,'khor','gantt')" role="tab">Cronograma</button>
-      </div>
-
-      <!-- TAB: Eventos -->
-      <div class="pcard-tab-content" data-card="khor" data-tab="eventos">
-        <div class="tab-group">
-          <div class="tab-glabel">Concluido</div>
-          <ul class="tab-glist"><li>Sigue en desarrollo la interfaz con SICOSS</li></ul>
-        </div>
-        <div class="tab-group">
-          <div class="tab-glabel">Actividad siguiente</div>
-          <ul class="tab-glist"><li>Integración con SICOSS en curso</li><li>Pruebas completas de todos los módulos</li><li>Preparar archivos de carga</li><li>Preparar arranque productivo</li></ul>
-        </div>
-        
-      </div>
-
-      <!-- TAB: Riesgo -->
-      <div class="pcard-tab-content" data-card="khor" data-tab="riesgo">
-        <div class="tab-risk">
-          <div class="tab-risk-title">Surjan nuevos errores en las pruebas</div>
-          <div class="tab-risk-mit">Verificar que el proveedor haga sus pruebas primero</div>
-          <div class="tab-risk-resp">Responsable: Yadira</div>
-        </div>
-      </div>
-
-      <!-- TAB: Cronograma -->
-      <div class="pcard-tab-content" data-card="khor" data-tab="gantt">
-        <div class="tab-chart">
-          <div class="tab-donut-row">
-            <svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="#fbbf24" stroke-width="4" stroke-dasharray="90.5 113.1" stroke-dashoffset="28.3" stroke-linecap="round"/></svg>
-            <div><div class="tab-donut-pct">80%</div><div class="tab-donut-sub">Avance real</div></div>
-          </div>
-          <div class="gantt-wrap">
-            <div class="gantt-months"><div></div><div class="gantt-month-labels" style="position:relative;height:14px"><span class="gantt-month-lbl" style="left:0%">Ene</span><span class="gantt-month-lbl" style="left:25%">Feb</span><span class="gantt-month-lbl" style="left:50%">Mar</span><span class="gantt-month-lbl" style="left:75%">Abr</span><span class="gantt-month-lbl" style="left:100%">May</span></div></div>
-            <div class="gantt-row"><div class="gantt-lbl">Plan</div><div class="gantt-track"><div class="gantt-bar plan" style="left:0%;width:20%;background:#4A9EE0"></div><div class="gantt-bar plan" style="left:20%;width:30%;background:#e07b4a"></div><div class="gantt-bar plan" style="left:50%;width:25%;background:#34d399"></div><div class="gantt-bar plan" style="left:75%;width:25%;background:#a44ae0"></div><div class="gantt-today" style="left:99%"></div></div></div>
-            <div class="gantt-row"><div class="gantt-lbl">Real</div><div class="gantt-track"><div class="gantt-bar real" style="left:0%;width:20%;background:#4A9EE0"></div><div class="gantt-bar real" style="left:20%;width:35%;background:#e07b4a"></div><div class="gantt-bar real" style="left:55%;width:25%;background:#34d399"></div><div class="gantt-today" style="left:99%"></div></div></div>
-          </div>
-          <div class="phase-legend"><div class="phase-dot-item"><div class="phase-dot" style="background:#4A9EE0"></div>Diseño</div><div class="phase-dot-item"><div class="phase-dot" style="background:#e07b4a"></div>Desarrollo</div><div class="phase-dot-item"><div class="phase-dot" style="background:#34d399"></div>Pruebas</div><div class="phase-dot-item"><div class="phase-dot" style="background:#a44ae0"></div>Implementar</div></div>
-        </div>
-      </div>
+      <div class="pcard-tabs" role="tablist"><button class="pcard-tab" onclick="switchTab(this,'khor','eventos')" role="tab">Eventos</button><button class="pcard-tab" onclick="switchTab(this,'khor','riesgo')" role="tab">Riesgo</button><button class="pcard-tab" onclick="switchTab(this,'khor','gantt')" role="tab">Cronograma</button></div>
+      <div class="pcard-tab-content" data-card="khor" data-tab="eventos"><div class="tab-group"><div class="tab-glabel">Concluido</div><ul class="tab-glist"><li>Sigue en desarrollo la interfaz con SICOSS</li></ul></div><div class="tab-group"><div class="tab-glabel">Actividad siguiente</div><ul class="tab-glist"><li>Integraci&oacute;n con SICOSS en curso</li><li>Pruebas completas de todos los m&oacute;dulos</li><li>Preparar archivos de carga</li><li>Preparar arranque productivo</li></ul></div></div>
+      <div class="pcard-tab-content" data-card="khor" data-tab="riesgo"><div class="tab-risk"><div class="tab-risk-title">Surjan nuevos errores en las pruebas</div><div class="tab-risk-mit">Verificar que el proveedor haga sus pruebas primero</div><div class="tab-risk-resp">Responsable: Yadira</div></div></div>
+      <div class="pcard-tab-content" data-card="khor" data-tab="gantt"><div class="tab-chart"><div class="tab-donut-row"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="#34d399" stroke-width="4" stroke-dasharray="90.5 113.1" stroke-dashoffset="28.3" stroke-linecap="round"/></svg><div><div class="tab-donut-pct">80%</div><div class="tab-donut-sub">Avance real</div></div></div><div class="gantt-wrap"><div class="gantt-months"><div></div><div class="gantt-month-labels" style="position:relative;height:14px"><span class="gantt-month-lbl" style="left:0%">Ago'25</span><span class="gantt-month-lbl" style="left:33%">Nov'25</span><span class="gantt-month-lbl" style="left:58%">Feb'26</span><span class="gantt-month-lbl" style="left:83%">May'26</span><span class="gantt-month-lbl" style="left:100%">Jul'26</span></div></div><div class="gantt-row"><div class="gantt-lbl">Plan</div><div class="gantt-track"><div class="gantt-bar plan" style="left:0%;width:33%;background:#4A9EE0"></div><div class="gantt-bar plan" style="left:33%;width:25%;background:#e07b4a"></div><div class="gantt-bar plan" style="left:58%;width:25%;background:#34d399"></div><div class="gantt-bar plan" style="left:83%;width:17%;background:#a44ae0"></div><div class="gantt-today" style="left:75%"></div></div></div><div class="gantt-row"><div class="gantt-lbl">Real</div><div class="gantt-track"><div class="gantt-bar real" style="left:0%;width:33%;background:#4A9EE0"></div><div class="gantt-bar real" style="left:33%;width:25%;background:#e07b4a"></div><div class="gantt-bar real" style="left:58%;width:17%;background:#34d399"></div><div class="gantt-today" style="left:75%"></div></div></div></div><div class="phase-legend"><div class="phase-dot-item"><div class="phase-dot" style="background:#4A9EE0"></div>An&aacute;lisis</div><div class="phase-dot-item"><div class="phase-dot" style="background:#e07b4a"></div>Desarrollo</div><div class="phase-dot-item"><div class="phase-dot" style="background:#34d399"></div>Pruebas</div><div class="phase-dot-item"><div class="phase-dot" style="background:#a44ae0"></div>Implementar</div></div></div></div>
     </div>
-    <div class="pgrid-card reveal" data-tipo="operativo" data-estado="pendiente" data-ia="no" id="card-insp">
+ 
+    <div class="pgrid-card reveal" data-tipo="operativo" data-estado="desarrollo" data-ia="no" id="card-insp">
       <div class="pgrid-card-inner">
-        <div class="pgrid-top">
-          <div class="pgrid-tags"><span class="tag tag-op">Operativo</span><span class="tag tag-neg">Prefabricados</span></div>
-          <span class="status-pill status-warn"><span class="status-dot"></span>Desarrollo</span>
-        </div>
+        <div class="pgrid-top"><div class="pgrid-tags"><span class="tag tag-op">Operativo</span><span class="tag tag-neg">Prefabricados</span></div><span class="status-pill status-warn"><span class="status-dot"></span>Desarrollo</span></div>
         <div class="pgrid-name">App inspecciones de calidad de piezas</div>
-        <div class="pgrid-leader">Fernando Valle · 6 abr → 26 jun · Power App + SAP</div>
-        <div class="prog-compact">
-          <div class="prog-row">
-            <div>
-              <div class="prog-pct-main">20%</div>
-              <div class="prog-pct-prev">Abril: 16%</div>
-            </div>
-            <span class="prog-delta prog-delta-up">▲ +4 pp</span>
-          </div>
-          <div class="prog-bars">
-            <div class="prog-bar-row"><span class="prog-bar-lbl">May</span><div class="prog-bar-track"><div class="prog-bar-fill mayo" style="width:20%"></div></div></div>
-            <div class="prog-bar-row"><span class="prog-bar-lbl">Abr</span><div class="prog-bar-track"><div class="prog-bar-fill abril" style="width:16%"></div></div></div>
-          </div>
-        </div>
+        <div class="pgrid-leader">Fernando Valle &middot; 6 abr &rarr; 26 jun &middot; Power App + SAP</div>
+        <div class="prog-compact"><div class="prog-row"><div><div class="prog-pct-main">20%</div><div class="prog-pct-prev">Abril: 16%</div></div><span class="prog-delta prog-delta-up">&#9650; +4 pp</span></div><div class="prog-bars"><div class="prog-bar-row"><span class="prog-bar-lbl">May</span><div class="prog-bar-track"><div class="prog-bar-fill mayo" style="width:20%"></div></div></div><div class="prog-bar-row"><span class="prog-bar-lbl">Abr</span><div class="prog-bar-track"><div class="prog-bar-fill abril" style="width:16%"></div></div></div></div></div>
       </div>
-
-      <!-- TABS -->
-      <div class="pcard-tabs" role="tablist">
-        <button class="pcard-tab" onclick="switchTab(this,'insp','eventos')" role="tab">Eventos</button>
-        <button class="pcard-tab" onclick="switchTab(this,'insp','riesgo')" role="tab">Riesgo</button>
-        <button class="pcard-tab" onclick="switchTab(this,'insp','gantt')" role="tab">Cronograma</button>
-      </div>
-
-      <!-- TAB: Eventos -->
-      <div class="pcard-tab-content" data-card="insp" data-tab="eventos">
-        <div class="tab-group">
-          <div class="tab-glabel">Concluido</div>
-          <ul class="tab-glist"><li>Diseño de la app completado</li><li>2 de 3 interfaces con SAP completadas</li></ul>
-        </div>
-        <div class="tab-group">
-          <div class="tab-glabel">Actividad siguiente</div>
-          <ul class="tab-glist"><li>Iniciar desarrollo de la app</li><li>Completar tercera interfaz con SAP</li></ul>
-        </div>
-        
-      </div>
-
-      <!-- TAB: Riesgo -->
-      <div class="pcard-tab-content" data-card="insp" data-tab="riesgo">
-        <div class="tab-no-risk">Sin riesgos registrados</div>
-      </div>
-
-      <!-- TAB: Cronograma -->
-      <div class="pcard-tab-content" data-card="insp" data-tab="gantt">
-        <div class="tab-chart">
-          <div class="tab-donut-row">
-            <svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="#fbbf24" stroke-width="4" stroke-dasharray="22.6 113.1" stroke-dashoffset="28.3" stroke-linecap="round"/></svg>
-            <div><div class="tab-donut-pct">20%</div><div class="tab-donut-sub">Avance real</div></div>
-          </div>
-          <div class="gantt-wrap">
-            <div class="gantt-months"><div></div><div class="gantt-month-labels" style="position:relative;height:14px"><span class="gantt-month-lbl" style="left:0%">Abr</span><span class="gantt-month-lbl" style="left:33%">May</span><span class="gantt-month-lbl" style="left:66%">Jun</span><span class="gantt-month-lbl" style="left:100%">Jul</span></div></div>
-            <div class="gantt-row"><div class="gantt-lbl">Plan</div><div class="gantt-track"><div class="gantt-bar plan" style="left:0%;width:25%;background:#4A9EE0"></div><div class="gantt-bar plan" style="left:25%;width:40%;background:#e07b4a"></div><div class="gantt-bar plan" style="left:65%;width:20%;background:#34d399"></div><div class="gantt-bar plan" style="left:85%;width:15%;background:#a44ae0"></div><div class="gantt-today" style="left:64%"></div></div></div>
-            <div class="gantt-row"><div class="gantt-lbl">Real</div><div class="gantt-track"><div class="gantt-bar real" style="left:0%;width:25%;background:#4A9EE0"></div><div class="gantt-bar real" style="left:25%;width:8%;background:#e07b4a"></div><div class="gantt-today" style="left:64%"></div></div></div>
-          </div>
-          <div class="phase-legend"><div class="phase-dot-item"><div class="phase-dot" style="background:#4A9EE0"></div>Diseño</div><div class="phase-dot-item"><div class="phase-dot" style="background:#e07b4a"></div>Desarrollo</div><div class="phase-dot-item"><div class="phase-dot" style="background:#34d399"></div>Pruebas</div><div class="phase-dot-item"><div class="phase-dot" style="background:#a44ae0"></div>Implementar</div></div>
-        </div>
-      </div>
+      <div class="pcard-tabs" role="tablist"><button class="pcard-tab" onclick="switchTab(this,'insp','eventos')" role="tab">Eventos</button><button class="pcard-tab" onclick="switchTab(this,'insp','riesgo')" role="tab">Riesgo</button><button class="pcard-tab" onclick="switchTab(this,'insp','gantt')" role="tab">Cronograma</button></div>
+      <div class="pcard-tab-content" data-card="insp" data-tab="eventos"><div class="tab-group"><div class="tab-glabel">Concluido</div><ul class="tab-glist"><li>Dise&ntilde;o de la app completado</li><li>2 de 3 interfaces con SAP completadas</li></ul></div><div class="tab-group"><div class="tab-glabel">Actividad siguiente</div><ul class="tab-glist"><li>Iniciar desarrollo de la app</li><li>Completar tercera interfaz con SAP</li></ul></div></div>
+      <div class="pcard-tab-content" data-card="insp" data-tab="riesgo"><div class="tab-no-risk">Sin riesgos registrados</div></div>
+      <div class="pcard-tab-content" data-card="insp" data-tab="gantt"><div class="tab-chart"><div class="tab-donut-row"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="#e07b4a" stroke-width="4" stroke-dasharray="22.6 113.1" stroke-dashoffset="28.3" stroke-linecap="round"/></svg><div><div class="tab-donut-pct">20%</div><div class="tab-donut-sub">Avance real</div></div></div><div class="gantt-wrap"><div class="gantt-months"><div></div><div class="gantt-month-labels" style="position:relative;height:14px"><span class="gantt-month-lbl" style="left:0%">Abr</span><span class="gantt-month-lbl" style="left:33%">May</span><span class="gantt-month-lbl" style="left:66%">Jun</span><span class="gantt-month-lbl" style="left:100%">Jul</span></div></div><div class="gantt-row"><div class="gantt-lbl">Plan</div><div class="gantt-track"><div class="gantt-bar plan" style="left:0%;width:25%;background:#4A9EE0"></div><div class="gantt-bar plan" style="left:25%;width:40%;background:#e07b4a"></div><div class="gantt-bar plan" style="left:65%;width:20%;background:#34d399"></div><div class="gantt-bar plan" style="left:85%;width:15%;background:#a44ae0"></div><div class="gantt-today" style="left:64%"></div></div></div><div class="gantt-row"><div class="gantt-lbl">Real</div><div class="gantt-track"><div class="gantt-bar real" style="left:0%;width:25%;background:#4A9EE0"></div><div class="gantt-bar real" style="left:25%;width:8%;background:#e07b4a"></div><div class="gantt-today" style="left:64%"></div></div></div></div><div class="phase-legend"><div class="phase-dot-item"><div class="phase-dot" style="background:#4A9EE0"></div>Dise&ntilde;o</div><div class="phase-dot-item"><div class="phase-dot" style="background:#e07b4a"></div>Desarrollo</div><div class="phase-dot-item"><div class="phase-dot" style="background:#34d399"></div>Pruebas</div><div class="phase-dot-item"><div class="phase-dot" style="background:#a44ae0"></div>Implementar</div></div></div></div>
     </div>
-    <div class="pgrid-card reveal" data-tipo="operativo" data-estado="pendiente" data-ia="ia" id="card-oport">
+ 
+    <div class="pgrid-card reveal" data-tipo="operativo" data-estado="desarrollo" data-ia="ia" id="card-oport">
       <div class="pgrid-card-inner">
-        <div class="pgrid-top">
-          <div class="pgrid-tags"><span class="tag tag-op">Operativo</span><span class="tag tag-ia">IA</span><span class="tag tag-neg">Prefabricados · BoConcept</span></div>
-          <span class="status-pill status-warn"><span class="status-dot"></span>Desarrollo</span>
-        </div>
+        <div class="pgrid-top"><div class="pgrid-tags"><span class="tag tag-op">Operativo</span><span class="tag tag-ia">IA</span><span class="tag tag-neg">Prefabricados &middot; BoConcept</span></div><span class="status-pill status-ok"><span class="status-dot"></span>Desarrollo</span></div>
         <div class="pgrid-name">Oportunidades de venta</div>
-        <div class="pgrid-leader">Carlos Araujo · Felipe Medina ·  27 may → 27 ago  · Web scraping+Automatización</div>
-        <div class="prog-compact">
-          <div class="prog-row">
-            <div>
-              <div class="prog-pct-main">10%</div>
-              <div class="prog-pct-prev">Abril: 0%</div>
-            </div>
-            <span class="prog-delta prog-delta-up">▲ +1 pp</span>
-          </div>
-          <div class="prog-bars">
-            <div class="prog-bar-row"><span class="prog-bar-lbl">May</span><div class="prog-bar-track"><div class="prog-bar-fill mayo" style="width:10%"></div></div></div>
-            <div class="prog-bar-row"><span class="prog-bar-lbl">Abr</span><div class="prog-bar-track"><div class="prog-bar-fill abril" style="width:0%"></div></div></div>
-          </div>
-        </div>
+        <div class="pgrid-leader">Carlos Araujo &middot; Felipe Medina &middot; 27 may &rarr; 27 ago &middot; Web scraping+Automatizaci&oacute;n</div>
+        <div class="prog-compact"><div class="prog-row"><div><div class="prog-pct-main">10%</div><div class="prog-pct-prev">Abril: 0%</div></div><span class="prog-delta prog-delta-up">&#9650; +10 pp</span></div><div class="prog-bars"><div class="prog-bar-row"><span class="prog-bar-lbl">May</span><div class="prog-bar-track"><div class="prog-bar-fill mayo" style="width:10%"></div></div></div><div class="prog-bar-row"><span class="prog-bar-lbl">Abr</span><div class="prog-bar-track"><div class="prog-bar-fill abril" style="width:0%"></div></div></div></div></div>
       </div>
-
-      <!-- TABS -->
-      <div class="pcard-tabs" role="tablist">
-        <button class="pcard-tab" onclick="switchTab(this,'oport','eventos')" role="tab">Eventos</button>
-        <button class="pcard-tab" onclick="switchTab(this,'oport','riesgo')" role="tab">Riesgo</button>
-        <button class="pcard-tab" onclick="switchTab(this,'oport','gantt')" role="tab">Cronograma</button>
-      </div>
-
-      <!-- TAB: Eventos -->
-      <div class="pcard-tab-content" data-card="oport" data-tab="eventos">
-        <div class="tab-group">
-          <div class="tab-glabel">Concluido</div>
-          <ul class="tab-glist"><li>Propuesta y revisión del proveedor vs desarrollo interno</li><li>Planner, WBS y requerimientos del módulo de noticias definidos</li></ul>
-        </div>
-        <div class="tab-group">
-          <div class="tab-glabel">Actividad siguiente</div>
-          <ul class="tab-glist"><li>Agendar sesión prox. semana con Directores UN, Inventariar fuentes RSS del sector</li></ul>
-        </div>
-        
-      </div>
-
-      <!-- TAB: Riesgo -->
-      <div class="pcard-tab-content" data-card="oport" data-tab="riesgo">
-        <div class="tab-risk">
-          <div class="tab-risk-title">El resultado no sea el correcto y conexión con SQL o Azure corporativo</div>
-          <div class="tab-risk-mit">Priorizar fuentes con RSS,  validar palabras/conexto clave del negocio, definición de catalogo  y validar conexiones a BD corporativa</div>
-          <div class="tab-risk-resp">Responsable: Direcciones UN y TI</div>
-        </div>
-      </div>
-
-      <!-- TAB: Cronograma -->
-      <div class="pcard-tab-content" data-card="oport" data-tab="gantt">
-        <div class="tab-chart">
-          <div class="tab-donut-row">
-            <svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="#4A9EE0" stroke-width="4" stroke-dasharray="4 113.1" stroke-dashoffset="28.3" stroke-linecap="round"/></svg>
-            <div><div class="tab-donut-pct">10%</div><div class="tab-donut-sub">Avance real</div></div>
-          </div>
-          <div class="gantt-wrap">
-            <div class="gantt-months"><div></div><div class="gantt-month-labels" style="position:relative;height:14px"><span class="gantt-month-lbl" style="left:0%">Abr</span><span class="gantt-month-lbl" style="left:25%">May</span><span class="gantt-month-lbl" style="left:50%">Jun</span><span class="gantt-month-lbl" style="left:75%">Jul</span><span class="gantt-month-lbl" style="left:100%">Ago</span></div></div>
-            <div class="gantt-row"><div class="gantt-lbl">Plan</div><div class="gantt-track"><div class="gantt-bar plan" style="left:5%;width:22%;background:#4A9EE0"></div><div class="gantt-bar plan" style="left:27%;width:35%;background:#e07b4a"></div><div class="gantt-bar plan" style="left:62%;width:22%;background:#34d399"></div><div class="gantt-bar plan" style="left:84%;width:16%;background:#a44ae0"></div><div class="gantt-today" style="left:46%"></div></div></div>
-            <div class="gantt-row"><div class="gantt-lbl">Real</div><div class="gantt-track"><div class="gantt-today" style="left:46%"></div></div></div>
-          </div>
-          <div class="phase-legend"><div class="phase-dot-item"><div class="phase-dot" style="background:#4A9EE0"></div>Planeación</div><div class="phase-dot-item"><div class="phase-dot" style="background:#e07b4a"></div>Implementación</div><div class="phase-dot-item"><div class="phase-dot" style="background:#34d399"></div>Pruebas</div><div class="phase-dot-item"><div class="phase-dot" style="background:#a44ae0"></div>Despliegue</div></div>
-        </div>
-      </div>
+      <div class="pcard-tabs" role="tablist"><button class="pcard-tab" onclick="switchTab(this,'oport','eventos')" role="tab">Eventos</button><button class="pcard-tab" onclick="switchTab(this,'oport','riesgo')" role="tab">Riesgo</button><button class="pcard-tab" onclick="switchTab(this,'oport','gantt')" role="tab">Cronograma</button></div>
+      <div class="pcard-tab-content" data-card="oport" data-tab="eventos"><div class="tab-group"><div class="tab-glabel">Concluido</div><ul class="tab-glist"><li>Propuesta y revisi&oacute;n del proveedor vs desarrollo interno</li><li>Planner, WBS y requerimientos del m&oacute;dulo de noticias definidos</li></ul></div><div class="tab-group"><div class="tab-glabel">Actividad siguiente</div><ul class="tab-glist"><li>Agendar sesi&oacute;n prox. semana con Directores UN</li><li>Inventariar fuentes RSS del sector</li></ul></div></div>
+      <div class="pcard-tab-content" data-card="oport" data-tab="riesgo"><div class="tab-risk"><div class="tab-risk-title">El resultado no sea el correcto y conexi&oacute;n con SQL o Azure corporativo</div><div class="tab-risk-mit">Priorizar fuentes con RSS, validar palabras/contexto clave del negocio, definici&oacute;n de cat&aacute;logo y validar conexiones a BD corporativa</div><div class="tab-risk-resp">Responsable: Direcciones UN y TI</div></div></div>
+      <div class="pcard-tab-content" data-card="oport" data-tab="gantt"><div class="tab-chart"><div class="tab-donut-row"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="#e07b4a" stroke-width="4" stroke-dasharray="11.3 113.1" stroke-dashoffset="28.3" stroke-linecap="round"/></svg><div><div class="tab-donut-pct">10%</div><div class="tab-donut-sub">Avance real</div></div></div><div class="gantt-wrap"><div class="gantt-months"><div></div><div class="gantt-month-labels" style="position:relative;height:14px"><span class="gantt-month-lbl" style="left:0%">May</span><span class="gantt-month-lbl" style="left:33%">Jun</span><span class="gantt-month-lbl" style="left:66%">Jul</span><span class="gantt-month-lbl" style="left:100%">Ago</span></div></div><div class="gantt-row"><div class="gantt-lbl">Plan</div><div class="gantt-track"><div class="gantt-bar plan" style="left:0%;width:22%;background:#4A9EE0"></div><div class="gantt-bar plan" style="left:22%;width:44%;background:#e07b4a"></div><div class="gantt-bar plan" style="left:66%;width:22%;background:#34d399"></div><div class="gantt-bar plan" style="left:88%;width:12%;background:#a44ae0"></div><div class="gantt-today" style="left:5%"></div></div></div><div class="gantt-row"><div class="gantt-lbl">Real</div><div class="gantt-track"><div class="gantt-bar real" style="left:0%;width:5%;background:#4A9EE0"></div><div class="gantt-today" style="left:5%"></div></div></div></div><div class="phase-legend"><div class="phase-dot-item"><div class="phase-dot" style="background:#4A9EE0"></div>Planeaci&oacute;n</div><div class="phase-dot-item"><div class="phase-dot" style="background:#e07b4a"></div>Implementaci&oacute;n</div><div class="phase-dot-item"><div class="phase-dot" style="background:#34d399"></div>Pruebas</div><div class="phase-dot-item"><div class="phase-dot" style="background:#a44ae0"></div>Despliegue</div></div></div></div>
     </div>
-    <div class="pgrid-card reveal" data-tipo="operativo" data-estado="desarrollo" data-ia="no" id="card-durm">
+ 
+    <div class="pgrid-card reveal" data-tipo="operativo" data-estado="pruebas" data-ia="no" id="card-durm">
       <div class="pgrid-card-inner">
-        <div class="pgrid-top">
-          <div class="pgrid-tags"><span class="tag tag-op">Operativo</span><span class="tag tag-neg">Durmientes</span></div>
-          <span class="status-pill status-ok"><span class="status-dot"></span>Pruebas</span>
-        </div>
+        <div class="pgrid-top"><div class="pgrid-tags"><span class="tag tag-op">Operativo</span><span class="tag tag-neg">Durmientes</span></div><span class="status-pill status-ok"><span class="status-dot"></span>Pruebas</span></div>
         <div class="pgrid-name">Inspecciones de cilindros de concreto</div>
-        <div class="pgrid-leader">José Isabel · 23 mar → 30 abr (plan) · SAP-QM</div>
-        <div class="prog-compact">
-          <div class="prog-row">
-            <div>
-              <div class="prog-pct-main">80%</div>
-              <div class="prog-pct-prev">Abril: 40%</div>
-            </div>
-            <span class="prog-delta prog-delta-up">▲ +40 pp</span>
-          </div>
-          <div class="prog-bars">
-            <div class="prog-bar-row"><span class="prog-bar-lbl">May</span><div class="prog-bar-track"><div class="prog-bar-fill mayo" style="width:80%"></div></div></div>
-            <div class="prog-bar-row"><span class="prog-bar-lbl">Abr</span><div class="prog-bar-track"><div class="prog-bar-fill abril" style="width:40%"></div></div></div>
-          </div>
-        </div>
+        <div class="pgrid-leader">Jos&eacute; Isabel &middot; 23 mar &rarr; 30 abr (plan) &middot; SAP-QM</div>
+        <div class="prog-compact"><div class="prog-row"><div><div class="prog-pct-main">80%</div><div class="prog-pct-prev">Abril: 40%</div></div><span class="prog-delta prog-delta-up">&#9650; +40 pp</span></div><div class="prog-bars"><div class="prog-bar-row"><span class="prog-bar-lbl">May</span><div class="prog-bar-track"><div class="prog-bar-fill mayo" style="width:80%"></div></div></div><div class="prog-bar-row"><span class="prog-bar-lbl">Abr</span><div class="prog-bar-track"><div class="prog-bar-fill abril" style="width:40%"></div></div></div></div></div>
       </div>
-
-      <!-- TABS -->
-      <div class="pcard-tabs" role="tablist">
-        <button class="pcard-tab" onclick="switchTab(this,'durm','eventos')" role="tab">Eventos</button>
-        <button class="pcard-tab" onclick="switchTab(this,'durm','riesgo')" role="tab">Riesgo</button>
-        <button class="pcard-tab" onclick="switchTab(this,'durm','gantt')" role="tab">Cronograma</button>
-      </div>
-
-      <!-- TAB: Eventos -->
-      <div class="pcard-tab-content" data-card="durm" data-tab="eventos">
-        <div class="tab-group">
-          <div class="tab-glabel">Concluido</div>
-          <ul class="tab-glist"><li>Pantalla de captura completada</li></ul>
-        </div>
-        <div class="tab-group">
-          <div class="tab-glabel">Actividad siguiente</div>
-          <ul class="tab-glist"><li>Formato de salida en curso</li><li>Ajuste solicitado a la pantalla</li></ul>
-        </div>
-        
-      </div>
-
-      <!-- TAB: Riesgo -->
-      <div class="pcard-tab-content" data-card="durm" data-tab="riesgo">
-        <div class="tab-risk">
-          <div class="tab-risk-title">Se presente resistencia al cambio</div>
-          <div class="tab-risk-mit">Involucrar a gerencia y dirección del negocio</div>
-          <div class="tab-risk-resp">Responsable: Javier</div>
-        </div>
-      </div>
-
-      <!-- TAB: Cronograma -->
-      <div class="pcard-tab-content" data-card="durm" data-tab="gantt">
-        <div class="tab-chart">
-          <div class="tab-donut-row">
-            <svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="#34d399" stroke-width="4" stroke-dasharray="90.5 113.1" stroke-dashoffset="28.3" stroke-linecap="round"/></svg>
-            <div><div class="tab-donut-pct">80%</div><div class="tab-donut-sub">Avance real</div></div>
-          </div>
-          <div class="gantt-wrap">
-            <div class="gantt-months"><div></div><div class="gantt-month-labels" style="position:relative;height:14px"><span class="gantt-month-lbl" style="left:0%">Mar</span><span class="gantt-month-lbl" style="left:33%">Abr</span><span class="gantt-month-lbl" style="left:66%">May</span><span class="gantt-month-lbl" style="left:100%">Jun</span></div></div>
-            <div class="gantt-row"><div class="gantt-lbl">Plan</div><div class="gantt-track"><div class="gantt-bar plan" style="left:0%;width:20%;background:#4A9EE0"></div><div class="gantt-bar plan" style="left:20%;width:30%;background:#e07b4a"></div><div class="gantt-bar plan" style="left:50%;width:25%;background:#34d399"></div><div class="gantt-bar plan" style="left:75%;width:25%;background:#a44ae0"></div><div class="gantt-today" style="left:97%"></div></div></div>
-            <div class="gantt-row"><div class="gantt-lbl">Real</div><div class="gantt-track"><div class="gantt-bar real" style="left:0%;width:20%;background:#4A9EE0"></div><div class="gantt-bar real" style="left:20%;width:30%;background:#e07b4a"></div><div class="gantt-bar real" style="left:50%;width:22%;background:#34d399"></div><div class="gantt-today" style="left:97%"></div></div></div>
-          </div>
-          <div class="phase-legend"><div class="phase-dot-item"><div class="phase-dot" style="background:#4A9EE0"></div>Análisis</div><div class="phase-dot-item"><div class="phase-dot" style="background:#e07b4a"></div>Configuración</div><div class="phase-dot-item"><div class="phase-dot" style="background:#34d399"></div>Pruebas</div><div class="phase-dot-item"><div class="phase-dot" style="background:#a44ae0"></div>Liberación</div></div>
-        </div>
-      </div>
+      <div class="pcard-tabs" role="tablist"><button class="pcard-tab" onclick="switchTab(this,'durm','eventos')" role="tab">Eventos</button><button class="pcard-tab" onclick="switchTab(this,'durm','riesgo')" role="tab">Riesgo</button><button class="pcard-tab" onclick="switchTab(this,'durm','gantt')" role="tab">Cronograma</button></div>
+      <div class="pcard-tab-content" data-card="durm" data-tab="eventos"><div class="tab-group"><div class="tab-glabel">Concluido</div><ul class="tab-glist"><li>Pantalla de captura completada</li></ul></div><div class="tab-group"><div class="tab-glabel">Actividad siguiente</div><ul class="tab-glist"><li>Formato de salida en curso</li><li>Ajuste solicitado a la pantalla</li></ul></div></div>
+      <div class="pcard-tab-content" data-card="durm" data-tab="riesgo"><div class="tab-risk"><div class="tab-risk-title">Se presente resistencia al cambio</div><div class="tab-risk-mit">Involucrar a gerencia y direcci&oacute;n del negocio</div><div class="tab-risk-resp">Responsable: Javier</div></div></div>
+      <div class="pcard-tab-content" data-card="durm" data-tab="gantt"><div class="tab-chart"><div class="tab-donut-row"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="#34d399" stroke-width="4" stroke-dasharray="90.5 113.1" stroke-dashoffset="28.3" stroke-linecap="round"/></svg><div><div class="tab-donut-pct">80%</div><div class="tab-donut-sub">Avance real</div></div></div><div class="gantt-wrap"><div class="gantt-months"><div></div><div class="gantt-month-labels" style="position:relative;height:14px"><span class="gantt-month-lbl" style="left:0%">Mar</span><span class="gantt-month-lbl" style="left:33%">Abr</span><span class="gantt-month-lbl" style="left:66%">May</span><span class="gantt-month-lbl" style="left:100%">Jun</span></div></div><div class="gantt-row"><div class="gantt-lbl">Plan</div><div class="gantt-track"><div class="gantt-bar plan" style="left:0%;width:20%;background:#4A9EE0"></div><div class="gantt-bar plan" style="left:20%;width:30%;background:#e07b4a"></div><div class="gantt-bar plan" style="left:50%;width:25%;background:#34d399"></div><div class="gantt-bar plan" style="left:75%;width:25%;background:#a44ae0"></div><div class="gantt-today" style="left:97%"></div></div></div><div class="gantt-row"><div class="gantt-lbl">Real</div><div class="gantt-track"><div class="gantt-bar real" style="left:0%;width:20%;background:#4A9EE0"></div><div class="gantt-bar real" style="left:20%;width:30%;background:#e07b4a"></div><div class="gantt-bar real" style="left:50%;width:22%;background:#34d399"></div><div class="gantt-today" style="left:97%"></div></div></div></div><div class="phase-legend"><div class="phase-dot-item"><div class="phase-dot" style="background:#4A9EE0"></div>An&aacute;lisis</div><div class="phase-dot-item"><div class="phase-dot" style="background:#e07b4a"></div>Configuraci&oacute;n</div><div class="phase-dot-item"><div class="phase-dot" style="background:#34d399"></div>Pruebas</div><div class="phase-dot-item"><div class="phase-dot" style="background:#a44ae0"></div>Liberaci&oacute;n</div></div></div></div>
     </div>
+ 
   </div><!-- /pgrid -->
-  <div id="no-results" style="display:none;text-align:center;padding:64px 0;color:var(--muted);font-size:14px">Ningún proyecto coincide con los filtros.</div>
+  <div id="no-results" style="display:none;text-align:center;padding:64px 0;color:var(--muted);font-size:14px">Ning&uacute;n proyecto coincide con los filtros.</div>
 </section>
-
 
 <!-- PORTAFOLIO MAPA CIRCULAR -->
 <section class="section" style="background:var(--bg2)" id="portafolio-mapa">
