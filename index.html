@@ -104,8 +104,8 @@ nav{position:fixed;top:0;left:0;width:100%;height:64px;display:flex;align-items:
 .prog-bar-track{height:5px;background:var(--line2);border-radius:3px;position:relative;overflow:hidden}
 .prog-bar-fill{height:100%;border-radius:3px;position:absolute;top:0;left:0;transition:width 1.4s cubic-bezier(.4,0,.2,1)}
 .prog-bar-fill.junio{background:var(--accent)}
-.prog-bar-fill.mayo{background:var(--accent2);opacity:.65}
-.prog-bar-fill.abril{background:var(--dim);opacity:.45}
+.prog-bar-fill.mayo{background:var(--dim);opacity:.65}
+.prog-bar-fill.abril{background:var(--dim);opacity:.35}
 .pcard-tabs{display:flex;border-top:0.5px solid var(--line);background:var(--bg)}
 .pcard-tab{flex:1;font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--dim);padding:9px 4px;text-align:center;cursor:pointer;border:none;background:transparent;font-family:var(--font);transition:color .15s,background .15s;border-bottom:2px solid transparent;margin-bottom:-0.5px}
 .pcard-tab:hover{color:var(--muted);background:var(--glass)}
@@ -136,6 +136,7 @@ nav{position:fixed;top:0;left:0;width:100%;height:64px;display:flex;align-items:
 .status-pill{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:4px 10px;border-radius:20px}
 .status-ok{background:var(--okbg);color:var(--ok)}
 .status-warn{background:var(--warnbg);color:var(--warn)}
+.status-risk{background:var(--riskbg);color:var(--risk)}
 .status-dim{background:var(--glass);color:var(--muted)}
 .status-dot{width:6px;height:6px;border-radius:50%;background:currentColor}
 .gantt-wrap{overflow:hidden}
@@ -339,7 +340,7 @@ footer p{font-size:12px;color:var(--dim)}
     <!-- ══ 1. PORTAL DE CONTRATISTAS ══ -->
     <div class="pgrid-card reveal" data-tipo="administrativo" data-estado="desarrollo" data-ia="no" id="card-pcon">
       <div class="pgrid-card-inner">
-        <div class="pgrid-top"><div class="pgrid-tags"><span class="tag tag-admin">Administrativo</span><span class="tag tag-neg">Prefabricados</span></div><span class="status-pill status-warn"><span class="status-dot"></span>Desarrollo</span></div>
+        <div class="pgrid-top"><div class="pgrid-tags"><span class="tag tag-admin">Administrativo</span><span class="tag tag-neg">Prefabricados</span></div><span class="status-pill status-ok"><span class="status-dot"></span>Desarrollo</span></div>
         <div class="pgrid-name">Portal de contratistas</div>
         <div class="pgrid-leader">Nuria &middot; 8 mar &rarr; 3 jul</div>
         <div class="prog-compact">
@@ -358,7 +359,7 @@ footer p{font-size:12px;color:var(--dim)}
       </div>
       <div class="pcard-tab-content" data-card="pcon" data-tab="eventos">
         <div class="tab-group"><div class="tab-glabel">Concluido</div><ul class="tab-glist"><li>Integraci&oacute;n eFirma implementada</li><li>Integraci&oacute;n con datos del pedido en SAP</li></ul></div>
-        <div class="tab-group"><div class="tab-glabel">Actividad siguiente</div><ul class="tab-glist"><li>Validar n&uacute;meros de serie</li></ul></div>
+        <div class="tab-group"><div class="tab-glabel">Actividad siguiente</div><ul class="tab-glist"><li>Validar n&uacute;meros de serie</li><li>Documento Pedido &mdash; Roberto Barrera</li></ul></div>
       </div>
       <div class="pcard-tab-content" data-card="pcon" data-tab="riesgo">
         <div class="tab-risk"><div class="tab-risk-title">Documento Pedido creado</div><div class="tab-risk-mit">Sin definici&oacute;n de estrategia de mitigaci&oacute;n</div><div class="tab-risk-resp">Responsable: Roberto Barrera</div></div>
@@ -379,7 +380,7 @@ footer p{font-size:12px;color:var(--dim)}
     <!-- ══ 2. PORTAL REPSE ══ -->
     <div class="pgrid-card reveal" data-tipo="administrativo" data-estado="contratacion" data-ia="no" id="card-repse">
       <div class="pgrid-card-inner">
-        <div class="pgrid-top"><div class="pgrid-tags"><span class="tag tag-admin">Administrativo</span><span class="tag tag-neg">Prefabricados</span></div><span class="status-pill status-warn"><span class="status-dot"></span>Contrataci&oacute;n</span></div>
+        <div class="pgrid-top"><div class="pgrid-tags"><span class="tag tag-admin">Administrativo</span><span class="tag tag-neg">Prefabricados</span></div><span class="status-pill status-dim"><span class="status-dot"></span>Contrataci&oacute;n</span></div>
         <div class="pgrid-name">Portal REPSE</div>
         <div class="pgrid-leader">Iris V&aacute;zquez &middot; Por confirmar</div>
         <div class="prog-compact">
@@ -393,15 +394,14 @@ footer p{font-size:12px;color:var(--dim)}
       </div>
       <div class="pcard-tabs" role="tablist">
         <button class="pcard-tab" onclick="switchTab(this,'repse','eventos')" role="tab">Eventos</button>
-        <button class="pcard-tab" onclick="switchTab(this,'durm','riesgo')" role="tab">Riesgo</button>
+        <button class="pcard-tab" onclick="switchTab(this,'repse','riesgo')" role="tab">Riesgo</button>
         <button class="pcard-tab" onclick="switchTab(this,'repse','gantt')" role="tab">Cronograma</button>
       </div>
       <div class="pcard-tab-content" data-card="repse" data-tab="eventos">
         <div class="tab-group"><div class="tab-glabel">Concluido</div><ul class="tab-glist"><li>Proveedor seleccionado</li></ul></div>
         <div class="tab-group"><div class="tab-glabel">Actividad siguiente</div><ul class="tab-glist"><li>Firma del contrato</li></ul></div>
       </div>
-        <div class="pcard-tab-content" data-card="pcon" data-tab="riesgo">
-      </div>
+      <div class="pcard-tab-content" data-card="repse" data-tab="riesgo"><div class="tab-no-risk">Sin riesgos registrados</div></div>
       <div class="pcard-tab-content" data-card="repse" data-tab="gantt">
         <div class="tab-chart">
           <div class="tab-donut-row"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="#fbbf24" stroke-width="4" stroke-dasharray="5.5 113.1" stroke-dashoffset="28.3" stroke-linecap="round"/></svg><div><div class="tab-donut-pct">&mdash;</div><div class="tab-donut-sub">Avance real</div></div></div>
@@ -418,7 +418,7 @@ footer p{font-size:12px;color:var(--dim)}
     <!-- ══ 3. KHOR ══ -->
     <div class="pgrid-card reveal" data-tipo="administrativo" data-estado="pruebas" data-ia="no" id="card-khor">
       <div class="pgrid-card-inner">
-        <div class="pgrid-top"><div class="pgrid-tags"><span class="tag tag-admin">Administrativo</span><span class="tag tag-neg">Capital Humano</span></div><span class="status-pill" style="background:var(--riskbg);color:var(--risk)"><span class="status-dot" style="background:var(--risk)"></span>Retrasado</span></div>
+        <div class="pgrid-top"><div class="pgrid-tags"><span class="tag tag-admin">Administrativo</span><span class="tag tag-neg">Capital Humano</span></div><span class="status-pill status-risk"><span class="status-dot"></span>Retrasado</span></div>
         <div class="pgrid-name">KHOR</div>
         <div class="pgrid-leader">Gabriela Sordo &middot; Plan: Ago-Nov 2025 &middot; Fin est: 17/jul/2026</div>
         <div class="prog-compact">
@@ -458,7 +458,7 @@ footer p{font-size:12px;color:var(--dim)}
     <!-- ══ 4. APP INSPECCIONES DE CALIDAD ══ CAMBIOS JUNIO -->
     <div class="pgrid-card reveal" data-tipo="operativo" data-estado="desarrollo" data-ia="no" id="card-insp">
       <div class="pgrid-card-inner">
-        <div class="pgrid-top"><div class="pgrid-tags"><span class="tag tag-op">Operativo</span><span class="tag tag-neg">Prefabricados</span></div><span class="status-pill status-warn"><span class="status-dot"></span>&Aacute;mbar</span></div>
+        <div class="pgrid-top"><div class="pgrid-tags"><span class="tag tag-op">Operativo</span><span class="tag tag-neg">Prefabricados</span></div><span class="status-pill status-warn"><span class="status-dot"></span>Desarrollo</span></div>
         <div class="pgrid-name">App inspecciones de calidad de piezas</div>
         <div class="pgrid-leader">Fernando Valle &middot; 6 abr &rarr; Por definir &middot; Power App + SAP</div>
         <div class="prog-compact">
@@ -472,13 +472,14 @@ footer p{font-size:12px;color:var(--dim)}
       </div>
       <div class="pcard-tabs" role="tablist">
         <button class="pcard-tab" onclick="switchTab(this,'insp','eventos')" role="tab">Eventos</button>
-        <button class="pcard-tab" onclick="switchTab(this,'durm','riesgo')" role="tab">Riesgo</button>
+        <button class="pcard-tab" onclick="switchTab(this,'insp','riesgo')" role="tab">Riesgo</button>
         <button class="pcard-tab" onclick="switchTab(this,'insp','gantt')" role="tab">Cronograma</button>
       </div>
       <div class="pcard-tab-content" data-card="insp" data-tab="eventos">
         <div class="tab-group"><div class="tab-glabel">Concluido</div><ul class="tab-glist"><li>Dise&ntilde;o de la app completado</li><li>3 de 3 interfaces con SAP completadas. Ajustes en curso</li></ul></div>
         <div class="tab-group"><div class="tab-glabel">Actividad siguiente</div><ul class="tab-glist"><li>Cambiar a desarrollo en Claude Code</li></ul></div>
       </div>
+      <div class="pcard-tab-content" data-card="insp" data-tab="riesgo"><div class="tab-no-risk">Sin riesgos registrados</div></div>
       <div class="pcard-tab-content" data-card="insp" data-tab="gantt">
         <div class="tab-chart">
           <div class="tab-donut-row"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="#e07b4a" stroke-width="4" stroke-dasharray="22.6 113.1" stroke-dashoffset="28.3" stroke-linecap="round"/></svg><div><div class="tab-donut-pct">20%</div><div class="tab-donut-sub">Avance real</div></div></div>
@@ -495,7 +496,7 @@ footer p{font-size:12px;color:var(--dim)}
     <!-- ══ 5. OPORTUNIDADES DE VENTA ══ CAMBIOS JUNIO -->
     <div class="pgrid-card reveal" data-tipo="operativo" data-estado="desarrollo" data-ia="ia" id="card-oport">
       <div class="pgrid-card-inner">
-        <div class="pgrid-top"><div class="pgrid-tags"><span class="tag tag-op">Operativo</span><span class="tag tag-ia">IA</span><span class="tag tag-neg">Prefabricados &middot; BoConcept</span></div><span class="status-pill status-warn"><span class="status-dot"></span>Desarrollo</span></div>
+        <div class="pgrid-top"><div class="pgrid-tags"><span class="tag tag-op">Operativo</span><span class="tag tag-ia">IA</span><span class="tag tag-neg">Prefabricados &middot; BoConcept</span></div><span class="status-pill status-ok"><span class="status-dot"></span>Desarrollo</span></div>
         <div class="pgrid-name">Oportunidades de venta</div>
         <div class="pgrid-leader">Carlos Araujo &middot; Felipe Medina &middot; 27 may &rarr; 27 ago &middot; Web scraping+Automatizaci&oacute;n</div>
         <div class="prog-compact">
@@ -556,6 +557,7 @@ footer p{font-size:12px;color:var(--dim)}
         <div class="tab-group"><div class="tab-glabel">Concluido</div><ul class="tab-glist"><li>Ajuste solicitado a la pantalla</li></ul></div>
         <div class="tab-group"><div class="tab-glabel">Actividad siguiente</div><ul class="tab-glist"><li>Formato de salida en curso</li><li>Funci&oacute;n con datos para el reporte</li></ul></div>
       </div>
+      <div class="pcard-tab-content" data-card="durm" data-tab="riesgo"><div class="tab-no-risk">Sin riesgos registrados</div></div>
       <div class="pcard-tab-content" data-card="durm" data-tab="gantt">
         <div class="tab-chart">
           <div class="tab-donut-row"><svg width="44" height="44" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="4"/><circle cx="22" cy="22" r="18" fill="none" stroke="#34d399" stroke-width="4" stroke-dasharray="90.5 113.1" stroke-dashoffset="28.3" stroke-linecap="round"/></svg><div><div class="tab-donut-pct">80%</div><div class="tab-donut-sub">Avance real</div></div></div>
